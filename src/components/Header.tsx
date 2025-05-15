@@ -6,7 +6,8 @@ import {
   Database, 
   Linkedin, 
   Package,
-  CirclePlay
+  CirclePlay,
+  Info
 } from "lucide-react";
 
 const Header = () => {
@@ -29,8 +30,8 @@ const Header = () => {
           <span className="text-2xl font-bold text-nocodext font-roboto">Nocodext.studio</span>
         </div>
         
-        <div className="flex items-center gap-6">
-          <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="mr-6">
+        <div className="flex items-center gap-4">
+          <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="mr-4">
             <TabsList>
               <TabsTrigger value="bubble" className="flex items-center gap-2 font-open-sans">
                 <CirclePlay className="w-4 h-4" />
@@ -57,6 +58,11 @@ const Header = () => {
               </TabsTrigger>
             </TabsList>
           </Tabs>
+          
+          <TabsTrigger value="about" className="flex items-center gap-2 font-open-sans bg-muted p-2 rounded-md h-10">
+            <Info className="w-4 h-4" />
+            <span>About us</span>
+          </TabsTrigger>
           
           <button 
             onClick={() => window.open("https://chrome.google.com/webstore", "_blank")}
