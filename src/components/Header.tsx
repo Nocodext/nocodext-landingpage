@@ -29,7 +29,7 @@ const Header = () => {
           <img 
             src="/lovable-uploads/451455b0-2a7a-4677-829f-60f3e25f7be2.png" 
             alt="Nocodext Studio" 
-            className="h-10 w-auto"
+            className="h-14 w-auto" // Increased height from h-10 to h-14
           />
         </div>
         
