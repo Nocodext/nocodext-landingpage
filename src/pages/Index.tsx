@@ -47,7 +47,13 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="animate-fade-in text-nocodext">
-              Power up your Bubble Editor experience.
+              Power up your <span className="inline-flex items-center">
+                <img 
+                  src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fa9fb3f5dff487929c9a2de80%2F5b0cbf79-4c5a-4bcf-a5f5-a2a1d2f70fb0.png?w=32&h=32&auto=compress&dpr=1.25&fit=max" 
+                  alt="Bubble Logo" 
+                  className="inline-block h-10 w-10 mr-1 mb-1"
+                />
+              </span> Editor experience.
             </h1>
             <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               Bubble UI is never enough, still features missing, unintutive.
