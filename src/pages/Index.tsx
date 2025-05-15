@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
@@ -47,11 +48,9 @@ const Index = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="animate-fade-in text-nocodext">
               Power up your <span className="inline-flex items-center">
-                <img 
-                  src="https://bubbledev-site-images.s3.amazonaws.com/image/1652875560466x541238016256651400/bubble-logo-icon-blue.png" 
-                  alt="Bubble Logo" 
-                  className="inline-block h-10 w-10 mr-1 mb-1"
-                />
+                <span className="bubble-logo">
+                  <span className="bubble-dot">.</span>Bubble
+                </span>
               </span> Editor experience.
             </h1>
             <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>

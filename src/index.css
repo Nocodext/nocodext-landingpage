@@ -95,3 +95,16 @@
     @apply rounded-t-lg h-48 w-full object-cover;
   }
 }
+
+/* Bubble logo styling */
+.bubble-logo {
+  @apply font-medium tracking-tight inline-flex items-baseline;
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+}
+
+.bubble-dot {
+  @apply text-blue-500 mr-0.5;
+  font-size: 120%;
+}
+
