@@ -18,7 +18,7 @@ const Footer = () => {
             <Button 
               variant="outline" 
               onClick={() => window.open("https://youtube.com", "_blank")}
-              className="flex items-center gap-2 text-white border-white hover:bg-white/10"
+              className="flex items-center gap-2 bg-red-600 text-white border-red-600 hover:bg-red-700 hover:border-red-700"
             >
               <Youtube size={20} />
               Suivez-nous sur YouTube
