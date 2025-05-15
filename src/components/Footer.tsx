@@ -9,45 +9,41 @@ const Footer = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <footer className="bg-gray-50 py-16">
+    <footer className="bg-gray-900 text-white py-16">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row gap-12">
-          <div className="flex-1">
-            <h3 className="text-2xl font-bold mb-4">Nocodext</h3>
-            <p className="text-gray-600 mb-6 max-w-md">
-              L'extension Chrome qui simplifie votre workflow quotidien. Découvrez comment Nocodext peut transformer votre productivité.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                variant="outline" 
-                onClick={() => window.open("https://youtube.com", "_blank")}
-                className="flex items-center gap-2"
-              >
-                <Youtube size={20} />
-                Suivez-nous sur YouTube
-              </Button>
-              
-              <Button 
-                variant="default"
-                className="bg-nocodext hover:bg-nocodext-dark text-white"
-                onClick={() => setIsContactModalOpen(true)}
-              >
-                Contactez-nous
-              </Button>
-            </div>
+        <div className="flex flex-col items-center">
+          <h3 className="text-2xl font-bold mb-6">Nocodext</h3>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+            <Button 
+              variant="outline" 
+              onClick={() => window.open("https://youtube.com", "_blank")}
+              className="flex items-center gap-2 text-white border-white hover:bg-white/10"
+            >
+              <Youtube size={20} />
+              Suivez-nous sur YouTube
+            </Button>
+            
+            <Button 
+              variant="default"
+              className="bg-nocodext hover:bg-nocodext-dark text-white"
+              onClick={() => setIsContactModalOpen(true)}
+            >
+              Contactez-nous
+            </Button>
           </div>
         </div>
         
-        <Separator className="my-8" />
+        <Separator className="my-8 bg-gray-700" />
         
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-300">
             &copy; {new Date().getFullYear()} Nocodext. Tous droits réservés.
           </p>
           <div className="flex gap-8 mt-4 md:mt-0">
-            <a href="#" className="text-sm text-gray-500 hover:text-nocodext">Mentions légales</a>
-            <a href="#" className="text-sm text-gray-500 hover:text-nocodext">Politique de confidentialité</a>
-            <a href="#" className="text-sm text-gray-500 hover:text-nocodext">CGU</a>
+            <a href="#" className="text-sm text-gray-300 hover:text-nocodext">Mentions légales</a>
+            <a href="#" className="text-sm text-gray-300 hover:text-nocodext">Politique de confidentialité</a>
+            <a href="#" className="text-sm text-gray-300 hover:text-nocodext">CGU</a>
           </div>
         </div>
       </div>
