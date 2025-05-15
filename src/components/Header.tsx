@@ -27,9 +27,9 @@ const Header = () => {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4">
         <div className="flex items-center gap-2 mb-4 md:mb-0">
           <img 
-            src="/lovable-uploads/bff0fa01-1a96-4a6e-bc29-5b8b9e9a8972.png" 
+            src="/lovable-uploads/68f05789-18a4-4d46-a28b-bee58888884a.png" 
             alt="Nocodext Studio" 
-            className="h-16 w-auto" // Increased height for brand prominence
+            className="w-[22rem] h-auto" // Made responsive with width 22rem
           />
         </div>
         
