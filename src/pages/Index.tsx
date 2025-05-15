@@ -47,7 +47,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="animate-fade-in text-nocodext">
-              Power up your Bubble Editor experience today.
+              Power up your Bubble Editor experience.
             </h1>
             <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               Bubble UI is never enough, still features missing, unintutive.
