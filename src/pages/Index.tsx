@@ -46,21 +46,10 @@ const Index = () => {
       <section className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="animate-fade-in">
+            <h1 className="animate-fade-in text-nocodext">
               Power up your <span className="inline-flex items-center">
-                <span style={{
-                  fontFamily: 'Roboto, sans-serif',
-                  fontWeight: 500,
-                  color: '#333333',
-                  display: 'inline-flex',
-                  alignItems: 'baseline'
-                }}>
-                  <span style={{
-                    color: '#2563eb',
-                    marginRight: '2px',
-                    fontSize: '120%'
-                  }}>.</span>
-                  Bubble
+                <span className="bubble-logo">
+                  <span className="bubble-dot">.</span>Bubble
                 </span>
               </span> Editor experience.
             </h1>
@@ -75,7 +64,7 @@ const Index = () => {
               >
                 <div className="flex items-center justify-center bg-neutral-100 rounded-md p-1">
                   <svg viewBox="0 0 24 24" width="18" height="18">
-                    <path d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zM13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.003h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.366zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
+                    <path d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zm13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.003h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.366zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
                       fill="#4285F4" />
                     <path d="M12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
                       fill="#34A853" />
@@ -114,7 +103,7 @@ const Index = () => {
       <section id="features" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2>Key Features</h2>
+            <h2 className="text-nocodext">Key Features</h2>
             <p className="mt-4 text-xl text-gray-600">
               Discover how Nocodext can transform your daily browsing with powerful and intuitive tools.
             </p>
@@ -147,7 +136,7 @@ const Index = () => {
           >
             <div className="flex items-center justify-center bg-neutral-100 rounded-md p-1">
               <svg viewBox="0 0 24 24" width="18" height="18">
-                <path d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zM13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.003h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.366zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
+                <path d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zm13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.003h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.366zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
                   fill="#4285F4" />
                 <path d="M12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
                   fill="#34A853" />
@@ -166,7 +155,7 @@ const Index = () => {
       <section className="py-24 bg-gray-100">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-xl mx-auto">
-            <h2>Stay Informed</h2>
+            <h2 className="text-nocodext mb-6">Stay Informed</h2>
             <p className="text-lg text-gray-600 mb-10">
               Receive our news, tips, and new features directly in your inbox.
             </p>

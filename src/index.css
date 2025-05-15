@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -83,10 +82,6 @@
 
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl;
-    background: linear-gradient(135deg, #6366f1 0%, #8B5CF6 50%, #D946EF 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
   h2 {
@@ -98,4 +93,16 @@
   .feature-image {
     @apply rounded-t-lg h-48 w-full object-cover;
   }
+}
+
+/* Bubble logo styling */
+.bubble-logo {
+  @apply font-medium tracking-tight inline-flex items-baseline;
+  font-family: 'Roboto', sans-serif;
+  color: #333333;
+}
+
+.bubble-dot {
+  @apply text-blue-500 mr-0.5;
+  font-size: 120%;
 }
