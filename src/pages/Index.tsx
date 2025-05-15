@@ -8,26 +8,26 @@ import { ArrowRight } from "lucide-react";
 
 const features = [
   {
-    title: "Automatisation du workflow",
-    description: "Automatisez vos tâches répétitives et gagnez un temps précieux dans votre travail quotidien.",
+    title: "Workflow Automation",
+    description: "Automate your repetitive tasks and save valuable time in your daily work.",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3",
-    videoId: "dQw4w9WgXcQ", // Exemple, à remplacer par les vrais IDs YouTube
+    videoId: "dQw4w9WgXcQ", // Example, to be replaced with real YouTube IDs
   },
   {
-    title: "Intégration multi-plateformes",
-    description: "Connectez facilement Nocodext avec vos outils préférés pour une expérience fluide et sans friction.",
+    title: "Cross-Platform Integration",
+    description: "Easily connect Nocodext with your favorite tools for a seamless, frictionless experience.",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3",
     videoId: "dQw4w9WgXcQ",
   },
   {
-    title: "Tableau de bord personnalisable",
-    description: "Créez votre espace de travail idéal avec des widgets personnalisables selon vos besoins spécifiques.",
+    title: "Customizable Dashboard",
+    description: "Create your ideal workspace with customizable widgets based on your specific needs.",
     image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3",
     videoId: "dQw4w9WgXcQ",
   },
   {
-    title: "Synchronisation en temps réel",
-    description: "Accédez à vos données sur tous vos appareils grâce à la synchronisation instantanée et sécurisée.",
+    title: "Real-Time Synchronization",
+    description: "Access your data on all your devices with instant and secure synchronization.",
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3",
     videoId: "dQw4w9WgXcQ",
   },
@@ -35,7 +35,7 @@ const features = [
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Nocodext - Extension Chrome pour optimiser votre productivité";
+    document.title = "Nocodext - Chrome Extension to optimize your productivity";
   }, []);
 
   return (
@@ -47,10 +47,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="animate-fade-in text-nocodext">
-              Transformez votre navigation avec Nocodext
+              Transform Your Browsing with Nocodext
             </h1>
             <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-              L'extension Chrome qui redéfinit votre expérience en ligne. Plus rapide, plus intuitive, plus productive.
+              The Chrome extension that redefines your online experience. Faster, more intuitive, more productive.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
               <button 
@@ -75,7 +75,7 @@ const Index = () => {
                 onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
                 className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
               >
-                <span>Découvrir les fonctionnalités</span>
+                <span>Discover features</span>
                 <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
@@ -98,9 +98,9 @@ const Index = () => {
       <section id="features" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-nocodext">Fonctionnalités principales</h2>
+            <h2 className="text-nocodext">Key Features</h2>
             <p className="mt-4 text-xl text-gray-600">
-              Découvrez comment Nocodext peut transformer votre navigation quotidienne avec des outils puissants et intuitifs.
+              Discover how Nocodext can transform your daily browsing with powerful and intuitive tools.
             </p>
           </div>
           
@@ -121,9 +121,9 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-nocodext to-nocodext-light text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-white mb-6">Prêt à améliorer votre productivité ?</h2>
+          <h2 className="text-white mb-6">Ready to improve your productivity?</h2>
           <p className="text-xl mb-10 max-w-2xl mx-auto">
-            Rejoignez des milliers d'utilisateurs qui ont déjà transformé leur façon de travailler grâce à Nocodext.
+            Join thousands of users who have already transformed their way of working with Nocodext.
           </p>
           <button 
             onClick={() => window.open("https://chrome.google.com/webstore", "_blank")}
@@ -150,9 +150,9 @@ const Index = () => {
       <section className="py-24 bg-gray-100">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-xl mx-auto">
-            <h2 className="text-nocodext mb-6">Restez informé</h2>
+            <h2 className="text-nocodext mb-6">Stay Informed</h2>
             <p className="text-lg text-gray-600 mb-10">
-              Recevez nos actualités, conseils et nouvelles fonctionnalités directement dans votre boîte mail.
+              Receive our news, tips, and new features directly in your inbox.
             </p>
             <Newsletter />
           </div>

@@ -15,7 +15,7 @@ const ContactForm = () => {
     e.preventDefault();
     
     if (!name || !email || !message) {
-      toast.error("Veuillez remplir tous les champs");
+      toast.error("Please fill in all fields");
       return;
     }
 
@@ -26,12 +26,12 @@ const ContactForm = () => {
       // In a real implementation, you'd call your API endpoint
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      toast.success("Merci pour votre message! Nous vous répondrons bientôt.");
+      toast.success("Thank you for your message! We'll get back to you soon.");
       setName('');
       setEmail('');
       setMessage('');
     } catch (error) {
-      toast.error("Une erreur s'est produite. Veuillez réessayer.");
+      toast.error("An error occurred. Please try again.");
       console.error("Contact form submission error:", error);
     } finally {
       setIsLoading(false);
@@ -40,21 +40,21 @@ const ContactForm = () => {
 
   return (
     <div className="w-full max-w-md">
-      <h3 className="text-lg font-semibold mb-4">Contactez-nous</h3>
+      <h3 className="text-lg font-semibold mb-4">Contact us</h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          placeholder="Votre nom"
+          placeholder="Your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <Input
           type="email"
-          placeholder="Votre email"
+          placeholder="Your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Textarea
-          placeholder="Votre message"
+          placeholder="Your message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={4}
@@ -64,7 +64,7 @@ const ContactForm = () => {
           className="w-full bg-nocodext hover:bg-nocodext-dark text-white" 
           disabled={isLoading}
         >
-          {isLoading ? "Envoi..." : "Envoyer le message"}
+          {isLoading ? "Sending..." : "Send message"}
         </Button>
       </form>
     </div>

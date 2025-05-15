@@ -13,7 +13,7 @@ const ContactModal = ({ isOpen, onOpenChange }: ContactModalProps) => {
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Contactez-nous</DialogTitle>
+          <DialogTitle>Contact us</DialogTitle>
         </DialogHeader>
         <ContactForm />
       </DialogContent>

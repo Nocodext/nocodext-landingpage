@@ -33,7 +33,7 @@ const FeatureCard = ({ title, description, image, videoId }: FeatureCardProps) =
         </CardHeader>
         <CardFooter>
           <Button variant="outline" className="w-full">
-            Voir la démo
+            Watch demo
           </Button>
         </CardFooter>
       </Card>

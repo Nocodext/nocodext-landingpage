@@ -21,7 +21,7 @@ const Footer = () => {
               className="flex items-center gap-2 bg-red-600 text-white border-red-600 hover:bg-red-700 hover:border-red-700"
             >
               <Youtube size={20} />
-              Suivez-nous sur YouTube
+              Follow us on YouTube
             </Button>
             
             <Button 
@@ -29,7 +29,7 @@ const Footer = () => {
               className="bg-nocodext hover:bg-nocodext-dark text-white"
               onClick={() => setIsContactModalOpen(true)}
             >
-              Contactez-nous
+              Contact us
             </Button>
           </div>
         </div>
@@ -38,12 +38,12 @@ const Footer = () => {
         
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-300">
-            &copy; {new Date().getFullYear()} Nocodext. Tous droits réservés.
+            &copy; {new Date().getFullYear()} Nocodext. All rights reserved.
           </p>
           <div className="flex gap-8 mt-4 md:mt-0">
-            <a href="#" className="text-sm text-gray-300 hover:text-nocodext">Mentions légales</a>
-            <a href="#" className="text-sm text-gray-300 hover:text-nocodext">Politique de confidentialité</a>
-            <a href="#" className="text-sm text-gray-300 hover:text-nocodext">CGU</a>
+            <a href="#" className="text-sm text-gray-300 hover:text-nocodext">Legal Notice</a>
+            <a href="#" className="text-sm text-gray-300 hover:text-nocodext">Privacy Policy</a>
+            <a href="#" className="text-sm text-gray-300 hover:text-nocodext">Terms of Use</a>
           </div>
         </div>
       </div>
