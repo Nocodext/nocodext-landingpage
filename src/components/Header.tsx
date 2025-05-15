@@ -31,8 +31,8 @@ const Header = () => {
         </div>
         
         <div className="flex items-center gap-4">
-          <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="mr-4">
-            <TabsList>
+          <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab}>
+            <TabsList className="mr-4">
               <TabsTrigger value="bubble" className="flex items-center gap-2 font-open-sans">
                 <CirclePlay className="w-4 h-4" />
                 <span>Bubble</span>
@@ -56,13 +56,12 @@ const Header = () => {
                 </svg>
                 <span>unstream.fm</span>
               </TabsTrigger>
+              <TabsTrigger value="about" className="flex items-center gap-2 font-open-sans">
+                <Info className="w-4 h-4" />
+                <span>About us</span>
+              </TabsTrigger>
             </TabsList>
           </Tabs>
-          
-          <TabsTrigger value="about" className="flex items-center gap-2 font-open-sans bg-muted p-2 rounded-md h-10">
-            <Info className="w-4 h-4" />
-            <span>About us</span>
-          </TabsTrigger>
           
           <button 
             onClick={() => window.open("https://chrome.google.com/webstore", "_blank")}
