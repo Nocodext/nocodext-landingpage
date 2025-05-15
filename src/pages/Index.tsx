@@ -46,7 +46,7 @@ const Index = () => {
       <section className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="animate-fade-in text-nocodext">
+            <h1 className="animate-fade-in">
               Power up your <span className="inline-flex items-center">
                 <span className="bubble-logo">
                   <span className="bubble-dot">.</span>Bubble
@@ -103,7 +103,7 @@ const Index = () => {
       <section id="features" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-nocodext">Key Features</h2>
+            <h2>Key Features</h2>
             <p className="mt-4 text-xl text-gray-600">
               Discover how Nocodext can transform your daily browsing with powerful and intuitive tools.
             </p>
@@ -155,7 +155,7 @@ const Index = () => {
       <section className="py-24 bg-gray-100">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-xl mx-auto">
-            <h2 className="text-nocodext mb-6">Stay Informed</h2>
+            <h2>Stay Informed</h2>
             <p className="text-lg text-gray-600 mb-10">
               Receive our news, tips, and new features directly in your inbox.
             </p>
