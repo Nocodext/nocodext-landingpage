@@ -27,9 +27,9 @@ const Header = () => {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4">
         <div className="flex items-center gap-2 mb-4 md:mb-0">
           <img 
-            src="/lovable-uploads/451455b0-2a7a-4677-829f-60f3e25f7be2.png" 
+            src="/lovable-uploads/bff0fa01-1a96-4a6e-bc29-5b8b9e9a8972.png" 
             alt="Nocodext Studio" 
-            className="h-14 w-auto" // Increased height from h-10 to h-14
+            className="h-16 w-auto" // Increased height for brand prominence
           />
         </div>
         
@@ -64,7 +64,7 @@ const Header = () => {
           
           <a 
             href="#about" 
-            className="flex items-center gap-2 px-4 py-2 rounded-md bg-muted font-medium text-sm transition-colors hover:bg-accent"
+            className="flex items-center gap-2 px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90"
           >
             <Info className="w-4 h-4" />
             <span>About us</span>
