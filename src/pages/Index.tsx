@@ -47,10 +47,11 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="animate-fade-in text-nocodext">
-              Transform Your Browsing with Nocodext
+              Power up your Bubble Editor experience today.
             </h1>
             <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-              The Chrome extension that redefines your online experience. Faster, more intuitive, more productive.
+              Bubble UI is never enough, still features missing, unintutive.
+              Nocodext keeps ahead of Bubble's official roadmap.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
               <button 
