@@ -42,18 +42,18 @@ const Newsletter = () => {
           placeholder="Your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="flex-1 h-12 text-base"
+          className="flex-1 h-12 text-base shadow-inner border-gray-200 focus:shadow-md"
         />
         <Input
           type="email"
           placeholder="Your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 h-12 text-base"
+          className="flex-1 h-12 text-base shadow-inner border-gray-200 focus:shadow-md"
         />
         <Button 
           type="submit" 
-          className="h-12 px-6 text-base font-medium bg-nocodext hover:bg-nocodext-dark text-white" 
+          className="h-12 px-6 text-base font-medium bg-gradient-to-r from-nocodext to-nocodext-light text-white shadow-lg hover:shadow-xl transition-all duration-300" 
           disabled={isLoading}
         >
           {isLoading ? "Subscribing..." : "Subscribe"}
