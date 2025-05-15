@@ -1,5 +1,4 @@
 
-import Newsletter from './Newsletter';
 import ContactForm from './ContactForm';
 import { Youtube } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -23,10 +22,6 @@ const Footer = () => {
               <Youtube size={20} />
               Suivez-nous sur YouTube
             </Button>
-          </div>
-          
-          <div className="flex-1">
-            <Newsletter />
           </div>
           
           <div className="flex-1">

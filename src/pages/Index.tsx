@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
 import Footer from "@/components/Footer";
+import Newsletter from "@/components/Newsletter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
@@ -123,6 +124,19 @@ const Index = () => {
           >
             Installer l'extension gratuite
           </Button>
+        </div>
+      </section>
+      
+      {/* Newsletter Section */}
+      <section className="py-24 bg-gray-100">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-xl mx-auto">
+            <h2 className="text-nocodext mb-6">Restez informé</h2>
+            <p className="text-lg text-gray-600 mb-10">
+              Recevez nos actualités, conseils et nouvelles fonctionnalités directement dans votre boîte mail.
+            </p>
+            <Newsletter />
+          </div>
         </div>
       </section>
       
