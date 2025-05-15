@@ -48,8 +48,19 @@ const Index = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="animate-fade-in">
               Power up your <span className="inline-flex items-center">
-                <span className="bubble-logo" style={{ color: '#333333' }}>
-                  <span className="bubble-dot" style={{ color: '#2563eb' }}>.</span>Bubble
+                <span style={{
+                  fontFamily: 'Roboto, sans-serif',
+                  fontWeight: 500,
+                  color: '#333333',
+                  display: 'inline-flex',
+                  alignItems: 'baseline'
+                }}>
+                  <span style={{
+                    color: '#2563eb',
+                    marginRight: '2px',
+                    fontSize: '120%'
+                  }}>.</span>
+                  Bubble
                 </span>
               </span> Editor experience.
             </h1>
