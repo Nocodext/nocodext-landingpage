@@ -36,8 +36,8 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="w-full max-w-md">
-      <h3 className="text-lg font-semibold mb-4">Restez informé</h3>
+    <div className="w-full max-w-md mx-auto">
+      <h3 className="text-lg font-semibold mb-4 text-center">Restez informé</h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
           placeholder="Votre nom"
