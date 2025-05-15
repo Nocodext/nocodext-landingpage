@@ -1,10 +1,13 @@
 
-import ContactForm from './ContactForm';
+import { useState } from 'react';
 import { Youtube } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import ContactModal from './ContactModal';
 
 const Footer = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <footer className="bg-gray-50 py-16">
       <div className="container mx-auto px-4">
@@ -14,18 +17,24 @@ const Footer = () => {
             <p className="text-gray-600 mb-6 max-w-md">
               L'extension Chrome qui simplifie votre workflow quotidien. Découvrez comment Nocodext peut transformer votre productivité.
             </p>
-            <Button 
-              variant="outline" 
-              onClick={() => window.open("https://youtube.com", "_blank")}
-              className="flex items-center gap-2"
-            >
-              <Youtube size={20} />
-              Suivez-nous sur YouTube
-            </Button>
-          </div>
-          
-          <div className="flex-1">
-            <ContactForm />
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                variant="outline" 
+                onClick={() => window.open("https://youtube.com", "_blank")}
+                className="flex items-center gap-2"
+              >
+                <Youtube size={20} />
+                Suivez-nous sur YouTube
+              </Button>
+              
+              <Button 
+                variant="default"
+                className="bg-nocodext hover:bg-nocodext-dark text-white"
+                onClick={() => setIsContactModalOpen(true)}
+              >
+                Contactez-nous
+              </Button>
+            </div>
           </div>
         </div>
         
@@ -42,6 +51,11 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      
+      <ContactModal 
+        isOpen={isContactModalOpen}
+        onOpenChange={setIsContactModalOpen}
+      />
     </footer>
   );
 };
