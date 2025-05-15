@@ -36,26 +36,27 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <h3 className="text-lg font-semibold mb-4 text-center">Stay informed</h3>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="w-full max-w-4xl mx-auto">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
         <Input
           placeholder="Your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          className="flex-1 h-12 text-base"
         />
         <Input
           type="email"
           placeholder="Your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="flex-1 h-12 text-base"
         />
         <Button 
           type="submit" 
-          className="w-full bg-nocodext hover:bg-nocodext-dark text-white" 
+          className="h-12 px-6 text-base font-medium bg-nocodext hover:bg-nocodext-dark text-white" 
           disabled={isLoading}
         >
-          {isLoading ? "Subscribing..." : "Subscribe to newsletter"}
+          {isLoading ? "Subscribing..." : "Subscribe"}
         </Button>
       </form>
     </div>
