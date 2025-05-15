@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
-  Airtable, 
+  Database, 
   Linkedin, 
-  PinNpm,
-  Bubble
+  Package,
+  CirclePlay
 } from "lucide-react";
 
 const Header = () => {
@@ -33,11 +33,11 @@ const Header = () => {
           <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="mr-6">
             <TabsList>
               <TabsTrigger value="bubble" className="flex items-center gap-2">
-                <Bubble className="w-4 h-4" />
+                <CirclePlay className="w-4 h-4" />
                 <span>Bubble</span>
               </TabsTrigger>
               <TabsTrigger value="airtable" className="flex items-center gap-2">
-                <Airtable className="w-4 h-4" />
+                <Database className="w-4 h-4" />
                 <span>Airtable</span>
               </TabsTrigger>
               <TabsTrigger value="linkedin" className="flex items-center gap-2">
@@ -45,7 +45,7 @@ const Header = () => {
                 <span>LinkedIn</span>
               </TabsTrigger>
               <TabsTrigger value="pinnpm" className="flex items-center gap-2">
-                <PinNpm className="w-4 h-4" />
+                <Package className="w-4 h-4" />
                 <span>pin'npm</span>
               </TabsTrigger>
               <TabsTrigger value="unstream" className="flex items-center gap-2">
