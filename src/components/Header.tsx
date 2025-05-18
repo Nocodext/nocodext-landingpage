@@ -43,7 +43,7 @@ const Header = () => {
     <header className={`w-full fixed top-0 z-10 transition-all duration-300 ${
       isScrolled 
         ? "bg-white/90 backdrop-blur-md shadow-md shadow-gray-200/50" 
-        : "bg-transparent md:bg-transparent bg-white"
+        : "bg-white"
     }`}>
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4 pb-6 md:pb-4">
         <div className={`flex items-center gap-2 transition-all duration-300 ${
