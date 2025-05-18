@@ -46,11 +46,11 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="animate-fade-in font-inter font-bold">
-              Power up your <span className="inline-flex items-center">
+              <span className="bg-gradient-to-r from-nocodext to-nocodext-light text-transparent bg-clip-text">Power up your</span> <span className="inline-flex items-center">
                 <span className="bubble-logo">
                   <span className="bubble-dot">.</span>Bubble
                 </span>
-              </span> Editor experience.
+              </span> <span className="bg-gradient-to-r from-nocodext to-nocodext-light text-transparent bg-clip-text">Editor experience.</span>
             </h1>
             <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0 font-inter" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               Bubble UI is never enough, still features missing, unintutive.
