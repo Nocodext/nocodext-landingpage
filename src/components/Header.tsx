@@ -9,7 +9,7 @@ import {
   Info,
   Music,
   ChevronDown,
-  Layers2
+  Layers
 } from "lucide-react";
 import {
   Select,
@@ -33,7 +33,7 @@ const Header = () => {
   }, []);
 
   const tabOptions = [
-    { value: "bubble", label: "Bubble", icon: <Layers2 className="w-4 h-4" /> },
+    { value: "bubble", label: "Bubble", icon: <Layers className="w-4 h-4" /> },
     { value: "airtable", label: "Airtable", icon: <Database className="w-4 h-4" /> },
     { value: "linkedin", label: "LinkedIn", icon: <Linkedin className="w-4 h-4" /> },
     { value: "pinnpm", label: "pin'npm", icon: <Package className="w-4 h-4" /> },
