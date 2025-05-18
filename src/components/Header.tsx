@@ -41,38 +41,38 @@ const Header = () => {
         <div className="flex items-center gap-4 w-full md:w-auto">
           <div className="w-full md:w-auto overflow-x-auto scrollbar-hide mb-3 md:mb-0 flex items-center">
             <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="h-10">
-              <TabsList className="mr-4 whitespace-nowrap h-10 py-0.5">
+              <TabsList className="mr-4 whitespace-nowrap h-10 flex gap-2 bg-transparent">
                 <TabsTrigger 
                   value="bubble" 
-                  className="flex items-center gap-2 font-open-sans py-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:font-medium"
+                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
                 >
                   <CirclePlay className="w-4 h-4" />
                   <span>Bubble</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="airtable" 
-                  className="flex items-center gap-2 font-open-sans py-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:font-medium"
+                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
                 >
                   <Database className="w-4 h-4" />
                   <span>Airtable</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="linkedin" 
-                  className="flex items-center gap-2 font-open-sans py-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:font-medium"
+                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
                 >
                   <Linkedin className="w-4 h-4" />
                   <span>LinkedIn</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="pinnpm" 
-                  className="flex items-center gap-2 font-open-sans py-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:font-medium"
+                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
                 >
                   <Package className="w-4 h-4" />
                   <span>pin'npm</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="unstream" 
-                  className="flex items-center gap-2 font-open-sans py-2 data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:font-medium"
+                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
                 >
                   <Music className="w-4 h-4" />
                   <span>unstream.fm</span>
