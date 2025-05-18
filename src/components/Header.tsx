@@ -33,7 +33,7 @@ const Header = () => {
   }, []);
 
   const tabOptions = [
-    { value: "bubble", label: "Bubble", icon: <Code className="w-4 h-4" /> },
+    { value: "bubble", label: "Bubble", icon: <Code className="w-4 h-4 relative -top-[1px]" /> },
     { value: "airtable", label: "Airtable", icon: <Database className="w-4 h-4" /> },
     { value: "linkedin", label: "LinkedIn", icon: <Linkedin className="w-4 h-4" /> },
     { value: "pinnpm", label: "pin'npm", icon: <Package className="w-4 h-4" /> },
