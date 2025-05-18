@@ -62,7 +62,7 @@ const Header = () => {
           {/* Mobile: Dropdown Select */}
           <div className={`w-full md:hidden mb-2 ${!isScrolled ? "mt-2" : ""}`}>
             <Select value={activeTab} onValueChange={setActiveTab}>
-              <SelectTrigger className="w-full bg-gray-800 border-gray-700 text-white">
+              <SelectTrigger className="w-full bg-white border-gray-200 text-black">
                 <SelectValue placeholder="Select a tab">
                   <div className="flex items-center gap-2">
                     {tabOptions.find(tab => tab.value === activeTab)?.icon}
@@ -70,12 +70,12 @@ const Header = () => {
                   </div>
                 </SelectValue>
               </SelectTrigger>
-              <SelectContent className="bg-gray-800 border-gray-700 text-white">
+              <SelectContent className="bg-white border-gray-200 text-black">
                 {tabOptions.map((option) => (
                   <SelectItem 
                     key={option.value} 
                     value={option.value}
-                    className="flex items-center gap-2 text-white hover:bg-gray-700"
+                    className="flex items-center gap-2 text-black hover:bg-nocodext hover:text-white"
                   >
                     <div className="flex items-center gap-2">
                       {option.icon}
@@ -95,7 +95,7 @@ const Header = () => {
                   <TabsTrigger 
                     key={tab.value}
                     value={tab.value} 
-                    className="flex items-center gap-2 font-open-sans py-2 bg-gray-800 text-white hover:bg-gray-700 rounded-md"
+                    className="flex items-center gap-2 font-open-sans py-2 bg-white text-black hover:bg-nocodext hover:text-white rounded-md transition-colors data-[state=active]:bg-nocodext data-[state=active]:text-white"
                   >
                     {tab.icon}
                     <span>{tab.label}</span>
