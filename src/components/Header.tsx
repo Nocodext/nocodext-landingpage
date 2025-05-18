@@ -54,7 +54,7 @@ const Header = () => {
           <img 
             src="/lovable-uploads/e7f16d3b-a5d6-450f-82b6-f46f6458d688.png" 
             alt="Nocodext Studio" 
-            className="w-[22rem] h-auto" 
+            className="w-[18rem] h-auto" 
           />
         </div>
         
