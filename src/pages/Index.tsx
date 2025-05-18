@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
@@ -43,7 +42,7 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28">
+      <section className="pt-36 pb-20 md:pt-44 md:pb-28">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="animate-fade-in font-inter font-bold">
