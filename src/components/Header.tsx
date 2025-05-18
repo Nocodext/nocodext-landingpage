@@ -41,7 +41,7 @@ const Header = () => {
 
   return (
     <header className={`w-full fixed top-0 z-10 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-md shadow-gray-200/50" : "bg-transparent"}`}>
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4 pb-6 md:pb-4">
         <div className={`flex items-center gap-2 transition-all duration-300 ${
           isScrolled 
             ? "opacity-0 md:opacity-100 h-0 md:h-auto overflow-hidden md:overflow-visible mb-0" 
@@ -103,7 +103,7 @@ const Header = () => {
           
           <a 
             href="#about" 
-            className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-start"
+            className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-start md:self-auto ml-2 md:ml-0"
           >
             <Info className="w-4 h-4 md:mr-2" />
             <span className="hidden md:inline">About us</span>
