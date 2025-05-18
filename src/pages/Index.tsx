@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
@@ -45,7 +46,7 @@ const Index = () => {
       <section className="pt-36 pb-20 md:pt-44 md:pb-28">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="animate-fade-in font-inter font-bold">
+            <h1 className="animate-fade-in font-inter font-bold pt-14 md:pt-0">
               <span className="bg-gradient-to-r from-nocodext to-nocodext-light text-transparent bg-clip-text">Power up your</span> <span className="inline-flex items-center">
                 <span className="bubble-logo">
                   <span className="bubble-dot">.</span>Bubble
