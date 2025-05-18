@@ -38,8 +38,8 @@ const Header = () => {
           />
         </div>
         
-        <div className="flex items-center gap-4 w-full md:w-auto">
-          <div className="w-full md:w-auto overflow-x-auto scrollbar-hide mb-3 flex items-center">
+        <div className="flex items-center w-full md:w-auto">
+          <div className="w-full md:w-auto overflow-x-auto scrollbar-hide mb-5 flex items-center">
             <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="h-10">
               <TabsList className="mr-4 whitespace-nowrap h-10 flex gap-2 bg-transparent">
                 <TabsTrigger 
@@ -83,7 +83,7 @@ const Header = () => {
           
           <a 
             href="#about" 
-            className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 my-auto"
+            className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-start"
           >
             <Info className="w-4 h-4 md:mr-2" />
             <span className="hidden md:inline">About us</span>
