@@ -56,7 +56,7 @@ const Header = () => {
         
         <div className="flex items-center w-full md:w-auto">
           {/* Mobile: Dropdown Select */}
-          <div className="w-full md:hidden mb-5 pb-2">
+          <div className={`w-full md:hidden mb-3 pb-3 ${!isScrolled ? "mt-2" : ""}`}>
             <Select value={activeTab} onValueChange={setActiveTab}>
               <SelectTrigger className="w-full bg-muted border-gray-200">
                 <SelectValue placeholder="Select a tab">
