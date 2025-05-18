@@ -52,7 +52,7 @@ const Header = () => {
             : "opacity-100 mb-2 md:mb-0"
         }`}>
           <img 
-            src="/lovable-uploads/e7f16d3b-a5d6-450f-82b6-f46f6458d688.png" 
+            src="/lovable-uploads/4fdb6553-3da1-4e00-a51e-e36c44a6c691.png" 
             alt="Nocodext Studio" 
             className="w-[18rem] h-auto" 
           />
