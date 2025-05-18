@@ -7,8 +7,16 @@ import {
   Package,
   CirclePlay,
   Info,
-  Music
+  Music,
+  ChevronDown
 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,6 +30,14 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const tabOptions = [
+    { value: "bubble", label: "Bubble", icon: <CirclePlay className="w-4 h-4" /> },
+    { value: "airtable", label: "Airtable", icon: <Database className="w-4 h-4" /> },
+    { value: "linkedin", label: "LinkedIn", icon: <Linkedin className="w-4 h-4" /> },
+    { value: "pinnpm", label: "pin'npm", icon: <Package className="w-4 h-4" /> },
+    { value: "unstream", label: "unstream.fm", icon: <Music className="w-4 h-4" /> }
+  ];
 
   return (
     <header className={`w-full fixed top-0 z-10 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-md shadow-gray-200/50" : "bg-transparent"}`}>
@@ -39,44 +55,48 @@ const Header = () => {
         </div>
         
         <div className="flex items-center w-full md:w-auto">
-          <div className="w-full md:w-auto overflow-x-auto scrollbar-hide mb-5 pb-2 flex items-center">
+          {/* Mobile: Dropdown Select */}
+          <div className="w-full md:hidden mb-5 pb-2">
+            <Select value={activeTab} onValueChange={setActiveTab}>
+              <SelectTrigger className="w-full bg-muted border-gray-200">
+                <SelectValue placeholder="Select a tab">
+                  <div className="flex items-center gap-2">
+                    {tabOptions.find(tab => tab.value === activeTab)?.icon}
+                    {tabOptions.find(tab => tab.value === activeTab)?.label}
+                  </div>
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                {tabOptions.map((option) => (
+                  <SelectItem 
+                    key={option.value} 
+                    value={option.value}
+                    className="flex items-center gap-2"
+                  >
+                    <div className="flex items-center gap-2">
+                      {option.icon}
+                      <span>{option.label}</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          
+          {/* Desktop: Tabs */}
+          <div className="hidden md:block w-auto overflow-x-auto scrollbar-hide mb-5 pb-2">
             <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="h-10">
               <TabsList className="mr-4 whitespace-nowrap h-10 flex gap-2 bg-transparent">
-                <TabsTrigger 
-                  value="bubble" 
-                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
-                >
-                  <CirclePlay className="w-4 h-4" />
-                  <span>Bubble</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="airtable" 
-                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
-                >
-                  <Database className="w-4 h-4" />
-                  <span>Airtable</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="linkedin" 
-                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
-                >
-                  <Linkedin className="w-4 h-4" />
-                  <span>LinkedIn</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="pinnpm" 
-                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
-                >
-                  <Package className="w-4 h-4" />
-                  <span>pin'npm</span>
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="unstream" 
-                  className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
-                >
-                  <Music className="w-4 h-4" />
-                  <span>unstream.fm</span>
-                </TabsTrigger>
+                {tabOptions.map((tab) => (
+                  <TabsTrigger 
+                    key={tab.value}
+                    value={tab.value} 
+                    className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
+                  >
+                    {tab.icon}
+                    <span>{tab.label}</span>
+                  </TabsTrigger>
+                ))}
               </TabsList>
             </Tabs>
           </div>
