@@ -45,11 +45,11 @@ const Header = () => {
         ? "bg-white/90 backdrop-blur-md shadow-md shadow-gray-200/50" 
         : "bg-white"
     }`}>
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4 pb-6 md:pb-4">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4 pb-4">
         <div className={`flex items-center gap-2 transition-all duration-300 ${
           isScrolled 
             ? "opacity-0 md:opacity-100 h-0 md:h-auto overflow-hidden md:overflow-visible mb-0" 
-            : "opacity-100 mb-4 md:mb-0"
+            : "opacity-100 mb-2 md:mb-0"
         }`}>
           <img 
             src="/lovable-uploads/e7f16d3b-a5d6-450f-82b6-f46f6458d688.png" 
@@ -60,7 +60,7 @@ const Header = () => {
         
         <div className="flex items-center w-full md:w-auto">
           {/* Mobile: Dropdown Select */}
-          <div className={`w-full md:hidden mb-3 pb-3 ${!isScrolled ? "mt-2" : ""}`}>
+          <div className={`w-full md:hidden mb-2 ${!isScrolled ? "mt-2" : ""}`}>
             <Select value={activeTab} onValueChange={setActiveTab}>
               <SelectTrigger className="w-full bg-muted border-gray-200">
                 <SelectValue placeholder="Select a tab">
