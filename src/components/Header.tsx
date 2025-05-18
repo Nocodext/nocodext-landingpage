@@ -39,7 +39,7 @@ const Header = () => {
         </div>
         
         <div className="flex items-center w-full md:w-auto">
-          <div className="w-full md:w-auto overflow-x-auto scrollbar-hide mb-5 flex items-center">
+          <div className="w-full md:w-auto overflow-x-auto scrollbar-hide mb-5 pb-2 flex items-center">
             <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="h-10">
               <TabsList className="mr-4 whitespace-nowrap h-10 flex gap-2 bg-transparent">
                 <TabsTrigger 
