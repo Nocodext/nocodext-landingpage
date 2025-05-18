@@ -24,7 +24,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`w-full fixed top-0 z-10 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-md" : "bg-transparent"}`}>
+    <header className={`w-full fixed top-0 z-10 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md shadow-md shadow-gray-200/50" : "bg-transparent"}`}>
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4">
         <div className={`flex items-center gap-2 transition-all duration-300 ${
           isScrolled 
@@ -39,9 +39,9 @@ const Header = () => {
         </div>
         
         <div className="flex items-center gap-4 w-full md:w-auto">
-          <div className="w-full md:w-auto overflow-x-auto scrollbar-hide mb-3">
-            <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="mr-4 whitespace-nowrap">
+          <div className="w-full md:w-auto overflow-x-auto scrollbar-hide mb-3 md:mb-0 flex items-center">
+            <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="h-9">
+              <TabsList className="mr-4 whitespace-nowrap h-9">
                 <TabsTrigger value="bubble" className="flex items-center gap-2 font-open-sans">
                   <CirclePlay className="w-4 h-4" />
                   <span>Bubble</span>
