@@ -42,8 +42,8 @@ const Header = () => {
   return (
     <header className={`w-full fixed top-0 z-10 transition-all duration-300 ${
       isScrolled 
-        ? "bg-white/90 backdrop-blur-md shadow-md shadow-gray-200/50" 
-        : "bg-white"
+        ? "bg-black/90 backdrop-blur-md shadow-md shadow-gray-800/50" 
+        : "bg-black"
     }`}>
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center py-4 pb-4">
         <div className={`flex items-center gap-2 transition-all duration-300 ${
@@ -52,7 +52,7 @@ const Header = () => {
             : "opacity-100 mb-2 md:mb-0"
         }`}>
           <img 
-            src="/lovable-uploads/4fdb6553-3da1-4e00-a51e-e36c44a6c691.png" 
+            src="/lovable-uploads/4a4618fa-5728-48ea-b911-5dd0911d8417.png" 
             alt="Nocodext Studio" 
             className="w-[18rem] h-auto" 
           />
@@ -62,7 +62,7 @@ const Header = () => {
           {/* Mobile: Dropdown Select */}
           <div className={`w-full md:hidden mb-2 ${!isScrolled ? "mt-2" : ""}`}>
             <Select value={activeTab} onValueChange={setActiveTab}>
-              <SelectTrigger className="w-full bg-muted border-gray-200">
+              <SelectTrigger className="w-full bg-gray-800 border-gray-700 text-white">
                 <SelectValue placeholder="Select a tab">
                   <div className="flex items-center gap-2">
                     {tabOptions.find(tab => tab.value === activeTab)?.icon}
@@ -70,12 +70,12 @@ const Header = () => {
                   </div>
                 </SelectValue>
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-gray-800 border-gray-700 text-white">
                 {tabOptions.map((option) => (
                   <SelectItem 
                     key={option.value} 
                     value={option.value}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 text-white hover:bg-gray-700"
                   >
                     <div className="flex items-center gap-2">
                       {option.icon}
@@ -95,7 +95,7 @@ const Header = () => {
                   <TabsTrigger 
                     key={tab.value}
                     value={tab.value} 
-                    className="flex items-center gap-2 font-open-sans py-2 bg-muted rounded-md"
+                    className="flex items-center gap-2 font-open-sans py-2 bg-gray-800 text-white hover:bg-gray-700 rounded-md"
                   >
                     {tab.icon}
                     <span>{tab.label}</span>
