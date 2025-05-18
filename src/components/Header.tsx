@@ -7,7 +7,7 @@ import {
   Package,
   CirclePlay,
   Info,
-  Headphones
+  Music
 } from "lucide-react";
 
 const Header = () => {
@@ -59,7 +59,7 @@ const Header = () => {
                   <span>pin'npm</span>
                 </TabsTrigger>
                 <TabsTrigger value="unstream" className="flex items-center gap-2 font-open-sans">
-                  <Headphones className="w-4 h-4" />
+                  <Music className="w-4 h-4" />
                   <span>unstream.fm</span>
                 </TabsTrigger>
               </TabsList>
@@ -68,10 +68,10 @@ const Header = () => {
           
           <a 
             href="#about" 
-            className="flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90"
+            className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9"
           >
-            <Info className="w-4 h-4" />
-            <span>About us</span>
+            <Info className="w-4 h-4 md:mr-2" />
+            <span className="hidden md:inline">About us</span>
           </a>
         </div>
       </div>
