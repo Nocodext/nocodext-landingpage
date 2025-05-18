@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
@@ -8,7 +7,8 @@ import {
   CirclePlay,
   Info,
   Music,
-  ChevronDown
+  ChevronDown,
+  Layers2
 } from "lucide-react";
 import {
   Select,
@@ -36,7 +36,8 @@ const Header = () => {
     { value: "airtable", label: "Airtable", icon: <Database className="w-4 h-4" /> },
     { value: "linkedin", label: "LinkedIn", icon: <Linkedin className="w-4 h-4" /> },
     { value: "pinnpm", label: "pin'npm", icon: <Package className="w-4 h-4" /> },
-    { value: "unstream", label: "unstream.fm", icon: <Music className="w-4 h-4" /> }
+    { value: "unstream", label: "unstream.fm", icon: <Music className="w-4 h-4" /> },
+    { value: "builder", label: "Builder", icon: <Layers2 className="w-4 h-4" /> }
   ];
 
   return (
@@ -108,7 +109,7 @@ const Header = () => {
               href="#about" 
               className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-auto ml-2 md:ml-4"
             >
-              <Info className="w-4 h-4 md:mr-2" />
+              <Info className="w-4 h-4" />
               <span className="hidden md:inline">About us</span>
             </a>
           </div>
@@ -119,7 +120,7 @@ const Header = () => {
               href="#about" 
               className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-start md:self-auto ml-2 md:ml-0"
             >
-              <Info className="w-4 h-4 md:mr-2" />
+              <Info className="w-4 h-4" />
               <span className="hidden md:inline">About us</span>
             </a>
           </div>
