@@ -39,21 +39,21 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col font-inter">
       <Header />
       
       {/* Hero Section */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="animate-fade-in text-nocodext">
+            <h1 className="animate-fade-in font-inter font-bold">
               Power up your <span className="inline-flex items-center">
                 <span className="bubble-logo">
                   <span className="bubble-dot">.</span>Bubble
                 </span>
               </span> Editor experience.
             </h1>
-            <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+            <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0 font-inter" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               Bubble UI is never enough, still features missing, unintutive.
               Nocodext keeps ahead of Bubble's official roadmap.
             </p>
@@ -74,11 +74,11 @@ const Index = () => {
                       fill="#EA4335" />
                   </svg>
                 </div>
-                <span className="text-gray-700 font-roboto">Install from Chrome Webstore</span>
+                <span className="text-gray-700 font-inter">Install from Chrome Webstore</span>
               </button>
               <button 
                 onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors font-inter"
               >
                 <span>Discover features</span>
                 <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -103,8 +103,8 @@ const Index = () => {
       <section id="features" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-nocodext">Key Features</h2>
-            <p className="mt-4 text-xl text-gray-600">
+            <h2 className="text-nocodext font-inter">Key Features</h2>
+            <p className="mt-4 text-xl text-gray-600 font-inter">
               Discover how Nocodext can transform your daily browsing with powerful and intuitive tools.
             </p>
           </div>
@@ -126,8 +126,8 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-nocodext to-nocodext-light text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-white mb-6">Ready to improve your productivity?</h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto">
+          <h2 className="text-white mb-6 font-inter">Ready to improve your productivity?</h2>
+          <p className="text-xl mb-10 max-w-2xl mx-auto font-inter">
             Join thousands of users who have already transformed their way of working with Nocodext.
           </p>
           <button 
@@ -146,7 +146,7 @@ const Index = () => {
                   fill="#EA4335" />
               </svg>
             </div>
-            <span className="text-gray-700 font-roboto">Install from Chrome Webstore</span>
+            <span className="text-gray-700 font-inter">Install from Chrome Webstore</span>
           </button>
         </div>
       </section>
@@ -155,8 +155,8 @@ const Index = () => {
       <section className="py-24 bg-gray-100">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-xl mx-auto">
-            <h2 className="text-nocodext mb-6">Stay Informed</h2>
-            <p className="text-lg text-gray-600 mb-10">
+            <h2 className="text-nocodext mb-6 font-inter">Stay Informed</h2>
+            <p className="text-lg text-gray-600 mb-10 font-inter">
               Receive our news, tips, and new features directly in your inbox.
             </p>
             <Newsletter />
