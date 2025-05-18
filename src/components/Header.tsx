@@ -84,9 +84,9 @@ const Header = () => {
           </div>
           
           {/* Desktop: Tabs */}
-          <div className="hidden md:block w-auto overflow-x-auto scrollbar-hide mb-5 pb-2">
+          <div className="hidden md:flex md:items-center w-auto overflow-x-auto scrollbar-hide">
             <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="h-10">
-              <TabsList className="mr-4 whitespace-nowrap h-10 flex gap-2 bg-transparent">
+              <TabsList className="mr-4 whitespace-nowrap h-10 flex items-center gap-2 bg-transparent">
                 {tabOptions.map((tab) => (
                   <TabsTrigger 
                     key={tab.value}
@@ -99,15 +99,26 @@ const Header = () => {
                 ))}
               </TabsList>
             </Tabs>
+          
+            <a 
+              href="#about" 
+              className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-auto ml-2 md:ml-4"
+            >
+              <Info className="w-4 h-4 md:mr-2" />
+              <span className="hidden md:inline">About us</span>
+            </a>
           </div>
           
-          <a 
-            href="#about" 
-            className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-start md:self-auto ml-2 md:ml-0"
-          >
-            <Info className="w-4 h-4 md:mr-2" />
-            <span className="hidden md:inline">About us</span>
-          </a>
+          {/* Mobile only: About button outside dropdown */}
+          <div className="md:hidden">
+            <a 
+              href="#about" 
+              className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-start md:self-auto ml-2 md:ml-0"
+            >
+              <Info className="w-4 h-4 md:mr-2" />
+              <span className="hidden md:inline">About us</span>
+            </a>
+          </div>
         </div>
       </div>
     </header>
