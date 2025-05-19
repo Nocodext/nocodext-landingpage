@@ -25,8 +25,6 @@ const VideoModal = ({ isOpen, onClose, title, videoId }: VideoModalProps) => {
             title={title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
             allowFullScreen
-    webkitallowfullscreen
-    mozallowfullscreen
           ></iframe>
         </div>
       </DialogContent>
