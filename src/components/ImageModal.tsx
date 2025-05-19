@@ -81,17 +81,14 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
     }
   };
   
-  const galleryDescriptionId = "gallery-description";
-  
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent 
-        className="sm:max-w-[90vw] max-h-[90vh] p-0 bg-black/90 border-none" 
-        aria-describedby={galleryDescriptionId}
+        className="sm:max-w-[90vw] max-h-[90vh] p-0 bg-black/90 border-none"
       >
         <VisuallyHidden>
           <DialogTitle>Image Gallery</DialogTitle>
-          <DialogDescription id={galleryDescriptionId}>
+          <DialogDescription>
             Browse through the feature images. Use arrow keys or buttons to navigate.
           </DialogDescription>
         </VisuallyHidden>
