@@ -21,10 +21,12 @@ const VideoModal = ({ isOpen, onClose, title, videoId }: VideoModalProps) => {
             className="absolute top-0 left-0 w-full h-full rounded-md"
             width="560"
             height="315"
-            src={`https://www.youtube.com/embed/${videoId}?enablejsapi=1`}
+            src={`https://www.youtube.com/embed/${videoId}?fs=1&enablejsapi=1`}
             title={title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
             allowFullScreen
+    webkitallowfullscreen
+    mozallowfullscreen
           ></iframe>
         </div>
       </DialogContent>
