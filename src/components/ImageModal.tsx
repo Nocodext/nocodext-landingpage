@@ -63,11 +63,21 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
   }, [isOpen, api]);
 
   const handlePrevious = () => {
-    api?.scrollPrev();
+    if (api) {
+      api.scrollPrev();
+      console.log("Previous clicked, scrolling to prev slide");
+    } else {
+      console.log("Carousel API not initialized");
+    }
   };
 
   const handleNext = () => {
-    api?.scrollNext();
+    if (api) {
+      api.scrollNext();
+      console.log("Next clicked, scrolling to next slide");
+    } else {
+      console.log("Carousel API not initialized");
+    }
   };
   
   return (
@@ -109,6 +119,7 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
             onClick={handlePrevious}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12 rounded-full flex items-center justify-center z-10"
             aria-label="Previous image"
+            type="button"
           >
             <ArrowLeft className="h-6 w-6" />
           </button>
@@ -117,6 +128,7 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
             onClick={handleNext}
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12 rounded-full flex items-center justify-center z-10"
             aria-label="Next image"
+            type="button"
           >
             <ArrowRight className="h-6 w-6" />
           </button>
