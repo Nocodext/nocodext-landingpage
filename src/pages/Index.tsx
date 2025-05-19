@@ -35,10 +35,7 @@ const features = [
 ];
 
 const Index = () => {
-  useEffect(() => {
-    document.title = "Nocodext - Chrome Extension to optimize your productivity";
-  }, []);
-
+  
   return (
     <div className="min-h-screen flex flex-col font-inter">
       <Header />
