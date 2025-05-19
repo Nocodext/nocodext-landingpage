@@ -29,7 +29,7 @@ const features = [
   {
     title: "API connector & Postman",
     description: "Leverage the power of Postman from insde Bubble. Handle endpoints in a snap",
-    image: "/lovable-uploads/f3d3e697-6cee-497e-8b66-f28daecfff6e.png",
+    image: "/lovable-uploads/05b5655e-be7a-4592-9612-e54c41a57fcf.png",
     videoId: "gg3aZS_14Q0",
   },
   {
