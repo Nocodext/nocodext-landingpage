@@ -1,12 +1,13 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { 
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious
+  CarouselPrevious,
+  type CarouselApi
 } from "@/components/ui/carousel";
 import { X } from 'lucide-react';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
@@ -20,6 +21,48 @@ interface ImageModalProps {
 
 const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalProps) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [api, setApi] = useState<CarouselApi>();
+  
+  // Set initial slide when modal opens or initialIndex changes
+  useEffect(() => {
+    if (api && isOpen) {
+      api.scrollTo(initialIndex);
+    }
+  }, [api, isOpen, initialIndex]);
+
+  // Update current index when carousel changes
+  useEffect(() => {
+    if (!api) return;
+    
+    const handleSelect = () => {
+      setCurrentIndex(api.selectedScrollSnap());
+    };
+    
+    api.on("select", handleSelect);
+    return () => {
+      api.off("select", handleSelect);
+    };
+  }, [api]);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!api) return;
+      
+      if (e.key === "ArrowLeft") {
+        api.scrollPrev();
+      } else if (e.key === "ArrowRight") {
+        api.scrollNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, api]);
   
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -35,7 +78,11 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
           <X className="h-6 w-6" />
         </button>
         
-        <Carousel className="w-full py-10">
+        <Carousel 
+          className="w-full py-10" 
+          setApi={setApi}
+          opts={{ loop: true, align: "center" }}
+        >
           <CarouselContent>
             {images.map((image, index) => (
               <CarouselItem key={index}>
@@ -50,8 +97,8 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-4 bg-black/20 hover:bg-black/40 text-white border-none" />
-          <CarouselNext className="absolute right-4 bg-black/20 hover:bg-black/40 text-white border-none" />
+          <CarouselPrevious className="absolute left-4 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12" />
+          <CarouselNext className="absolute right-4 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12" />
         </Carousel>
       </DialogContent>
     </Dialog>
