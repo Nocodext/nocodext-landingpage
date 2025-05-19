@@ -97,10 +97,10 @@ const Header = () => {
                     key={tab.value}
                     value={tab.value} 
                     style={{border: `2px solid ${tab.color}` }}
-                    className="flex items-center gap-2 font-open-sans py-2 bg-white hover:bg-nocodext hover:text-white rounded-md transition-colors data-[state=active]:bg-nocodext data-[state=active]:text-white"
+                    className="flex items-center gap-2 font-open-sans py-2 bg-white hover:bg-gradient-to-r hover:from-nocodext hover:to-nocodext-light hover:text-white rounded-md transition-colors data-[state=active]:bg-gradient-to-r data-[state=active]:from-nocodext data-[state=active]:to-nocodext-light data-[state=active]:text-white"
                   >
                     <span style={{ color: tab.color }}>{tab.icon}</span>
-                    <span className="hover:text-white" style={{color: "black"}}>{tab.label}</span>
+                    <span className="hover:text-white data-[state=active]:text-white" style={{color: "black"}}>{tab.label}</span>
                   </TabsTrigger>
                 ))}
               </TabsList>
