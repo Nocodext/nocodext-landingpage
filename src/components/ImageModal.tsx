@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { 
   Carousel,
   CarouselContent,
@@ -83,9 +83,12 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
   
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-[90vw] max-h-[90vh] p-0 bg-black/90 border-none">
+      <DialogContent className="sm:max-w-[90vw] max-h-[90vh] p-0 bg-black/90 border-none" aria-describedby="gallery-description">
         <VisuallyHidden>
           <DialogTitle>Image Gallery</DialogTitle>
+          <DialogDescription id="gallery-description">
+            Browse through the feature images. Use arrow keys or buttons to navigate.
+          </DialogDescription>
         </VisuallyHidden>
         
         <button
