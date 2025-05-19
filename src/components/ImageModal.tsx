@@ -43,7 +43,7 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
     };
   }, [api]);
 
-  // Handle keyboard navigation
+  // Handle keyboard navigation for the entire modal
   useEffect(() => {
     if (!isOpen) return;
 
@@ -51,9 +51,15 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
       if (!api) return;
       
       if (e.key === "ArrowLeft") {
+        e.preventDefault();
         api.scrollPrev();
+        console.log("Left arrow pressed, scrolling to previous slide");
       } else if (e.key === "ArrowRight") {
+        e.preventDefault();
         api.scrollNext();
+        console.log("Right arrow pressed, scrolling to next slide");
+      } else if (e.key === "Escape") {
+        onClose();
       }
     };
 
@@ -61,7 +67,7 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, api]);
+  }, [isOpen, api, onClose]);
 
   const handlePrevious = () => {
     if (api) {
