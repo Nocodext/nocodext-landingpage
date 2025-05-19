@@ -11,7 +11,7 @@ const features = [
   {
     title: "Reveal everyhin in a Page",
     description: "Stop clicking on each of many elements to unhide",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3",
+    image: "/lovable-uploads/3176929d-4d74-4496-9a42-a0450dec069c.png",
     videoId: "WX9Z9CTtX0U", // Example, to be replaced with real YouTube IDs
   },
   {
