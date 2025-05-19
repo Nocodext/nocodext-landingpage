@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 
 const features = [
   {
-    title: "Reveal everyhin in a Page",
+    title: "Reveal everything in a page",
     description: "Stop clicking on each of many elements to unhide",
     image: "/lovable-uploads/3176929d-4d74-4496-9a42-a0450dec069c.png",
     videoId: "WX9Z9CTtX0U", // Example, to be replaced with real YouTube IDs
