@@ -9,29 +9,35 @@ import { Button } from "@/components/ui/button";
 
 const features = [
   {
-    title: "Workflow Automation",
-    description: "Automate your repetitive tasks and save valuable time in your daily work.",
+    title: "Reveal everyhin in a Page",
+    description: "Stop clicking on each of many elements to unhide",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3",
-    videoId: "dQw4w9WgXcQ", // Example, to be replaced with real YouTube IDs
+    videoId: "WX9Z9CTtX0U", // Example, to be replaced with real YouTube IDs
   },
   {
-    title: "Cross-Platform Integration",
-    description: "Easily connect Nocodext with your favorite tools for a seamless, frictionless experience.",
+    title: "Elements tree : filter by type",
+    description: "Show only the elements of type you want to see", 
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3",
-    videoId: "dQw4w9WgXcQ",
+    videoId: "bQMLIO9QxKI",
   },
   {
-    title: "Customizable Dashboard",
-    description: "Create your ideal workspace with customizable widgets based on your specific needs.",
+    title: "API connector revamped",
+    description: "Work with API Connector reimagined",
     image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3",
-    videoId: "dQw4w9WgXcQ",
+    videoId: "sEw0NWoHETM",
   },
   {
-    title: "Real-Time Synchronization",
-    description: "Access your data on all your devices with instant and secure synchronization.",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3",
-    videoId: "dQw4w9WgXcQ",
+    title: "API connector & Postman",
+    description: "Leverage the power of Postman from insde Bubble. Handle endpoints in a snap",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3",
+    videoId: "gg3aZS_14Q0",
   },
+  {
+    title: "API Navigator",
+    description: "Overview all your API connector queries. No endless scrolling",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3",
+    videoId: "_NPrcIpywuk",
+  }
 ];
 
 const Index = () => {
