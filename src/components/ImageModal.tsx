@@ -8,7 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious
 } from "@/components/ui/carousel";
-import { X, Fullscreen } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -22,7 +22,7 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
   
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-[800px] p-0 bg-black/90 border-none">
+      <DialogContent className="sm:max-w-[90vw] max-h-[90vh] p-0 bg-black/90 border-none">
         <button
           onClick={onClose}
           className="absolute right-4 top-4 z-50 rounded-full bg-black/20 p-2 text-white hover:bg-black/40"
@@ -34,18 +34,19 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
           <CarouselContent>
             {images.map((image, index) => (
               <CarouselItem key={index}>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center h-full">
                   <img 
                     src={image} 
                     alt={`Feature image ${index + 1}`} 
-                    className="max-h-[80vh] max-w-full object-contain"
+                    className="original-dimension"
+                    style={{ maxHeight: '80vh', maxWidth: '80vw' }}
                   />
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-4" />
-          <CarouselNext className="right-4" />
+          <CarouselPrevious className="absolute left-4 bg-black/20 hover:bg-black/40 text-white border-none" />
+          <CarouselNext className="absolute right-4 bg-black/20 hover:bg-black/40 text-white border-none" />
         </Carousel>
       </DialogContent>
     </Dialog>
