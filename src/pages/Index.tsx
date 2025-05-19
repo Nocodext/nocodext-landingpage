@@ -35,7 +35,7 @@ const features = [
   {
     title: "API Navigator",
     description: "Overview all your API connector queries. No endless scrolling",
-    image: "/lovable-uploads/fa03b1fe-3d0d-48c6-b569-07034a82ca91.png",
+    image: "/lovable-uploads/fcad6142-05d2-4a14-9d26-bb169ead614d.png",
     videoId: "_NPrcIpywuk",
   }
 ];
