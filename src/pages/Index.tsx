@@ -1,9 +1,10 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
 import Footer from "@/components/Footer";
 import Newsletter from "@/components/Newsletter";
+import ImageModal from "@/components/ImageModal";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -41,6 +42,17 @@ const features = [
 ];
 
 const Index = () => {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
+  
+  // Extract all feature images for the carousel
+  const allFeatureImages = features.map(feature => feature.image);
+  
+  // Function to open gallery with a specific image
+  const openGallery = (index: number) => {
+    setGalleryInitialIndex(index);
+    setIsGalleryOpen(true);
+  };
   
   return (
     <div className="min-h-screen flex flex-col font-inter">
@@ -113,7 +125,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div 
                 key={index} 
@@ -126,6 +138,14 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      {/* Main Gallery Modal for viewing all images */}
+      <ImageModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        images={allFeatureImages}
+        initialIndex={galleryInitialIndex}
+      />
       
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-nocodext to-nocodext-light text-white">

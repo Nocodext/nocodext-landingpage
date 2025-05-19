@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import VideoModal from './VideoModal';
+import ImageModal from './ImageModal';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -13,14 +14,15 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ title, description, image, videoId }: FeatureCardProps) => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   return (
     <>
-      <Card 
-        className="h-full cursor-pointer overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
-        onClick={() => setIsVideoModalOpen(true)}
-      >
-        <div className="overflow-hidden">
+      <Card className="h-full overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+        <div 
+          className="overflow-hidden cursor-pointer" 
+          onClick={() => setIsImageModalOpen(true)}
+        >
           <img 
             src={image} 
             alt={title} 
@@ -32,7 +34,14 @@ const FeatureCard = ({ title, description, image, videoId }: FeatureCardProps) =
           <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardFooter>
-          <Button variant="outline" className="w-full">
+          <Button 
+            variant="outline" 
+            className="w-full"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsVideoModalOpen(true);
+            }}
+          >
             Watch demo
           </Button>
         </CardFooter>
@@ -43,6 +52,13 @@ const FeatureCard = ({ title, description, image, videoId }: FeatureCardProps) =
         onClose={() => setIsVideoModalOpen(false)}
         title={title}
         videoId={videoId}
+      />
+      
+      <ImageModal
+        isOpen={isImageModalOpen}
+        onClose={() => setIsImageModalOpen(false)}
+        images={[image]} // Passing just the current image
+        initialIndex={0}
       />
     </>
   );
