@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { 
   Carousel,
   CarouselContent,
@@ -9,6 +9,7 @@ import {
   CarouselPrevious
 } from "@/components/ui/carousel";
 import { X } from 'lucide-react';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -23,6 +24,10 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[90vw] max-h-[90vh] p-0 bg-black/90 border-none">
+        <VisuallyHidden>
+          <DialogTitle>Image Gallery</DialogTitle>
+        </VisuallyHidden>
+        
         <button
           onClick={onClose}
           className="absolute right-4 top-4 z-50 rounded-full bg-black/20 p-2 text-white hover:bg-black/40"
