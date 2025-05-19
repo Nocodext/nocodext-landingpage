@@ -5,11 +5,9 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   type CarouselApi
 } from "@/components/ui/carousel";
-import { X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 interface ImageModalProps {
@@ -63,6 +61,14 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, api]);
+
+  const handlePrevious = () => {
+    api?.scrollPrev();
+  };
+
+  const handleNext = () => {
+    api?.scrollNext();
+  };
   
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -97,8 +103,23 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-4 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12" />
-          <CarouselNext className="absolute right-4 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12" />
+          
+          {/* Custom arrow buttons */}
+          <button 
+            onClick={handlePrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12 rounded-full flex items-center justify-center z-10"
+            aria-label="Previous image"
+          >
+            <ArrowLeft className="h-6 w-6" />
+          </button>
+          
+          <button 
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12 rounded-full flex items-center justify-center z-10"
+            aria-label="Next image"
+          >
+            <ArrowRight className="h-6 w-6" />
+          </button>
         </Carousel>
       </DialogContent>
     </Dialog>
