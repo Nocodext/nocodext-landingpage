@@ -17,7 +17,7 @@ const features = [
   {
     title: "Elements tree : filter by type",
     description: "Show only the elements of type you want to see", 
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3",
+    image: "/lovable-uploads/6b62c47d-94da-4c6f-a15f-ebf1ce78a872.png",
     videoId: "bQMLIO9QxKI",
   },
   {
