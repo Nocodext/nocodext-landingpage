@@ -96,7 +96,8 @@ const Header = () => {
                   <TabsTrigger 
                     key={tab.value}
                     value={tab.value} 
-                    className={`flex items-center gap-2 font-open-sans py-2 bg-[${tab.background}] text-black hover:bg-nocodext hover:text-white rounded-md transition-colors data-[state=active]:bg-nocodext data-[state=active]:text-white`}
+                    style={{backgroundColor: tab.background }}
+                    className="flex items-center gap-2 font-open-sans py-2 bg-white text-black hover:bg-nocodext hover:text-white rounded-md transition-colors data-[state=active]:bg-nocodext data-[state=active]:text-white"
                   >
                     {tab.icon}
                     <span>{tab.label}</span>
