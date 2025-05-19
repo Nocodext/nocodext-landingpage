@@ -23,7 +23,7 @@ const features = [
   {
     title: "API connector revamped",
     description: "Work with API Connector reimagined",
-    image: "/lovable-uploads/45a06d5f-f380-439f-8707-68d53c510ffd.png",
+    image: "/lovable-uploads/e1d7393b-bf6b-4c09-8191-1be19186e95e.png",
     videoId: "sEw0NWoHETM",
   },
   {
