@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
+import { Button } from "@/components/ui/button";
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -94,45 +95,51 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
           <X className="h-6 w-6" />
         </button>
         
-        <Carousel 
-          className="w-full py-10" 
-          setApi={setApi}
-          opts={{ loop: true, align: "center" }}
-        >
-          <CarouselContent>
-            {images.map((image, index) => (
-              <CarouselItem key={index}>
-                <div className="flex items-center justify-center h-full">
-                  <img 
-                    src={image} 
-                    alt={`Feature image ${index + 1}`} 
-                    className="original-dimension"
-                    style={{ maxHeight: '80vh', maxWidth: '80vw' }}
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+        <div className="relative w-full py-10">
+          <Carousel 
+            className="w-full" 
+            setApi={setApi}
+            opts={{ 
+              loop: true, 
+              align: "center",
+              containScroll: false
+            }}
+          >
+            <CarouselContent>
+              {images.map((image, index) => (
+                <CarouselItem key={index}>
+                  <div className="flex items-center justify-center h-full">
+                    <img 
+                      src={image} 
+                      alt={`Feature image ${index + 1}`} 
+                      className="original-dimension"
+                      style={{ maxHeight: '80vh', maxWidth: '80vw' }}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
           
           {/* Custom arrow buttons */}
-          <button 
+          <Button
             onClick={handlePrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12 rounded-full flex items-center justify-center z-10"
+            variant="outline"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12 rounded-full flex items-center justify-center z-10 p-0"
             aria-label="Previous image"
-            type="button"
           >
             <ArrowLeft className="h-6 w-6" />
-          </button>
+          </Button>
           
-          <button 
+          <Button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12 rounded-full flex items-center justify-center z-10"
+            variant="outline"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-none h-12 w-12 rounded-full flex items-center justify-center z-10 p-0"
             aria-label="Next image"
-            type="button"
           >
             <ArrowRight className="h-6 w-6" />
-          </button>
-        </Carousel>
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );
