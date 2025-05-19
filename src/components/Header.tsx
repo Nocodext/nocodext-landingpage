@@ -33,11 +33,11 @@ const Header = () => {
   }, []);
 
   const tabOptions = [
-    { value: "bubble", label: "Bubble", icon: <Code className="w-4 h-4 relative top-[1px]" /> },
-    { value: "airtable", label: "Airtable", icon: <Database className="w-4 h-4" /> },
-    { value: "linkedin", label: "LinkedIn", icon: <Linkedin className="w-4 h-4" /> },
-    { value: "pinnpm", label: "pin'npm", icon: <Package className="w-4 h-4" /> },
-    { value: "unstream", label: "unstream.fm", icon: <Music className="w-4 h-4" /> }
+    { value: "bubble", label: "Bubble", icon: <Code className="w-4 h-4 relative top-[1px]" />, background: "#0000FF " },
+    { value: "airtable", label: "Airtable", icon: <Database className="w-4 h-4" />, background: "#14BFFF" },
+    { value: "linkedin", label: "LinkedIn", icon: <Linkedin className="w-4 h-4" />, background: "#0A66C2" },
+    { value: "pinnpm", label: "pin'npm", icon: <Package className="w-4 h-4" />, background: "#CB3837" },
+    { value: "unstream", label: "unstream.fm", icon: <Music className="w-4 h-4" />, background: "#00FF6A" }
   ];
 
   return (
@@ -96,7 +96,7 @@ const Header = () => {
                   <TabsTrigger 
                     key={tab.value}
                     value={tab.value} 
-                    className="flex items-center gap-2 font-open-sans py-2 bg-white text-black hover:bg-nocodext hover:text-white rounded-md transition-colors data-[state=active]:bg-nocodext data-[state=active]:text-white"
+                    className={`flex items-center gap-2 font-open-sans py-2 bg-[${tab.background}] text-black hover:bg-nocodext hover:text-white rounded-md transition-colors data-[state=active]:bg-nocodext data-[state=active]:text-white`}
                   >
                     {tab.icon}
                     <span>{tab.label}</span>
