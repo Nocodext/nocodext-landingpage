@@ -99,12 +99,16 @@ const Header = () => {
                     style={{
                       border: `2px solid ${tab.color}`,
                       boxShadow: activeTab === tab.value ? `0 2px 8px ${tab.color}40` : 'none',
-                      backgroundColor: activeTab === tab.value ? `${tab.color}10` : 'white'
+                      backgroundColor: activeTab === tab.value ? `${tab.color}10` : 'white',
+                      opacity: activeTab === tab.value ? 1 : 0.6,
                     }}
-                    className="flex items-center gap-2 font-open-sans py-2 hover:bg-white rounded-md transition-colors data-[state=active]:bg-white"
+                    className="flex items-center gap-2 font-open-sans py-2 hover:bg-white hover:opacity-80 rounded-md transition-all data-[state=active]:bg-white"
                   >
-                    <span style={{ color: tab.color }}>{tab.icon}</span>
-                    <span style={{color: "black"}} className="group-hover:text-black data-[state=active]:text-black">
+                    <span style={{ color: activeTab === tab.value ? tab.color : `${tab.color}90` }}>{tab.icon}</span>
+                    <span 
+                      style={{color: activeTab === tab.value ? "black" : "#666"}} 
+                      className="transition-colors"
+                    >
                       {tab.label}
                     </span>
                   </TabsTrigger>
