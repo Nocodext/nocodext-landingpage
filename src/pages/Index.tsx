@@ -139,13 +139,13 @@ const Index = () => {
                 <img 
                   src="/lovable-uploads/d9391147-0060-4355-9b88-e64d8b2535cd.png" 
                   alt="Designer interface" 
-                  className="w-full h-auto relative z-10"
+                  className="w-full h-auto relative z-10 px-15"
                 />
               ) : (
                 <img 
                   src="/lovable-uploads/bcc75a65-f81c-4dfe-91e9-3b8ccfbd84fe.png" 
                   alt="API Connector interface" 
-                  className="w-full h-auto relative z-10"
+                  className="w-full h-auto relative z-10 px-15"
                 />
               )}
             </div>
