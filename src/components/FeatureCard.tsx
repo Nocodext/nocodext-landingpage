@@ -10,9 +10,10 @@ interface FeatureCardProps {
   description: string;
   image: string;
   videoId: string;
+  textColor: string;
 }
 
-const FeatureCard = ({ title, description, image, videoId }: FeatureCardProps) => {
+const FeatureCard = ({ title, description, image, videoId, textColor }: FeatureCardProps) => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
@@ -30,7 +31,7 @@ const FeatureCard = ({ title, description, image, videoId }: FeatureCardProps) =
           />
         </div>
         <CardHeader>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle style={{color: textColor }}>{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardFooter>
