@@ -1,11 +1,10 @@
-
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
 import Footer from "@/components/Footer";
 import Newsletter from "@/components/Newsletter";
 import ImageModal from "@/components/ImageModal";
-import { ArrowRight, Design, Api } from "lucide-react";
+import { ArrowRight, LayoutPanelLeft, Webhook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -112,14 +111,14 @@ const Index = () => {
                   value="designer" 
                   className="text-lg font-medium flex items-center gap-2"
                 >
-                  <Design className="w-5 h-5" />
+                  <LayoutPanelLeft className="w-5 h-5" />
                   Designer
                 </TabsTrigger>
                 <TabsTrigger 
                   value="api-connector" 
                   className="text-lg font-medium flex items-center gap-2"
                 >
-                  <Api className="w-5 h-5" />
+                  <Webhook className="w-5 h-5" />
                   API Connector
                 </TabsTrigger>
               </TabsList>
