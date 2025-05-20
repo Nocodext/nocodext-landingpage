@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
@@ -103,20 +104,25 @@ const Index = () => {
             </div>
           </div>
           
+          {/* Overview Section Heading */}
+          <div className="mt-20 mb-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light text-transparent bg-clip-text">Overview</h2>
+          </div>
+          
           {/* Main Tabs */}
           <div className="mt-12 mb-8 max-w-3xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="w-full grid grid-cols-2 h-14">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full" variant="underline">
+              <TabsList className="w-full grid grid-cols-2 h-14 border-b border-gray-200">
                 <TabsTrigger 
                   value="designer" 
-                  className="text-lg font-medium flex items-center gap-2"
+                  className="text-lg font-medium flex items-center gap-2 data-[state=active]:text-nocodext data-[state=active]:border-b-2 data-[state=active]:border-nocodext"
                 >
                   <LayoutPanelLeft className="w-5 h-5" />
                   Designer
                 </TabsTrigger>
                 <TabsTrigger 
                   value="api-connector" 
-                  className="text-lg font-medium flex items-center gap-2"
+                  className="text-lg font-medium flex items-center gap-2 data-[state=active]:text-nocodext data-[state=active]:border-b-2 data-[state=active]:border-nocodext"
                 >
                   <Webhook className="w-5 h-5" />
                   API Connector
