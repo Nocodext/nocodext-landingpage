@@ -54,10 +54,28 @@ const Index = () => {
   // Extract all feature images for the carousel
   const allFeatureImages = features.map(feature => feature.image);
   
+  // Add tab images to be included in the gallery
+  const tabImages = {
+    designer: "/lovable-uploads/d9391147-0060-4355-9b88-e64d8b2535cd.png",
+    apiConnector: "/lovable-uploads/bcc75a65-f81c-4dfe-91e9-3b8ccfbd84fe.png"
+  };
+  
+  // Combine all images that should appear in the gallery
+  const allGalleryImages = [...allFeatureImages, tabImages.designer, tabImages.apiConnector];
+  
   // Function to open gallery with a specific image
   const openGallery = (index: number) => {
     setGalleryInitialIndex(index);
     setIsGalleryOpen(true);
+  };
+
+  // Function to open tab image in gallery
+  const openTabImageGallery = (tabName: string) => {
+    const tabImageIndex = tabName === "designer" 
+      ? allFeatureImages.length 
+      : allFeatureImages.length + 1;
+      
+    openGallery(tabImageIndex);
   };
   
   return (
@@ -138,19 +156,19 @@ const Index = () => {
           </div>
           
           <div className="mt-6 md:mt-10 max-w-5xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-            <div className="relative rounded-xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" onClick={() => openTabImageGallery(activeTab)}>
               <div className="absolute inset-0 bg-gradient-to-r from-nocodext/20 to-nocodext-light/20 z-0"></div>
               {activeTab === "designer" ? (
                 <img 
-                  src="/lovable-uploads/d9391147-0060-4355-9b88-e64d8b2535cd.png" 
+                  src={tabImages.designer} 
                   alt="Designer interface" 
-                  className="w-full h-auto relative z-10 border-[15px] border-solid border-white"
+                  className="w-full h-auto relative z-10 border-[15px] border-solid border-white transition-transform duration-300 hover:scale-105"
                 />
               ) : (
                 <img 
-                  src="/lovable-uploads/bcc75a65-f81c-4dfe-91e9-3b8ccfbd84fe.png" 
+                  src={tabImages.apiConnector} 
                   alt="API Connector interface" 
-                  className="w-full h-auto relative z-10 border-[15px] border-solid border-white"
+                  className="w-full h-auto relative z-10 border-[15px] border-solid border-white transition-transform duration-300 hover:scale-105"
                 />
               )}
             </div>
@@ -186,7 +204,7 @@ const Index = () => {
       <ImageModal
         isOpen={isGalleryOpen}
         onClose={() => setIsGalleryOpen(false)}
-        images={allFeatureImages}
+        images={allGalleryImages}
         initialIndex={galleryInitialIndex}
       />
       
