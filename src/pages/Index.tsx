@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
@@ -48,34 +49,34 @@ const features = [
 
 const Index = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [isTabGalleryOpen, setIsTabGalleryOpen] = useState(false);
   const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
+  const [tabGalleryInitialIndex, setTabGalleryInitialIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("designer");
   
-  // Extract all feature images for the carousel
+  // Extract all feature images for the feature carousel
   const allFeatureImages = features.map(feature => feature.image);
   
-  // Add tab images to be included in the gallery
+  // Tab images for the tab carousel
   const tabImages = {
     designer: "/lovable-uploads/d9391147-0060-4355-9b88-e64d8b2535cd.png",
     apiConnector: "/lovable-uploads/bcc75a65-f81c-4dfe-91e9-3b8ccfbd84fe.png"
   };
   
-  // Combine all images that should appear in the gallery
-  const allGalleryImages = [...allFeatureImages, tabImages.designer, tabImages.apiConnector];
+  // All tab images array for tab gallery
+  const allTabImages = [tabImages.designer, tabImages.apiConnector];
   
-  // Function to open gallery with a specific image
+  // Function to open feature gallery with a specific image
   const openGallery = (index: number) => {
     setGalleryInitialIndex(index);
     setIsGalleryOpen(true);
   };
 
-  // Function to open tab image in gallery
-  const openTabImageGallery = (tabName: string) => {
-    const tabImageIndex = tabName === "designer" 
-      ? allFeatureImages.length 
-      : allFeatureImages.length + 1;
-      
-    openGallery(tabImageIndex);
+  // Function to open tab image gallery
+  const openTabGallery = (tabName: string) => {
+    const tabImageIndex = tabName === "designer" ? 0 : 1;
+    setTabGalleryInitialIndex(tabImageIndex);
+    setIsTabGalleryOpen(true);
   };
   
   return (
@@ -156,7 +157,7 @@ const Index = () => {
           </div>
           
           <div className="mt-6 md:mt-10 max-w-5xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-            <div className="relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" onClick={() => openTabImageGallery(activeTab)}>
+            <div className="relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" onClick={() => openTabGallery(activeTab)}>
               <div className="absolute inset-0 bg-gradient-to-r from-nocodext/20 to-nocodext-light/20 z-0"></div>
               {activeTab === "designer" ? (
                 <img 
@@ -200,12 +201,20 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Main Gallery Modal for viewing all images */}
+      {/* Feature Gallery Modal */}
       <ImageModal
         isOpen={isGalleryOpen}
         onClose={() => setIsGalleryOpen(false)}
-        images={allGalleryImages}
+        images={allFeatureImages}
         initialIndex={galleryInitialIndex}
+      />
+      
+      {/* Tab Gallery Modal (separate instance) */}
+      <ImageModal
+        isOpen={isTabGalleryOpen}
+        onClose={() => setIsTabGalleryOpen(false)}
+        images={allTabImages}
+        initialIndex={tabGalleryInitialIndex}
       />
       
       {/* CTA Section */}
