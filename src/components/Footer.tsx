@@ -12,7 +12,11 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white py-16">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center">
-          <h3 className="text-2xl font-bold mb-6">Nocodext</h3>
+          <img 
+            src="/lovable-uploads/6b5d3a46-4c1a-4936-851c-bdf704b718a9.png" 
+            alt="Nocodext Studio" 
+            className="w-[10rem] h-auto mb-6" 
+          />
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <Button 
