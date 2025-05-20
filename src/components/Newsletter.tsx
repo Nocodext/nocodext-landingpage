@@ -20,16 +20,38 @@ const Newsletter = () => {
     setIsLoading(true);
     
     try {
-      // Simulating API call to MailerLite
-      // In a real implementation, you'd call the MailerLite API
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // MailerLite API integration
+      const API_KEY = "YOUR_MAILERLITE_API_KEY"; // Replace with your actual MailerLite API key
+      const response = await fetch("https://connect.mailerlite.com/api/subscribers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${API_KEY}`
+        },
+        body: JSON.stringify({
+          email: email,
+          fields: {
+            name: name
+          },
+          groups: ["bubble"], // Add to "bubble" group
+          status: "active"
+        })
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to subscribe");
+      }
       
       toast.success("Thanks for subscribing!");
+      console.log("Subscription successful:", data);
       setName('');
       setEmail('');
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
       console.error("Newsletter subscription error:", error);
+      toast.error("An error occurred. Please try again.");
     } finally {
       setIsLoading(false);
     }
