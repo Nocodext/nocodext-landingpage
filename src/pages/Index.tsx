@@ -5,8 +5,9 @@ import FeatureCard from "@/components/FeatureCard";
 import Footer from "@/components/Footer";
 import Newsletter from "@/components/Newsletter";
 import ImageModal from "@/components/ImageModal";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Design, Api } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const features = [
   {
@@ -44,6 +45,7 @@ const features = [
 const Index = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState("designer");
   
   // Extract all feature images for the carousel
   const allFeatureImages = features.map(feature => feature.image);
@@ -102,14 +104,44 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="mt-20 md:mt-24 max-w-5xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+          {/* Main Tabs */}
+          <div className="mt-12 mb-8 max-w-3xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="w-full grid grid-cols-2 h-14">
+                <TabsTrigger 
+                  value="designer" 
+                  className="text-lg font-medium flex items-center gap-2"
+                >
+                  <Design className="w-5 h-5" />
+                  Designer
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="api-connector" 
+                  className="text-lg font-medium flex items-center gap-2"
+                >
+                  <Api className="w-5 h-5" />
+                  API Connector
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+          
+          <div className="mt-6 md:mt-10 max-w-5xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
             <div className="relative rounded-xl overflow-hidden shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-r from-nocodext/20 to-nocodext-light/20 z-0"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3" 
-                alt="Nocodext interface" 
-                className="w-full h-auto relative z-10"
-              />
+              {activeTab === "designer" ? (
+                <img 
+                  src="/lovable-uploads/d9391147-0060-4355-9b88-e64d8b2535cd.png" 
+                  alt="Designer interface" 
+                  className="w-full h-auto relative z-10"
+                />
+              ) : (
+                <img 
+                  src="/lovable-uploads/bcc75a65-f81c-4dfe-91e9-3b8ccfbd84fe.png" 
+                  alt="API Connector interface" 
+                  className="w-full h-auto relative z-10"
+                />
+              )}
             </div>
           </div>
         </div>
