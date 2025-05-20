@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
@@ -110,19 +109,21 @@ const Index = () => {
           </div>
           
           {/* Main Tabs */}
-          <div className="mt-12 mb-8 max-w-3xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full" variant="underline">
-              <TabsList className="w-full grid grid-cols-2 h-14 border-b border-gray-200">
+          <div className="mt-12 mb-12 max-w-3xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="w-full grid grid-cols-2 gap-4 h-16 bg-transparent">
                 <TabsTrigger 
                   value="designer" 
-                  className="text-lg font-medium flex items-center gap-2 data-[state=active]:text-nocodext data-[state=active]:border-b-2 data-[state=active]:border-nocodext"
+                  variant="buttons"
+                  className="text-lg font-medium flex items-center gap-2 bg-gray-50 border border-gray-200 shadow-sm hover:bg-gray-100 hover:shadow data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:border-nocodext/30"
                 >
                   <LayoutPanelLeft className="w-5 h-5" />
                   Designer
                 </TabsTrigger>
                 <TabsTrigger 
                   value="api-connector" 
-                  className="text-lg font-medium flex items-center gap-2 data-[state=active]:text-nocodext data-[state=active]:border-b-2 data-[state=active]:border-nocodext"
+                  variant="buttons"
+                  className="text-lg font-medium flex items-center gap-2 bg-gray-50 border border-gray-200 shadow-sm hover:bg-gray-100 hover:shadow data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:border-nocodext/30"
                 >
                   <Webhook className="w-5 h-5" />
                   API Connector
