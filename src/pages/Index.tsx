@@ -57,10 +57,10 @@ const Index = () => {
   // Extract all feature images for the feature carousel
   const allFeatureImages = features.map(feature => feature.image);
   
-  // Tab images for the tab carousel
+  // Tab images for the tab carousel - UPDATED with new images
   const tabImages = {
-    designer: "/lovable-uploads/d9391147-0060-4355-9b88-e64d8b2535cd.png",
-    apiConnector: "/lovable-uploads/bcc75a65-f81c-4dfe-91e9-3b8ccfbd84fe.png"
+    designer: "/lovable-uploads/8b3e648b-9f39-4824-a7ea-94f8d89e107e.png",
+    apiConnector: "/lovable-uploads/fe780e34-60dd-4003-b40f-18d2de5d5265.png"
   };
   
   // All tab images array for tab gallery
