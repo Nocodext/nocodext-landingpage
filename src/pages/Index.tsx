@@ -95,8 +95,8 @@ const Index = () => {
               </span> <span className="bg-gradient-to-r from-nocodext to-nocodext-light text-transparent bg-clip-text">Editor experience.</span>
             </h1>
             <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0 font-inter" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-              Bubble UI is amazind and well-designed, but keeps unintuitive and features still missing.
-              Nocodext keeps ahead of Bubble's official roadmap. At its own and faster pace.
+              Bubble UI is amazing, but somewhat unintuitive and many features remain missing.
+              <br/>Nocodext keeps ahead of Bubble's roadmap : at its own and faster pace.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
               <button 
