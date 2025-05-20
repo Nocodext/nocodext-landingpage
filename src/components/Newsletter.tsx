@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Newsletter = () => {
   const [name, setName] = useState('');
@@ -20,29 +21,13 @@ const Newsletter = () => {
     setIsLoading(true);
     
     try {
-      // MailerLite API integration
-      const API_KEY = "YOUR_MAILERLITE_API_KEY"; // Replace with your actual MailerLite API key
-      const response = await fetch("https://connect.mailerlite.com/api/subscribers", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": `Bearer ${API_KEY}`
-        },
-        body: JSON.stringify({
-          email: email,
-          fields: {
-            name: name
-          },
-          groups: ["bubble"], // Add to "bubble" group
-          status: "active"
-        })
+      // Call our Supabase edge function instead of directly calling MailerLite API
+      const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
+        body: { name, email }
       });
-
-      const data = await response.json();
       
-      if (!response.ok) {
-        throw new Error(data.message || "Failed to subscribe");
+      if (error) {
+        throw new Error(error.message || "Failed to subscribe");
       }
       
       toast.success("Thanks for subscribing!");
