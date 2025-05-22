@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <Button 
               variant="outline" 
-              onClick={() => window.open("https://youtube.com", "_blank")}
+              onClick={() => window.open("https://www.youtube.com/@nocodext", "_blank")}
               className="flex items-center gap-2 bg-red-600 text-white border-red-600 hover:bg-red-700 hover:border-red-700"
             >
               <Youtube size={20} />

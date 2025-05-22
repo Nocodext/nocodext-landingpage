@@ -100,7 +100,7 @@ const Index = () => {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
               <button 
-                onClick={() => window.open("https://chrome.google.com/webstore", "_blank")}
+                onClick={() => window.open("https://chromewebstore.google.com/detail/nocodext-for-bubble/dpjnneeknnpjcnphfahhcofciocedggp", "_blank")}
                 className="flex items-center justify-center h-14 rounded-full bg-gradient-to-r from-pink-50 to-blue-50 text-gray-600 font-medium shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden"
               >
                 <div className="flex h-full items-center justify-center bg-neutral-100 aspect-square rounded-full">
@@ -225,7 +225,7 @@ const Index = () => {
             Join thousands of users who have already transformed their way of working with Nocodext.
           </p>
           <button 
-            onClick={() => window.open("https://chrome.google.com/webstore", "_blank")}
+            onClick={() => window.open("https://chromewebstore.google.com/detail/nocodext-for-bubble/dpjnneeknnpjcnphfahhcofciocedggp", "_blank")}
             className="flex items-center h-14 mx-auto rounded-full bg-gradient-to-r from-pink-50 to-blue-50 text-gray-600 font-medium shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden"
           >
             <div className="flex h-full items-center justify-center bg-neutral-100 aspect-square rounded-full">
