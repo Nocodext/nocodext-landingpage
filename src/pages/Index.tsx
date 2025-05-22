@@ -121,7 +121,7 @@ const Index = () => {
                 onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
                 className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors font-inter"
               >
-                <span>Discover features</span>
+                <span>Discover featuresX</span>
                 <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
