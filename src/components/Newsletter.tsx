@@ -2,13 +2,16 @@
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { CheckCircle } from "lucide-react";
 
 const Newsletter = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,10 +33,17 @@ const Newsletter = () => {
         throw new Error(error.message || "Failed to subscribe");
       }
       
-      toast.success("Thanks for subscribing!");
+      // Show success alert instead of toast
+      setShowSuccessAlert(true);
       console.log("Subscription successful:", data);
       setName('');
       setEmail('');
+      
+      // Auto-close alert after 5 seconds
+      setTimeout(() => {
+        setShowSuccessAlert(false);
+      }, 5000);
+      
     } catch (error) {
       console.error("Newsletter subscription error:", error);
       toast.error("An error occurred. Please try again.");
@@ -44,6 +54,15 @@ const Newsletter = () => {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
+      {showSuccessAlert && (
+        <Alert className="mb-6 border-green-200 bg-green-50 text-green-800">
+          <CheckCircle className="h-4 w-4 text-green-600" />
+          <AlertDescription className="font-medium">
+            Successfully subscribed! Please check your email for a confirmation message.
+          </AlertDescription>
+        </Alert>
+      )}
+      
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
         <Input
           placeholder="Your name"
