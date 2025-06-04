@@ -1,20 +1,21 @@
+
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
-import FeatureCard from "@/components/FeatureCard";
 import Footer from "@/components/Footer";
-import Newsletter from "@/components/Newsletter";
 import ImageModal from "@/components/ImageModal";
-import { ArrowRight, LayoutPanelLeft, Webhook } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
+import HeroSection from "@/components/HeroSection";
+import OverviewSection from "@/components/OverviewSection";
+import FeaturesSection from "@/components/FeaturesSection";
+import CTASection from "@/components/CTASection";
+import StayInformed from "@/components/StayInformed";
+import ManifestoSection from "@/components/ManifestoSection";
 
 const features = [
   {
     title: "Reveal everything in a page",
     description: "Stop clicking on each of many elements to unhide",
     image: "/lovable-uploads/3176929d-4d74-4496-9a42-a0450dec069c.png",
-    videoId: "WX9Z9CTtX0U", // Example, to be replaced with real YouTube IDs
+    videoId: "WX9Z9CTtX0U",
     textColor: "#5e17eb",
   },
   {
@@ -52,12 +53,11 @@ const Index = () => {
   const [isTabGalleryOpen, setIsTabGalleryOpen] = useState(false);
   const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
   const [tabGalleryInitialIndex, setTabGalleryInitialIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState("designer");
   
   // Extract all feature images for the feature carousel
   const allFeatureImages = features.map(feature => feature.image);
   
-  // Tab images for the tab carousel - UPDATED with new images
+  // Tab images for the tab carousel
   const tabImages = {
     designer: "/lovable-uploads/8b3e648b-9f39-4824-a7ea-94f8d89e107e.png",
     apiConnector: "/lovable-uploads/fe780e34-60dd-4003-b40f-18d2de5d5265.png"
@@ -83,123 +83,11 @@ const Index = () => {
     <div className="min-h-screen flex flex-col font-inter">
       <Header />
       
-      {/* Hero Section */}
-      <section className="pt-36 pb-20 md:pt-44 md:pb-28">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="animate-fade-in font-inter font-bold pt-14 md:pt-0">
-              <span className="bg-gradient-to-r from-nocodext to-nocodext-light text-transparent bg-clip-text">Power up your</span> <span className="inline-flex items-center">
-                <span className="bubble-logo">
-                  <span className="bubble-dot">.</span>Bubble
-                </span>
-              </span> <span className="bg-gradient-to-r from-nocodext to-nocodext-light text-transparent bg-clip-text">Editor experience.</span>
-            </h1>
-            <p className="mt-6 text-xl text-gray-600 animate-fade-in opacity-0 font-inter" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-              Bubble UI is amazing, but quite unintuitive, many features missing.
-              <br/>Nocodext keeps ahead of Bubble's roadmap : at its own and faster pace.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
-              <button 
-                onClick={() => window.open("https://chromewebstore.google.com/detail/nocodext-for-bubble/dpjnneeknnpjcnphfahhcofciocedggp", "_blank")}
-                className="flex items-center justify-center h-14 rounded-full bg-gradient-to-r from-pink-50 to-blue-50 text-gray-600 font-medium shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden"
-              >
-                <div className="flex h-full items-center justify-center bg-neutral-100 aspect-square rounded-full">
-                  <svg viewBox="0 0 24 24" width="28" height="28">
-                    <path d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zm13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.003h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.366zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
-                      fill="#4285F4" />
-                    <path d="M12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
-                      fill="#34A853" />
-                    <path d="M22 12c0-1.54-.29-3.011-.818-4.366H10.182A5.451 5.451 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545"
-                      fill="#FBBC05" />
-                    <path d="M2.632 4.501A11.947 11.947 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29z"
-                      fill="#EA4335" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 font-inter text-lg px-6">Install from Chrome Webstore</span>
-              </button>
-              <button 
-                onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors font-inter"
-              >
-                <span>Discover features</span>
-                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </div>
-          </div>
-          
-          {/* Overview Section Heading */}
-          <div className="mt-20 mb-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light text-transparent bg-clip-text">Overview</h2>
-          </div>
-          
-          {/* Main Tabs */}
-          <div className="mt-12 mb-12 max-w-3xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="w-full grid grid-cols-2 gap-4 h-16 bg-transparent">
-                <TabsTrigger 
-                  value="designer" 
-                  variant="buttons"
-                  className="text-lg font-medium flex items-center gap-2 bg-gray-50 border border-gray-200 shadow-sm hover:bg-gray-100 hover:shadow data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:border-nocodext/30"
-                >
-                  <LayoutPanelLeft className="w-5 h-5" />
-                  Designer
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="api-connector" 
-                  variant="buttons"
-                  className="text-lg font-medium flex items-center gap-2 bg-gray-50 border border-gray-200 shadow-sm hover:bg-gray-100 hover:shadow data-[state=active]:bg-white data-[state=active]:shadow-md data-[state=active]:border-nocodext/30"
-                >
-                  <Webhook className="w-5 h-5" />
-                  API Connector
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
-          </div>
-          
-          <div className="mt-6 md:mt-10 max-w-5xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-            <div className="relative rounded-xl overflow-hidden shadow-2xl cursor-pointer" onClick={() => openTabGallery(activeTab)}>
-              <div className="absolute inset-0 bg-gradient-to-r from-nocodext/20 to-nocodext-light/20 z-0"></div>
-              {activeTab === "designer" ? (
-                <img 
-                  src={tabImages.designer} 
-                  alt="Designer interface" 
-                  className="w-full h-auto relative z-10 border-[15px] border-solid border-white transition-transform duration-300 hover:scale-105"
-                />
-              ) : (
-                <img 
-                  src={tabImages.apiConnector} 
-                  alt="API Connector interface" 
-                  className="w-full h-auto relative z-10 border-[15px] border-solid border-white transition-transform duration-300 hover:scale-105"
-                />
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
       
-      {/* Features Section */}
-      <section id="features" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-nocodext font-inter">Key Features</h2>
-            <p className="mt-4 text-xl text-gray-600 font-inter">
-              Discover how Nocodext can transform your daily browsing with powerful and intuitive tools.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div 
-                key={index} 
-                className="animate-fade-in opacity-0" 
-                style={{ animationDelay: `${0.2 * index}s`, animationFillMode: 'forwards' }}
-              >
-                <FeatureCard {...feature} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <OverviewSection onImageClick={openTabGallery} />
+      
+      <FeaturesSection />
       
       {/* Feature Gallery Modal */}
       <ImageModal
@@ -217,154 +105,11 @@ const Index = () => {
         initialIndex={tabGalleryInitialIndex}
       />
       
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-nocodext to-nocodext-light text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-white mb-6 font-inter">Ready to improve your productivity?</h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto font-inter">
-            Join thousands of users who have already transformed their way of working with Nocodext.
-          </p>
-          <button 
-            onClick={() => window.open("https://chromewebstore.google.com/detail/nocodext-for-bubble/dpjnneeknnpjcnphfahhcofciocedggp", "_blank")}
-            className="flex items-center h-14 mx-auto rounded-full bg-gradient-to-r from-pink-50 to-blue-50 text-gray-600 font-medium shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden"
-          >
-            <div className="flex h-full items-center justify-center bg-neutral-100 aspect-square rounded-full">
-              <svg viewBox="0 0 24 24" width="28" height="28">
-                <path d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zm13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.003h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.366zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
-                  fill="#4285F4" />
-                <path d="M12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z" 
-                  fill="#34A853" />
-                <path d="M22 12c0-1.54-.29-3.011-.818-4.366H10.182A5.451 5.451 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545"
-                  fill="#FBBC05" />
-                <path d="M2.632 4.501A11.947 11.947 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29z"
-                  fill="#EA4335" />
-              </svg>
-            </div>
-            <span className="text-gray-700 font-inter text-lg px-6">Install from Chrome Webstore</span>
-          </button>
-        </div>
-      </section>
+      <CTASection />
       
-      {/* Newsletter Section */}
-      <section className="py-24 bg-gray-100">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-xl mx-auto">
-            <h2 className="text-nocodext mb-6 font-inter">Stay Informed</h2>
-            <p className="text-lg text-gray-600 mb-10 font-inter">
-              Receive our news, tips, and new features directly in your inbox.
-            </p>
-            <Newsletter />
-          </div>
-        </div>
-      </section>
+      <StayInformed />
       
-      {/* Manifesto Section */}
-      <section id="manifesto" className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-nocodext mb-4 font-inter">The Nocodext Manifesto</h2>
-              <p className="text-xl text-gray-600 font-inter">We don't do freemium. We do value</p>
-            </div>
-            
-            <div className="space-y-6">
-              <Card className="border-l-4 border-l-nocodext bg-gradient-to-r from-blue-50 to-white">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl">🧠</span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">We build for people who build with intention</h3>
-                      <p className="text-gray-700 leading-relaxed">
-                        If you open Bubble at 9am and close it at midnight, this is for you.<br/>
-                        If you're tired of waiting for features that should've existed yesterday, you're in the right place.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-nocodext bg-gradient-to-r from-purple-50 to-white">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl">💎</span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">We believe in useful over "nice-to-have"</h3>
-                      <p className="text-gray-700 leading-relaxed">
-                        Nocodext exists to solve real, annoying problems — not to ship dopamine-driven features to pad a changelog.<br/>
-                        No fluff. No distractions. Just leverage.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-nocodext bg-gradient-to-r from-green-50 to-white">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl">⏳</span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">We respect your time — and ours</h3>
-                      <p className="text-gray-700 leading-relaxed">
-                        We're not here to lure thousands of passive users into a free plan they'll never outgrow.<br/>
-                        We'd rather serve 100 power users with 100× more clarity and support.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-nocodext bg-gradient-to-r from-yellow-50 to-white">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl">⚡</span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">We ship small, but we ship sharp</h3>
-                      <p className="text-gray-700 leading-relaxed">
-                        Every widget we release is something we needed.<br/>
-                        Or you asked for.<br/>
-                        Or both.
-                      </p>
-                      <p className="text-gray-700 leading-relaxed mt-4">
-                        No feature factories.<br/>
-                        No roadmap bloat.<br/>
-                        No eternal beta.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-nocodext bg-gradient-to-r from-indigo-50 to-white">
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl">🧭</span>
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">We're here to stay — and grow smart</h3>
-                      <p className="text-gray-700 leading-relaxed">
-                        Your subscription powers real, ongoing work.<br/>
-                        Support, updates, improvements.<br/>
-                        Not a waiting room.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-nocodext-dark bg-gradient-to-r from-gray-50 to-white">
-                <CardContent className="p-8">
-                  <div className="text-center">
-                    <p className="text-lg font-medium text-gray-900 leading-relaxed">
-                      Nocodext is not a toy. It's your unfair advantage in the Bubble editor.<br/>
-                      If you get it, you get it.<br/>
-                      If you don't, that's fine — we're not for everyone.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ManifestoSection />
       
       <Footer />
     </div>
