@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Index from "./pages/Index";
 import PinNpm from "./pages/PinNpm";
+import Watools from "./pages/Watools";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="/bubble" element={<Index />} />
               <Route path="/pinnpm" element={<PinNpm />} />
+              <Route path="/watools" element={<Watools />} />
               <Route path="/" element={<Index />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

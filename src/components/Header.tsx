@@ -10,7 +10,8 @@ import {
   Info,
   Music,
   ChevronDown,
-  Code
+  Code,
+  MessageCircle
 } from "lucide-react";
 import {
   Select,
@@ -29,6 +30,7 @@ const Header = () => {
   const getActiveTabFromPath = (pathname: string) => {
     if (pathname === '/bubble' || pathname === '/') return 'bubble';
     if (pathname === '/pinnpm') return 'pinnpm';
+    if (pathname === '/watools') return 'watools';
     return 'bubble'; // default
   };
   
@@ -58,6 +60,9 @@ const Header = () => {
       case 'pinnpm':
         navigate('/pinnpm');
         break;
+      case 'watools':
+        navigate('/watools');
+        break;
       // Add other cases when those pages are implemented
       default:
         break;
@@ -69,6 +74,7 @@ const Header = () => {
     { value: "airtable", label: "Airtable", icon: <Database className="w-4 h-4" />, color: "#14BFFF" },
     { value: "linkedin", label: "LinkedIn", icon: <Linkedin className="w-4 h-4" />, color: "#0A66C2" },
     { value: "pinnpm", label: "pin'npm", icon: <Package className="w-4 h-4" />, color: "#CB3837" },
+    { value: "watools", label: "WA Tools", icon: <MessageCircle className="w-4 h-4" />, color: "#25D366" },
     { value: "unstream", label: "unstream.fm", icon: <Music className="w-4 h-4" />, color: "#00FF6A" }
   ];
 
