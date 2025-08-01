@@ -26,8 +26,13 @@ const PinNpmHero = () => {
               <Chrome className="mr-2 h-5 w-5" />
               Add to Chrome
             </Button>
-            <Button variant="outline" size="lg" className="font-mono" asChild>
-              <a href="#waitlist">Join the waitlist</a>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="font-mono"
+              onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Join the waitlist
             </Button>
           </div>
 

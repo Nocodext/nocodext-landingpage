@@ -25,7 +25,11 @@ const WatoolsHero = () => {
         </p>
 
         <div className="flex justify-center animate-fade-in">
-          <Button size="lg" className="bg-yellow-400 text-green-800 hover:bg-yellow-300 font-semibold px-8 py-4 text-lg">
+          <Button 
+            size="lg" 
+            className="bg-yellow-400 text-green-800 hover:bg-yellow-300 font-semibold px-8 py-4 text-lg"
+            onClick={() => document.getElementById('newsletter')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             <Zap className="mr-2" size={20} />
             Get Early Access
           </Button>

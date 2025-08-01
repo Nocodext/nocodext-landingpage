@@ -6,6 +6,7 @@ import { Mail, Bell, Gift } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const WatoolsNewsletter = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -21,7 +22,10 @@ const WatoolsNewsletter = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ 
+          name: name.trim() || undefined,
+          email 
+        }),
       });
 
       if (response.ok) {
@@ -29,6 +33,7 @@ const WatoolsNewsletter = () => {
           title: "Success! 🎉",
           description: "You're now subscribed to our early access list!",
         });
+        setName("");
         setEmail("");
       } else {
         throw new Error('Subscription failed');
@@ -45,7 +50,7 @@ const WatoolsNewsletter = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-green-600 via-green-500 to-emerald-600">
+    <section id="newsletter" className="py-20 bg-gradient-to-br from-green-600 via-green-500 to-emerald-600">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <Card className="border-0 shadow-2xl">
@@ -90,8 +95,15 @@ const WatoolsNewsletter = () => {
                 </div>
               </div>
 
-              <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-                <div className="flex flex-col sm:flex-row gap-3">
+              <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
+                <div className="flex gap-3">
+                  <Input
+                    type="text"
+                    placeholder="Name (optional)"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="flex-1 h-12 px-4 text-base"
+                  />
                   <Input
                     type="email"
                     placeholder="Enter your email address"
