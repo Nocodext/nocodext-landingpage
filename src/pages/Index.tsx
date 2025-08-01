@@ -1,7 +1,5 @@
 
 import { useEffect, useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import ImageModal from "@/components/ImageModal";
 import HeroSection from "@/components/HeroSection";
 import OverviewSection from "@/components/OverviewSection";
@@ -80,8 +78,7 @@ const Index = () => {
   };
   
   return (
-    <div className="min-h-screen flex flex-col font-inter">
-      <Header />
+    <div className="flex flex-col font-inter">
       
       <HeroSection />
       
@@ -110,8 +107,6 @@ const Index = () => {
       <StayInformed />
       
       <ManifestoSection />
-      
-      <Footer />
     </div>
   );
 };
