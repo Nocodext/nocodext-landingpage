@@ -6,7 +6,7 @@ const mockupImage = "/lovable-uploads/9c2ea1d9-4fad-4a23-b73a-2ef6f308aba8.png";
 
 const PinNpmHero = () => {
   return (
-    <section className="container mx-auto px-4 py-16 md:py-24">
+    <section className="container mx-auto px-4 py-16 md:py-24 mt-20">
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         {/* Left Content */}
         <div className="flex-1 text-center lg:text-left">
