@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Database, 
@@ -21,7 +22,17 @@ import {
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeTab, setActiveTab] = useState("bubble");
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Determine active tab based on current route
+  const getActiveTabFromPath = (pathname: string) => {
+    if (pathname === '/bubble' || pathname === '/') return 'bubble';
+    if (pathname === '/pinnpm') return 'pinnpm';
+    return 'bubble'; // default
+  };
+  
+  const [activeTab, setActiveTab] = useState(() => getActiveTabFromPath(location.pathname));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +42,27 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Update active tab when location changes
+  useEffect(() => {
+    setActiveTab(getActiveTabFromPath(location.pathname));
+  }, [location.pathname]);
+
+  // Handle tab navigation
+  const handleTabChange = (tabValue: string) => {
+    setActiveTab(tabValue);
+    switch (tabValue) {
+      case 'bubble':
+        navigate('/bubble');
+        break;
+      case 'pinnpm':
+        navigate('/pinnpm');
+        break;
+      // Add other cases when those pages are implemented
+      default:
+        break;
+    }
+  };
 
   const tabOptions = [
     { value: "bubble", label: "Bubble", icon: <Code className="w-4 h-4 relative top-[1px]" />, color: "#0000FF " },
@@ -62,7 +94,7 @@ const Header = () => {
         <div className="flex items-center w-full md:w-auto">
           {/* Mobile: Dropdown Select */}
           <div className={`w-full md:hidden mb-2 ${!isScrolled ? "mt-2" : ""}`}>
-            <Select value={activeTab} onValueChange={setActiveTab}>
+            <Select value={activeTab} onValueChange={handleTabChange}>
               <SelectTrigger className="w-full bg-white border-gray-200 text-black">
                 <SelectValue placeholder="Select a tab">
                   <div className="flex items-center gap-2">
@@ -90,7 +122,7 @@ const Header = () => {
           
           {/* Desktop: Tabs */}
           <div className="hidden md:flex md:items-center w-auto overflow-x-auto scrollbar-hide">
-            <Tabs defaultValue="bubble" value={activeTab} onValueChange={setActiveTab} className="h-10">
+            <Tabs defaultValue="bubble" value={activeTab} onValueChange={handleTabChange} className="h-10">
               <TabsList className="mr-4 whitespace-nowrap h-10 flex items-center gap-2 bg-white rounded-md">
                 {tabOptions.map((tab) => (
                   <TabsTrigger 
