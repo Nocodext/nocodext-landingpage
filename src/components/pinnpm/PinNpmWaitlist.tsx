@@ -97,7 +97,7 @@ const PinNpmWaitlist = () => {
   }
 
   return (
-    <section className="container mx-auto px-4 py-16 bg-primary/5">
+    <section id="waitlist" className="container mx-auto px-4 py-16 bg-primary/5">
       <div className="max-w-4xl mx-auto text-center">
         <Badge variant="secondary" className="mb-6 font-mono">
           🚀 Early Access
