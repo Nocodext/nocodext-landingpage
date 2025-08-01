@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Bell, Gift } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const WatoolsNewsletter = () => {
   const [name, setName] = useState("");
@@ -16,28 +17,22 @@ const WatoolsNewsletter = () => {
     setIsLoading(true);
 
     try {
-      // This calls your existing Supabase endpoint
-      const response = await fetch('/api/newsletter-subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          name: name.trim() || undefined,
-          email 
-        }),
+      const result = await subscribeToNewsletter({
+        name: name.trim() || undefined,
+        email,
+        product: "watools"
       });
 
-      if (response.ok) {
-        toast({
-          title: "Success! 🎉",
-          description: "You're now subscribed to our early access list!",
-        });
-        setName("");
-        setEmail("");
-      } else {
-        throw new Error('Subscription failed');
+      if (!result.success) {
+        throw new Error(result.error || 'Subscription failed');
       }
+
+      toast({
+        title: "Success! 🎉",
+        description: "You're now subscribed to our early access list!",
+      });
+      setName("");
+      setEmail("");
     } catch (error) {
       toast({
         title: "Oops! Something went wrong",

@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Chrome, Mail, CheckCircle, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const PinNpmWaitlist = () => {
   const [name, setName] = useState("");
@@ -28,22 +29,14 @@ const PinNpmWaitlist = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/newsletter-subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name.trim() || undefined,
-          email,
-          groupId: "154366128875898210"
-        }),
+      const result = await subscribeToNewsletter({
+        name: name.trim() || undefined,
+        email,
+        product: "pinnpm"
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to subscribe');
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to subscribe');
       }
 
       setIsSubmitted(true);

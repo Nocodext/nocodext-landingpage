@@ -1,11 +1,10 @@
-
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 import { CheckCircle } from "lucide-react";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const Newsletter = () => {
   const [name, setName] = useState('');
@@ -24,18 +23,19 @@ const Newsletter = () => {
     setIsLoading(true);
     
     try {
-      // Call our Supabase edge function instead of directly calling MailerLite API
-      const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
-        body: { name, email }
+      const result = await subscribeToNewsletter({
+        name,
+        email,
+        product: "bubble"
       });
       
-      if (error) {
-        throw new Error(error.message || "Failed to subscribe");
+      if (!result.success) {
+        throw new Error(result.error || "Failed to subscribe");
       }
       
       // Show success alert instead of toast
       setShowSuccessAlert(true);
-      console.log("Subscription successful:", data);
+      console.log("Subscription successful:", result.data);
       setName('');
       setEmail('');
       
