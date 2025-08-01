@@ -91,7 +91,7 @@ const WatoolsNewsletter = () => {
               </div>
 
               <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
-                <div className="flex gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row">
                   <Input
                     type="text"
                     placeholder="Name (optional)"

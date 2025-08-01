@@ -63,7 +63,7 @@ const Newsletter = () => {
         </Alert>
       )}
       
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
         <Input
           placeholder="Your name"
           value={name}
