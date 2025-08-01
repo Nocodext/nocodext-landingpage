@@ -1,24 +1,20 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PinNpmHero from "@/components/pinnpm/PinNpmHero";
+import PinNpmFeatures from "@/components/pinnpm/PinNpmFeatures";
+import PinNpmComingSoon from "@/components/pinnpm/PinNpmComingSoon";
+import PinNpmDifferentiator from "@/components/pinnpm/PinNpmDifferentiator";
+import PinNpmWaitlist from "@/components/pinnpm/PinNpmWaitlist";
 
 const PinNpm = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
-      <main className="pt-32 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-foreground mb-8">
-              Pin'npm
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Cette page est en cours de développement.
-            </p>
-          </div>
-        </div>
-      </main>
-      
+      <PinNpmHero />
+      <PinNpmFeatures />
+      <PinNpmComingSoon />
+      <PinNpmDifferentiator />
+      <PinNpmWaitlist />
       <Footer />
     </div>
   );
