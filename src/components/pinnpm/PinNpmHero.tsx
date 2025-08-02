@@ -45,19 +45,12 @@ const PinNpmHero = () => {
 
         {/* Right Mockup */}
         <div className="flex-1 relative">
-          <div className="flex flex-col items-center gap-8">
+          <div className="relative animate-float">
             <img
-              src="/lovable-uploads/f640d74b-1b0d-44a5-afad-3ae596564067.png"
-              alt="pin'npm logo with red pushpin"
-              className="w-64 h-auto"
+              src={mockupImage}
+              alt="pin'npm Chrome extension mockup showing pin button on npm package page"
+              className="w-full h-auto rounded-lg shadow-2xl border border-border"
             />
-            <div className="relative animate-float">
-              <img
-                src={mockupImage}
-                alt="pin'npm Chrome extension mockup showing pin button on npm package page"
-                className="w-full h-auto rounded-lg shadow-2xl border border-border"
-              />
-            </div>
           </div>
         </div>
       </div>
