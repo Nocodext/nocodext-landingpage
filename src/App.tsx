@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "@/components/bubble/Header";
 import Footer from "@/components/bubble/Footer";
-import Index from "./pages/Index";
+import Bubble from "./pages/Bubble";
 import PinNpm from "./pages/PinNpm";
 import Watools from "./pages/Watools";
 import NotFound from "./pages/NotFound";
@@ -24,10 +24,10 @@ const App = () => (
           <main className="flex-1">
             <Routes>
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="/bubble" element={<Index />} />
+              <Route path="/bubble" element={<Bubble />} />
               <Route path="/pinnpm" element={<PinNpm />} />
               <Route path="/watools" element={<Watools />} />
-              <Route path="/" element={<Index />} />
+              <Route path="/" element={<Bubble />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

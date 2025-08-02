@@ -46,7 +46,7 @@ const features = [
   }
 ];
 
-const Index = () => {
+const Bubble = () => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isTabGalleryOpen, setIsTabGalleryOpen] = useState(false);
   const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
@@ -111,4 +111,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Bubble;
