@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Chrome, Mail, CheckCircle, ArrowRight } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Chrome, Mail, CheckCircle, ArrowRight, X, AlertCircle } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const PinNpmWaitlist = () => {
@@ -12,17 +12,17 @@ const PinNpmWaitlist = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState<'success' | 'error'>('success');
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email || !email.includes("@")) {
-      toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      });
+      setModalType('error');
+      setModalMessage("Veuillez entrer une adresse email valide.");
+      setShowModal(true);
       return;
     }
 
@@ -39,18 +39,15 @@ const PinNpmWaitlist = () => {
         throw new Error(result.error || 'Failed to subscribe');
       }
 
+      setModalType('success');
+      setModalMessage("Inscription réussie ! Vous allez recevoir un email de confirmation pour valider votre inscription.");
+      setShowModal(true);
       setIsSubmitted(true);
-      toast({
-        title: "Welcome to the waitlist! 🎉",
-        description: "We'll notify you as soon as pin'npm is ready.",
-      });
     } catch (error) {
       console.error('Subscription error:', error);
-      toast({
-        title: "Subscription failed",
-        description: "Please try again later or contact support.",
-        variant: "destructive",
-      });
+      setModalType('error');
+      setModalMessage("Une erreur s'est produite lors de l'inscription. Veuillez réessayer plus tard.");
+      setShowModal(true);
     } finally {
       setIsLoading(false);
     }
@@ -161,6 +158,34 @@ const PinNpmWaitlist = () => {
           </p>
         </div>
       </div>
+
+      <Dialog open={showModal} onOpenChange={setShowModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              {modalType === 'success' ? (
+                <>
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  Inscription réussie !
+                </>
+              ) : (
+                <>
+                  <AlertCircle className="h-5 w-5 text-red-600" />
+                  Erreur
+                </>
+              )}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <p className="text-muted-foreground">{modalMessage}</p>
+          </div>
+          <div className="flex justify-end">
+            <Button onClick={() => setShowModal(false)}>
+              OK
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
