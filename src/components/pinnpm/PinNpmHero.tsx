@@ -13,7 +13,7 @@ const PinNpmHero = () => {
         <div className="flex-1 text-center lg:text-left">
           <div className="flex justify-center lg:justify-start mb-6">
             <img 
-              src="/lovable-uploads/58697fd5-035d-473d-b09f-05a9ee051506.png" 
+              src="/lovable-uploads/9b47b3ef-3f1c-4ef7-a861-99abf648bf3b.png" 
               alt="pin'npm logo" 
               className="h-20 md:h-24 w-auto"
             />
