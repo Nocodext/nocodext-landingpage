@@ -1,5 +1,5 @@
 
-import Newsletter from "@/components/Newsletter";
+import Newsletter from "@/components/bubble/Newsletter";
 
 const StayInformed = () => {
   return (

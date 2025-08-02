@@ -1,12 +1,12 @@
 
 import { useEffect, useState } from "react";
-import ImageModal from "@/components/ImageModal";
-import HeroSection from "@/components/HeroSection";
-import OverviewSection from "@/components/OverviewSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import CTASection from "@/components/CTASection";
-import StayInformed from "@/components/StayInformed";
-import ManifestoSection from "@/components/ManifestoSection";
+import ImageModal from "@/components/bubble/ImageModal";
+import HeroSection from "@/components/bubble/HeroSection";
+import OverviewSection from "@/components/bubble/OverviewSection";
+import FeaturesSection from "@/components/bubble/FeaturesSection";
+import CTASection from "@/components/bubble/CTASection";
+import StayInformed from "@/components/bubble/StayInformed";
+import ManifestoSection from "@/components/bubble/ManifestoSection";
 
 const features = [
   {
