@@ -2,15 +2,17 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Bell, Gift } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Mail, Bell, Gift, CheckCircle, AlertCircle } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const WatoolsNewsletter = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState<'success' | 'error'>('success');
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,18 +29,15 @@ const WatoolsNewsletter = () => {
         throw new Error(result.error || 'Subscription failed');
       }
 
-      toast({
-        title: "Success! 🎉",
-        description: "You're now subscribed to our early access list!",
-      });
+      setModalType('success');
+      setModalMessage("Inscription réussie ! Vous allez recevoir un email de confirmation pour valider votre inscription.");
+      setShowModal(true);
       setName("");
       setEmail("");
     } catch (error) {
-      toast({
-        title: "Oops! Something went wrong",
-        description: "Please try again or contact support.",
-        variant: "destructive",
-      });
+      setModalType('error');
+      setModalMessage("Une erreur s'est produite lors de l'inscription. Veuillez réessayer plus tard.");
+      setShowModal(true);
     } finally {
       setIsLoading(false);
     }
@@ -128,6 +127,34 @@ const WatoolsNewsletter = () => {
             </CardContent>
           </Card>
         </div>
+
+        <Dialog open={showModal} onOpenChange={setShowModal}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                {modalType === 'success' ? (
+                  <>
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    Inscription réussie !
+                  </>
+                ) : (
+                  <>
+                    <AlertCircle className="h-5 w-5 text-red-600" />
+                    Erreur
+                  </>
+                )}
+              </DialogTitle>
+            </DialogHeader>
+            <div className="py-4">
+              <p className="text-muted-foreground">{modalMessage}</p>
+            </div>
+            <div className="flex justify-end">
+              <Button onClick={() => setShowModal(false)}>
+                OK
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
