@@ -1,5 +1,3 @@
-import { supabase } from "@/integrations/supabase/client";
-
 interface NewsletterSubscription {
   name?: string;
   email: string;
@@ -18,19 +16,25 @@ export const subscribeToNewsletter = async ({
   product
 }: NewsletterSubscription): Promise<NewsletterResponse> => {
   try {
-    const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
-      body: { 
-        name: name || undefined, 
-        email, 
-        product 
-      }
+    const response = await fetch('https://umnmvwyxjxswwidueaqy.supabase.co/functions/v1/newsletter-subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        product
+      })
     });
     
-    if (error) {
-      console.error("Newsletter subscription error:", error);
-      return { success: false, error: error.message || "Failed to subscribe" };
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ error: 'Failed to subscribe' }));
+      console.error("Newsletter subscription error:", errorData);
+      return { success: false, error: errorData.error || "Failed to subscribe" };
     }
     
+    const data = await response.json();
     return { success: true, data };
   } catch (error) {
     console.error("Newsletter subscription error:", error);
