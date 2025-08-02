@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Chrome, Pin } from "lucide-react";
@@ -10,6 +11,14 @@ const PinNpmHero = () => {
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         {/* Left Content */}
         <div className="flex-1 text-center lg:text-left">
+          <div className="flex justify-center lg:justify-start mb-6">
+            <img 
+              src="/lovable-uploads/58697fd5-035d-473d-b09f-05a9ee051506.png" 
+              alt="pin'npm logo" 
+              className="h-20 md:h-24 w-auto"
+            />
+          </div>
+          
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Your personal{" "}
             <span className="text-primary font-mono">pinboard</span>{" "}

@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
@@ -6,13 +5,6 @@ const HeroSection = () => {
     <section className="pt-36 pb-20 md:pt-44 md:pb-28">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="flex justify-center mb-6">
-            <img 
-              src="/lovable-uploads/58697fd5-035d-473d-b09f-05a9ee051506.png" 
-              alt="pin'npm logo" 
-              className="h-20 md:h-24 w-auto"
-            />
-          </div>
           <h1 className="animate-fade-in font-inter font-bold pt-14 md:pt-0">
             <span className="bg-gradient-to-r from-nocodext to-nocodext-light text-transparent bg-clip-text">Power up your</span> <span className="inline-flex items-center">
               <span className="bubble-logo">
