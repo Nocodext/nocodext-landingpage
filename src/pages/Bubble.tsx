@@ -43,6 +43,13 @@ const features = [
     image: "/lovable-uploads/fcad6142-05d2-4a14-9d26-bb169ead614d.png",
     videoId: "_NPrcIpywuk",
     textColor: "#fd764c",
+  },
+  {
+    title: "Datatype Navigator",
+    description: "instantly recall any Datatype structure from wherever you are on the Editor.",
+    image: "/lovable-uploads/099c3ca3-2e4c-4ecf-bd24-468ae05fdf08.png",
+    videoId: "",
+    textColor: "#9c27b0",
   }
 ];
 
