@@ -27,31 +27,31 @@ const NewsletterConfirmation = () => {
 
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-          Inscription{" "}
-          <span className="text-primary font-mono">confirmée</span>
+          Subscription{" "}
+          <span className="text-primary font-mono">confirmed</span>
         </h1>
 
         {/* Description */}
         <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-          Merci de votre intérêt pour <span className="font-semibold text-foreground font-mono">pin'npm</span>! 
-          Vous recevrez bientôt des nouvelles de notre extension.
+          Thank you for your interest in <span className="font-semibold text-foreground font-mono">pin'npm</span>! 
+          You'll soon receive updates about our extension.
         </p>
 
         {/* Newsletter benefits */}
         <div className="bg-muted/50 rounded-lg p-6 mb-8">
-          <h3 className="font-semibold text-foreground mb-4">Avec la newsletter :</h3>
+          <h3 className="font-semibold text-foreground mb-4">With the newsletter:</h3>
           <div className="space-y-3 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Pin className="h-4 w-4 text-primary" />
-              <span>Soyez les premiers informés du lancement</span>
+              <span>Be the first to know about the launch</span>
             </div>
             <div className="flex items-center gap-2">
               <Pin className="h-4 w-4 text-primary" />
-              <span>Accès anticipé à l'extension</span>
+              <span>Early access to the extension</span>
             </div>
             <div className="flex items-center gap-2">
               <Pin className="h-4 w-4 text-primary" />
-              <span>Nouvelles fonctionnalités en avant-première</span>
+              <span>Preview new features before anyone else</span>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@ const NewsletterConfirmation = () => {
         <Button asChild variant="outline" className="font-mono">
           <Link to="/pinnpm">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour à la page d'accueil
+            Back to homepage
           </Link>
         </Button>
       </div>
