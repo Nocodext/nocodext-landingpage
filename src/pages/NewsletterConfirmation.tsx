@@ -37,21 +37,21 @@ const NewsletterConfirmation = () => {
           Vous recevrez bientôt des nouvelles de notre extension.
         </p>
 
-        {/* Features reminder */}
+        {/* Newsletter benefits */}
         <div className="bg-muted/50 rounded-lg p-6 mb-8">
-          <h3 className="font-semibold text-foreground mb-4">Ce qui vous attend :</h3>
+          <h3 className="font-semibold text-foreground mb-4">Avec la newsletter :</h3>
           <div className="space-y-3 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Pin className="h-4 w-4 text-primary" />
-              <span>Extension Chrome gratuite</span>
+              <span>Soyez les premiers informés du lancement</span>
             </div>
             <div className="flex items-center gap-2">
               <Pin className="h-4 w-4 text-primary" />
-              <span>Aucune donnée personnelle collectée</span>
+              <span>Accès anticipé à l'extension</span>
             </div>
             <div className="flex items-center gap-2">
               <Pin className="h-4 w-4 text-primary" />
-              <span>Code source ouvert</span>
+              <span>Nouvelles fonctionnalités en avant-première</span>
             </div>
           </div>
         </div>
