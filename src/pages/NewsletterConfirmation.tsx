@@ -26,14 +26,14 @@ const NewsletterConfirmation = () => {
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight font-poppins">
           Subscription{" "}
-          <span className="text-primary font-mono">confirmed</span>
+          <span className="text-primary font-poppins">confirmed</span>
         </h1>
 
         {/* Description */}
-        <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-          Thank you for your interest in <span className="font-semibold text-foreground font-mono">pin'npm</span>! 
+        <p className="text-lg text-muted-foreground mb-8 leading-relaxed font-poppins">
+          Thank you for your interest in <span className="font-semibold text-foreground font-poppins">pin'npm</span>! 
           You'll soon receive updates about our extension.
         </p>
 
