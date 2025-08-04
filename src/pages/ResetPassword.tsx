@@ -69,14 +69,6 @@ const ResetPassword = () => {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <img 
-              src="/lovable-uploads/9b47b3ef-3f1c-4ef7-a861-99abf648bf3b.png" 
-              alt="pin'npm logo" 
-              className="h-16 w-auto"
-            />
-          </div>
-          
           <Button
             variant="ghost"
             className="mb-4"
