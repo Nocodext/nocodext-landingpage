@@ -28,9 +28,9 @@ const Header = () => {
   
   // Determine active tab based on current route
   const getActiveTabFromPath = (pathname: string) => {
-    if (pathname === '/bubble' || pathname === '/') return 'bubble';
-    if (pathname === '/pinnpm') return 'pinnpm';
-    if (pathname === '/watools') return 'watools';
+    if (pathname === '/bubble' || pathname === '/' || pathname.startsWith('/bubble/')) return 'bubble';
+    if (pathname === '/pinnpm' || pathname.startsWith('/pinnpm/')) return 'pinnpm';
+    if (pathname === '/watools' || pathname.startsWith('/watools/')) return 'watools';
     return 'bubble'; // default
   };
   
