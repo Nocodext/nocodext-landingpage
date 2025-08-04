@@ -9,6 +9,7 @@ import Footer from "@/components/bubble/Footer";
 import Bubble from "./pages/Bubble";
 import PinNpm from "./pages/PinNpm";
 import Watools from "./pages/Watools";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
               <Route path="/bubble" element={<Bubble />} />
               <Route path="/pinnpm" element={<PinNpm />} />
               <Route path="/watools" element={<Watools />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/" element={<Bubble />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
