@@ -10,6 +10,7 @@ import Bubble from "./pages/Bubble";
 import PinNpm from "./pages/PinNpm";
 import Watools from "./pages/Watools";
 import ResetPassword from "./pages/ResetPassword";
+import NewsletterConfirmation from "./pages/NewsletterConfirmation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/pinnpm" element={<PinNpm />} />
               <Route path="/watools" element={<Watools />} />
               <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/newsletter-confirmation" element={<NewsletterConfirmation />} />
               <Route path="/" element={<Bubble />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
