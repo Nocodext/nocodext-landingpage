@@ -30,7 +30,7 @@ const App = () => (
               <Route path="/pinnpm" element={<PinNpm />} />
               <Route path="/watools" element={<Watools />} />
               <Route path="/reset-password" element={<ResetPassword />} />
-              <Route path="/newsletter-confirmation" element={<NewsletterConfirmation />} />
+              <Route path="/pinnpm/newsletter-confirmed" element={<NewsletterConfirmation />} />
               <Route path="/" element={<Bubble />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
