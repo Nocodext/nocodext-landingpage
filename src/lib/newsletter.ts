@@ -24,7 +24,7 @@ export const subscribeToNewsletter = async ({
       body: JSON.stringify({
         name,
         email,
-        product: productName
+        productName: product
       })
     });
     
