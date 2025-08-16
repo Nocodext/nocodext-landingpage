@@ -10,7 +10,7 @@ const WatoolsHero = () => {
           <img 
             src="/lovable-uploads/04d8729e-3873-4d8b-baec-9b79e4dd8285.png" 
             alt="WaTools.co Logo" 
-            className="h-20 md:h-24 w-auto animate-fade-in rounded-2xl"
+            className="h-24 md:h-32 w-auto animate-fade-in rounded-2xl"
           />
         </div>
 
