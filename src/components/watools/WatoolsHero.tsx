@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Users, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 
 const WatoolsHero = () => {
   return (
@@ -7,12 +7,11 @@ const WatoolsHero = () => {
       <div className="absolute inset-0 bg-black/10"></div>
       <div className="relative container mx-auto px-4 py-20 text-center">
         <div className="flex justify-center mb-6">
-          <div className="relative">
-            <MessageCircle size={80} className="text-white animate-pulse" />
-            <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-full p-2">
-              <Users size={24} className="text-green-600" />
-            </div>
-          </div>
+          <img 
+            src="/lovable-uploads/04d8729e-3873-4d8b-baec-9b79e4dd8285.png" 
+            alt="WaTools.co Logo" 
+            className="h-20 w-auto animate-fade-in"
+          />
         </div>
 
         <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
