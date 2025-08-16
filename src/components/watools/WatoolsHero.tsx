@@ -1,22 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { Zap } from "lucide-react";
+import { MessageCircle, Users, Zap } from "lucide-react";
 
 const WatoolsHero = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-green-600 via-green-500 to-emerald-600 text-white mt-20">
       <div className="absolute inset-0 bg-black/10"></div>
       <div className="relative container mx-auto px-4 py-20 text-center">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
-          <img 
-            src="/lovable-uploads/04d8729e-3873-4d8b-baec-9b79e4dd8285.png" 
-            alt="WaTools.co Logo" 
-            className="h-24 md:h-32 w-auto animate-fade-in rounded-2xl"
-          />
-          <h1 className="text-4xl md:text-6xl font-bold animate-fade-in text-center md:text-left">
-            Transfer WhatsApp Groups
-            <span className="block text-yellow-300">In Seconds, Not Hours</span>
-          </h1>
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            <MessageCircle size={80} className="text-white animate-pulse" />
+            <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-full p-2">
+              <Users size={24} className="text-green-600" />
+            </div>
+          </div>
         </div>
+
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+          Transfer WhatsApp Groups
+          <span className="block text-yellow-300">In Seconds, Not Hours</span>
+        </h1>
 
         <p className="text-xl md:text-2xl mb-8 text-green-100 max-w-3xl mx-auto animate-fade-in">
           Stop adding members one by one. Our tool lets you transfer entire groups or bulk-add members instantly.
