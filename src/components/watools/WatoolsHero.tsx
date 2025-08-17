@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Zap } from "lucide-react";
-import watoolsLogo from "@/assets/watools-logo.png";
+import { MessageCircle, Users, Zap } from "lucide-react";
 
 const WatoolsHero = () => {
   return (
@@ -8,11 +7,12 @@ const WatoolsHero = () => {
       <div className="absolute inset-0 bg-black/10"></div>
       <div className="relative container mx-auto px-4 py-20 text-center">
         <div className="flex justify-center mb-6">
-          <img 
-            src={watoolsLogo} 
-            alt="WaTools Logo" 
-            className="h-20 md:h-24 w-auto animate-pulse"
-          />
+          <div className="relative">
+            <MessageCircle size={80} className="text-white animate-pulse" />
+            <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-full p-2">
+              <Users size={24} className="text-green-600" />
+            </div>
+          </div>
         </div>
 
         <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
