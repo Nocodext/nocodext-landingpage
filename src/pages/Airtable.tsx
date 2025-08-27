@@ -4,6 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import airtableLogo from "@/assets/airtable-logo.png";
+import airtableHero from "@/assets/airtable-hero.png";
+import airtableChromeStore from "@/assets/airtable-chrome-store.png";
+import airtableWidgets from "@/assets/airtable-widgets.png";
 
 const Airtable = () => {
   const [formData, setFormData] = useState({
@@ -31,9 +35,7 @@ const Airtable = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 via-red-500 to-blue-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">AT</span>
-                </div>
+                <img src={airtableLogo} alt="Airtable Extension Logo" className="w-16 h-16 rounded-lg" />
                 <h1 className="text-4xl lg:text-6xl font-bold text-foreground">Airtable</h1>
               </div>
               <div className="space-y-4">
@@ -44,20 +46,9 @@ const Airtable = () => {
               </div>
             </div>
             <div className="flex justify-center">
-              <Card className="p-6 bg-card border border-border shadow-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-red-500 to-orange-500"></div>
-                  <div className="space-y-1">
-                    <p className="text-sm text-muted-foreground">Available in the</p>
-                    <p className="font-semibold text-foreground">Chrome Web Store</p>
-                  </div>
-                </div>
-                <Button asChild className="w-full">
-                  <a href="https://chrome.google.com/webstore/detail/nocodext-for-airtable/kigfniiolojjmchffmindnihiiglbckc" target="_blank" rel="noopener noreferrer">
-                    Install Extension
-                  </a>
-                </Button>
-              </Card>
+              <a href="https://chrome.google.com/webstore/detail/nocodext-for-airtable/kigfniiolojjmchffmindnihiiglbckc" target="_blank" rel="noopener noreferrer">
+                <img src={airtableChromeStore} alt="Available in Chrome Web Store" className="max-w-sm hover:scale-105 transition-transform" />
+              </a>
             </div>
           </div>
         </div>
@@ -66,7 +57,9 @@ const Airtable = () => {
       {/* Widgets Section */}
       <section className="py-20 px-4 bg-muted/50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-bold text-center mb-16 text-foreground">Widgets</h2>
+          <div className="text-center mb-16">
+            <img src={airtableWidgets} alt="Airtable Widgets" className="mx-auto max-w-full h-auto rounded-lg shadow-lg" />
+          </div>
           
           {/* Columns Navigator */}
           <div className="mb-20">
@@ -82,10 +75,8 @@ const Airtable = () => {
                   <p>and save your eyes 👀, headaches...your health</p>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg p-8 aspect-video flex items-center justify-center">
-                <div className="bg-white rounded-lg p-4 shadow-lg">
-                  <div className="text-center text-gray-800 font-semibold">Column Navigation Demo</div>
-                </div>
+              <div className="flex justify-center">
+                <img src={airtableHero} alt="Airtable Interface Demo" className="rounded-lg shadow-lg max-w-full h-auto" />
               </div>
             </div>
           </div>
