@@ -11,6 +11,7 @@ import airtableBookmarkDemo from "@/assets/airtable-bookmark-demo.png";
 import airtableColumnsNavigator from "@/assets/airtable-columns-navigator.png";
 import airtableColorizeTabs from "@/assets/airtable-colorize-tabs.png";
 import airtableWidgets from "@/assets/airtable-widgets.png";
+import ImageModal from "@/components/bubble/ImageModal";
 const Airtable = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -18,6 +19,20 @@ const Airtable = () => {
     email: "",
     comment: ""
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const featureImages = [
+    airtableColumnsNavigator,
+    airtableBookmarkDemo,
+    airtableColorizeTabs
+  ];
+
+  const openModal = (imageIndex: number) => {
+    setCurrentImageIndex(imageIndex);
+    setIsModalOpen(true);
+  };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
       name,
@@ -80,7 +95,12 @@ const Airtable = () => {
                 </div>
               </div>
               <div className="flex justify-center">
-                <img src={airtableColumnsNavigator} alt="Columns Navigator Demo" className="rounded-lg shadow-lg max-w-full h-auto" />
+                <img 
+                  src={airtableColumnsNavigator} 
+                  alt="Columns Navigator Demo" 
+                  className="rounded-lg shadow-lg max-w-full h-auto cursor-pointer hover:scale-105 transition-transform" 
+                  onClick={() => openModal(0)}
+                />
               </div>
             </div>
           </div>
@@ -89,7 +109,12 @@ const Airtable = () => {
           <div className="mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <img src={airtableBookmarkDemo} alt="Bookmark Columns Demo" className="rounded-lg shadow-lg max-w-full h-auto" />
+                <img 
+                  src={airtableBookmarkDemo} 
+                  alt="Bookmark Columns Demo" 
+                  className="rounded-lg shadow-lg max-w-full h-auto cursor-pointer hover:scale-105 transition-transform" 
+                  onClick={() => openModal(1)}
+                />
               </div>
               <div className="order-1 lg:order-2 space-y-6">
                 <div className="flex items-center gap-3">
@@ -116,7 +141,12 @@ const Airtable = () => {
                 </p>
               </div>
               <div className="flex justify-center">
-                <img src={airtableColorizeTabs} alt="Colorize Table Tabs Demo" className="rounded-lg shadow-lg max-w-full h-auto" />
+                <img 
+                  src={airtableColorizeTabs} 
+                  alt="Colorize Table Tabs Demo" 
+                  className="rounded-lg shadow-lg max-w-full h-auto cursor-pointer hover:scale-105 transition-transform" 
+                  onClick={() => openModal(2)}
+                />
               </div>
             </div>
           </div>
@@ -238,6 +268,13 @@ const Airtable = () => {
           </div>
         </div>
       </section>
+
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        images={featureImages}
+        initialIndex={currentImageIndex}
+      />
     </div>;
 };
 export default Airtable;
