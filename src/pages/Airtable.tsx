@@ -175,7 +175,7 @@ const Airtable = () => {
 
             <Card className="p-6 hover:shadow-lg transition-shadow">
               <div className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center">
-                <span className="text-muted-foreground">Video Preview</span>
+                      <span className="text-muted-foreground">Bookmark tables tab</span>
               </div>
               <h4 className="font-semibold text-center text-foreground">Bookmark table tab</h4>
               <Button variant="outline" className="w-full mt-4" asChild>
