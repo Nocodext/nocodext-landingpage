@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
-import airtableLogo from "@/assets/airtable-logo.png";
+import airtableOfficialLogo from "@/assets/airtable-official-logo.png";
 import airtableHero from "@/assets/airtable-hero.png";
 import airtableChromeStore from "@/assets/airtable-chrome-store.png";
 import airtableBookmarkDemo from "@/assets/airtable-bookmark-demo.png";
@@ -60,7 +60,7 @@ const Airtable = () => {
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <img 
-                  src={airtableLogo} 
+                  src={airtableOfficialLogo} 
                   alt="Airtable" 
                   className="h-16 lg:h-20 w-auto" 
                 />
