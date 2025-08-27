@@ -7,6 +7,7 @@ import { useState } from "react";
 import airtableLogo from "@/assets/airtable-logo.png";
 import airtableHero from "@/assets/airtable-hero.png";
 import airtableChromeStore from "@/assets/airtable-chrome-store.png";
+import airtableBookmarkDemo from "@/assets/airtable-bookmark-demo.png";
 import airtableWidgets from "@/assets/airtable-widgets.png";
 
 const Airtable = () => {
@@ -85,11 +86,7 @@ const Airtable = () => {
           <div className="mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gradient-to-br from-green-500 to-teal-500 rounded-lg p-8 aspect-video flex items-center justify-center">
-                  <div className="bg-white rounded-lg p-4 shadow-lg">
-                    <div className="text-center text-gray-800 font-semibold">Bookmark Demo</div>
-                  </div>
-                </div>
+                <img src={airtableBookmarkDemo} alt="Bookmark Columns Demo" className="rounded-lg shadow-lg max-w-full h-auto" />
               </div>
               <div className="order-1 lg:order-2 space-y-6">
                 <div className="flex items-center gap-3">
