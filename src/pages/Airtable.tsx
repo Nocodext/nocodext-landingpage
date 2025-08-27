@@ -58,7 +58,7 @@ const Airtable = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="flex items-center gap-4">
+              <div className="flex items-end">
                 <img 
                   src={airtableRealLogo} 
                   alt="Airtable" 
