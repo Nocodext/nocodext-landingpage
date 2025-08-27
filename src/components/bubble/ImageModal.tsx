@@ -106,9 +106,9 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
           <X className="h-6 w-6" />
         </button>
         
-        <div className="relative w-full py-10">
+        <div className="relative w-full h-[80vh] flex items-center">
           <Carousel 
-            className="w-full" 
+            className="w-full h-full" 
             setApi={setApi}
             opts={{ 
               loop: true, 
@@ -116,15 +116,14 @@ const ImageModal = ({ isOpen, onClose, images, initialIndex = 0 }: ImageModalPro
               containScroll: false
             }}
           >
-            <CarouselContent>
+            <CarouselContent className="h-full">
               {images.map((image, index) => (
-                <CarouselItem key={index}>
-                  <div className="flex items-center justify-center h-full">
+                <CarouselItem key={index} className="h-full">
+                  <div className="flex items-center justify-center h-full w-full">
                     <img 
                       src={image} 
                       alt={`Feature image ${index + 1}`} 
-                      className="original-dimension"
-                      style={{ maxHeight: '80vh', maxWidth: '80vw' }}
+                      className="max-h-full max-w-full object-contain"
                     />
                   </div>
                 </CarouselItem>
