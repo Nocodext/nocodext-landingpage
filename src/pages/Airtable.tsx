@@ -12,6 +12,7 @@ import airtableColumnsNavigator from "@/assets/airtable-columns-navigator.png";
 import airtableColorizeTabs from "@/assets/airtable-colorize-tabs.png";
 import airtableWidgets from "@/assets/airtable-widgets.png";
 import ImageModal from "@/components/bubble/ImageModal";
+import VideoModal from "@/components/bubble/VideoModal";
 const Airtable = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -22,6 +23,9 @@ const Airtable = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [currentVideoId, setCurrentVideoId] = useState("");
+  const [currentVideoTitle, setCurrentVideoTitle] = useState("");
   
   const featureImages = [
     airtableColumnsNavigator,
@@ -32,6 +36,12 @@ const Airtable = () => {
   const openModal = (imageIndex: number) => {
     setCurrentImageIndex(imageIndex);
     setIsModalOpen(true);
+  };
+
+  const openVideoModal = (videoId: string, title: string) => {
+    setCurrentVideoId(videoId);
+    setCurrentVideoTitle(title);
+    setIsVideoModalOpen(true);
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {
@@ -162,8 +172,16 @@ const Airtable = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Video Demo Cards */}
             <Card className="p-6 hover:shadow-lg transition-shadow">
-              <div className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center">
-                      <span className="text-muted-foreground">Navigate among all columns</span>
+              <div 
+                className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center cursor-pointer hover:bg-muted/80 transition-colors relative group"
+                onClick={() => openVideoModal("QaEoG71i3NI", "Navigate among table columns")}
+              >
+                <div className="absolute inset-0 bg-black/10 rounded-lg flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                    <div className="w-0 h-0 border-l-[16px] border-l-foreground border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                  </div>
+                </div>
+                <span className="absolute bottom-2 left-2 text-xs text-white bg-black/50 px-2 py-1 rounded">Navigate among all columns</span>
               </div>
               <h4 className="font-semibold text-center text-foreground">Navigate among table columns</h4>
               <Button variant="outline" className="w-full mt-4" asChild>
@@ -274,6 +292,13 @@ const Airtable = () => {
         onClose={() => setIsModalOpen(false)}
         images={featureImages}
         initialIndex={currentImageIndex}
+      />
+      
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videoId={currentVideoId}
+        title={currentVideoTitle}
       />
     </div>;
 };
