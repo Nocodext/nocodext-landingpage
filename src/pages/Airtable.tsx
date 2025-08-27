@@ -11,7 +11,6 @@ import airtableBookmarkDemo from "@/assets/airtable-bookmark-demo.png";
 import airtableColumnsNavigator from "@/assets/airtable-columns-navigator.png";
 import airtableColorizeTabs from "@/assets/airtable-colorize-tabs.png";
 import airtableWidgets from "@/assets/airtable-widgets.png";
-
 const Airtable = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -19,19 +18,21 @@ const Airtable = () => {
     email: "",
     comment: ""
   });
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const {
+      name,
+      value
+    } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
   };
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-background to-muted">
         <div className="max-w-6xl mx-auto">
@@ -61,7 +62,7 @@ const Airtable = () => {
       <section className="py-20 px-4 bg-muted/50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <img src={airtableWidgets} alt="Airtable Widgets" className="mx-auto max-w-full h-auto rounded-lg shadow-lg" />
+            
           </div>
           
           {/* Columns Navigator */}
@@ -179,47 +180,22 @@ const Airtable = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
-                  <Input
-                    id="firstName"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <Input id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lastName">Last Name</Label>
-                  <Input
-                    id="lastName"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    required
-                  />
+                  <Input id="lastName" name="lastName" value={formData.lastName} onChange={handleInputChange} required />
                 </div>
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                />
+                <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="comment">Comment</Label>
-                <Textarea
-                  id="comment"
-                  name="comment"
-                  value={formData.comment}
-                  onChange={handleInputChange}
-                  rows={4}
-                />
+                <Textarea id="comment" name="comment" value={formData.comment} onChange={handleInputChange} rows={4} />
               </div>
               
               <Button type="submit" className="w-full">
@@ -262,8 +238,6 @@ const Airtable = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Airtable;
