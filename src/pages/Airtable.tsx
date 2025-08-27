@@ -23,24 +23,16 @@ const Airtable = () => {
     email: "",
     comment: ""
   });
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [currentVideoId, setCurrentVideoId] = useState("");
   const [currentVideoTitle, setCurrentVideoTitle] = useState("");
-  
-  const featureImages = [
-    airtableColumnsNavigator,
-    airtableBookmarkDemo,
-    airtableColorizeTabs
-  ];
-
+  const featureImages = [airtableColumnsNavigator, airtableBookmarkDemo, airtableColorizeTabs];
   const openModal = (imageIndex: number) => {
     setCurrentImageIndex(imageIndex);
     setIsModalOpen(true);
   };
-
   const openVideoModal = (videoId: string, title: string) => {
     setCurrentVideoId(videoId);
     setCurrentVideoTitle(title);
@@ -67,7 +59,7 @@ const Airtable = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <img src={airtableLogo} alt="Airtable Extension Logo" className="w-16 h-16 rounded-lg" />
+                
                 <h1 className="text-4xl lg:text-6xl font-bold text-foreground">Airtable</h1>
               </div>
               <div className="space-y-4">
@@ -108,12 +100,7 @@ const Airtable = () => {
                 </div>
               </div>
               <div className="flex justify-center">
-                <img 
-                  src={airtableColumnsNavigator} 
-                  alt="Columns Navigator Demo" 
-                  className="rounded-lg shadow-lg max-w-full h-auto cursor-pointer hover:scale-105 transition-transform" 
-                  onClick={() => openModal(0)}
-                />
+                <img src={airtableColumnsNavigator} alt="Columns Navigator Demo" className="rounded-lg shadow-lg max-w-full h-auto cursor-pointer hover:scale-105 transition-transform" onClick={() => openModal(0)} />
               </div>
             </div>
           </div>
@@ -122,12 +109,7 @@ const Airtable = () => {
           <div className="mb-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <img 
-                  src={airtableBookmarkDemo} 
-                  alt="Bookmark Columns Demo" 
-                  className="rounded-lg shadow-lg max-w-full h-auto cursor-pointer hover:scale-105 transition-transform" 
-                  onClick={() => openModal(1)}
-                />
+                <img src={airtableBookmarkDemo} alt="Bookmark Columns Demo" className="rounded-lg shadow-lg max-w-full h-auto cursor-pointer hover:scale-105 transition-transform" onClick={() => openModal(1)} />
               </div>
               <div className="order-1 lg:order-2 space-y-6">
                 <div className="flex items-center gap-3">
@@ -154,12 +136,7 @@ const Airtable = () => {
                 </p>
               </div>
               <div className="flex justify-center">
-                <img 
-                  src={airtableColorizeTabs} 
-                  alt="Colorize Table Tabs Demo" 
-                  className="rounded-lg shadow-lg max-w-full h-auto cursor-pointer hover:scale-105 transition-transform" 
-                  onClick={() => openModal(2)}
-                />
+                <img src={airtableColorizeTabs} alt="Colorize Table Tabs Demo" className="rounded-lg shadow-lg max-w-full h-auto cursor-pointer hover:scale-105 transition-transform" onClick={() => openModal(2)} />
               </div>
             </div>
           </div>
@@ -175,15 +152,8 @@ const Airtable = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Video Demo Cards */}
             <Card className="p-6 hover:shadow-lg transition-shadow">
-              <div 
-                className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity relative group overflow-hidden"
-                onClick={() => openVideoModal("QaEoG71i3NI", "Navigate among table columns")}
-              >
-                <img 
-                  src={airtableVideoThumbnail} 
-                  alt="Video thumbnail" 
-                  className="w-full h-full object-cover"
-                />
+              <div className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity relative group overflow-hidden" onClick={() => openVideoModal("QaEoG71i3NI", "Navigate among table columns")}>
+                <img src={airtableVideoThumbnail} alt="Video thumbnail" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
                   <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
                     <div className="w-0 h-0 border-l-[16px] border-l-foreground border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
@@ -199,15 +169,8 @@ const Airtable = () => {
             </Card>
 
             <Card className="p-6 hover:shadow-lg transition-shadow">
-              <div 
-                className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity relative group overflow-hidden"
-                onClick={() => openVideoModal("BNgfDmolSLQ", "Bookmark table tab")}
-              >
-                <img 
-                  src={airtableVideoThumbnail2} 
-                  alt="Video thumbnail" 
-                  className="w-full h-full object-cover"
-                />
+              <div className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity relative group overflow-hidden" onClick={() => openVideoModal("BNgfDmolSLQ", "Bookmark table tab")}>
+                <img src={airtableVideoThumbnail2} alt="Video thumbnail" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
                   <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
                     <div className="w-0 h-0 border-l-[16px] border-l-foreground border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
@@ -223,15 +186,8 @@ const Airtable = () => {
             </Card>
 
             <Card className="p-6 hover:shadow-lg transition-shadow">
-              <div 
-                className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity relative group overflow-hidden"
-                onClick={() => openVideoModal("sLJfIiQ-lW4", "Colorize table tab")}
-              >
-                <img 
-                  src={airtableVideoThumbnail3} 
-                  alt="Video thumbnail" 
-                  className="w-full h-full object-cover"
-                />
+              <div className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity relative group overflow-hidden" onClick={() => openVideoModal("sLJfIiQ-lW4", "Colorize table tab")}>
+                <img src={airtableVideoThumbnail3} alt="Video thumbnail" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
                   <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
                     <div className="w-0 h-0 border-l-[16px] border-l-foreground border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
@@ -318,19 +274,9 @@ const Airtable = () => {
         </div>
       </section>
 
-      <ImageModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        images={featureImages}
-        initialIndex={currentImageIndex}
-      />
+      <ImageModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} images={featureImages} initialIndex={currentImageIndex} />
       
-      <VideoModal
-        isOpen={isVideoModalOpen}
-        onClose={() => setIsVideoModalOpen(false)}
-        videoId={currentVideoId}
-        title={currentVideoTitle}
-      />
+      <VideoModal isOpen={isVideoModalOpen} onClose={() => setIsVideoModalOpen(false)} videoId={currentVideoId} title={currentVideoTitle} />
     </div>;
 };
 export default Airtable;
