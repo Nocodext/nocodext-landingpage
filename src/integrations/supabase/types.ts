@@ -7,6 +7,11 @@ export type Json =
   | Json[]
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "12.2.3 (519615d)"
+  }
   public: {
     Tables: {
       nocode_saas_asset: {
@@ -30,6 +35,137 @@ export type Database = {
           icon_url?: string | null
           id?: number
           name?: string | null
+        }
+        Relationships: []
+      }
+      pinnpm_packages: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          downloads: string | null
+          id: string
+          keywords: string[] | null
+          last_npm_fetch: string | null
+          maintenance_last_checked: string | null
+          maintenance_score: number | null
+          name: string
+          pin_count: number | null
+          security_details: Json | null
+          security_last_checked: string | null
+          security_score: number | null
+          tag: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          downloads?: string | null
+          id?: string
+          keywords?: string[] | null
+          last_npm_fetch?: string | null
+          maintenance_last_checked?: string | null
+          maintenance_score?: number | null
+          name: string
+          pin_count?: number | null
+          security_details?: Json | null
+          security_last_checked?: string | null
+          security_score?: number | null
+          tag?: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          downloads?: string | null
+          id?: string
+          keywords?: string[] | null
+          last_npm_fetch?: string | null
+          maintenance_last_checked?: string | null
+          maintenance_score?: number | null
+          name?: string
+          pin_count?: number | null
+          security_details?: Json | null
+          security_last_checked?: string | null
+          security_score?: number | null
+          tag?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      pinnpm_user_favorites: {
+        Row: {
+          comments: string | null
+          id: string
+          package_id: string
+          pinned_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          comments?: string | null
+          id?: string
+          package_id: string
+          pinned_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          comments?: string | null
+          id?: string
+          package_id?: string
+          pinned_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pinnpm_fk_user_favorites_package_id"
+            columns: ["package_id"]
+            isOneToOne: false
+            referencedRelation: "pinnmp_view_user_favorites"
+            referencedColumns: ["package_id"]
+          },
+          {
+            foreignKeyName: "pinnpm_fk_user_favorites_package_id"
+            columns: ["package_id"]
+            isOneToOne: false
+            referencedRelation: "pinnpm_packages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pinnpm_fk_user_favorites_package_id"
+            columns: ["package_id"]
+            isOneToOne: false
+            referencedRelation: "pinnpm_view_popular_packages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pinnpm_fk_user_favorites_package_id"
+            columns: ["package_id"]
+            isOneToOne: false
+            referencedRelation: "pinnpm_view_user_favorites"
+            referencedColumns: ["package_id"]
+          },
+        ]
+      }
+      pinnpm_user_preferences: {
+        Row: {
+          created_at: string | null
+          id: string
+          settings: Json
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          settings?: Json
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          settings?: Json
+          updated_at?: string | null
+          user_id?: string
         }
         Relationships: []
       }
@@ -155,6 +291,88 @@ export type Database = {
       }
     }
     Views: {
+      pinnmp_view_user_favorites: {
+        Row: {
+          description: string | null
+          downloads: string | null
+          keywords: string[] | null
+          maintenance_last_checked: string | null
+          maintenance_score: number | null
+          package_id: string | null
+          package_name: string | null
+          package_tag: string | null
+          pin_count: number | null
+          pinned_at: string | null
+          security_last_checked: string | null
+          security_score: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+      pinnpm_view_package_stats: {
+        Row: {
+          avg_pins_per_package: number | null
+          max_pins: number | null
+          package_count: number | null
+          tag: string | null
+          total_pins: number | null
+        }
+        Relationships: []
+      }
+      pinnpm_view_popular_packages: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          downloads: string | null
+          id: string | null
+          keywords: string[] | null
+          name: string | null
+          pin_count: number | null
+          tag: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          downloads?: string | null
+          id?: string | null
+          keywords?: string[] | null
+          name?: string | null
+          pin_count?: number | null
+          tag?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          downloads?: string | null
+          id?: string | null
+          keywords?: string[] | null
+          name?: string | null
+          pin_count?: number | null
+          tag?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      pinnpm_view_user_favorites: {
+        Row: {
+          description: string | null
+          downloads: string | null
+          keywords: string[] | null
+          maintenance_last_checked: string | null
+          maintenance_score: number | null
+          package_id: string | null
+          package_name: string | null
+          package_tag: string | null
+          pin_count: number | null
+          pinned_at: string | null
+          security_last_checked: string | null
+          security_score: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
       stripe_user_orders: {
         Row: {
           amount_subtotal: number | null
@@ -190,7 +408,51 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      pinnpm_add_user_favorite: {
+        Args: {
+          downloads_param: string
+          package_name_param: string
+          package_tag_param: string
+          user_id_param: string
+        }
+        Returns: {
+          downloads: string
+          id: string
+          package_name: string
+          package_tag: string
+          pinned_at: string
+          user_id: string
+        }[]
+      }
+      pinnpm_get_user_favorites: {
+        Args: { user_id_param: string }
+        Returns: {
+          downloads: string
+          id: string
+          package_name: string
+          package_tag: string
+          pinned_at: string
+          user_id: string
+        }[]
+      }
+      pinnpm_get_user_preferences: {
+        Args: { user_id_param: string }
+        Returns: {
+          created_at: string
+          id: string
+          settings: Json
+          updated_at: string
+          user_id: string
+        }[]
+      }
+      pinnpm_remove_user_favorite: {
+        Args: { package_name_param: string; user_id_param: string }
+        Returns: boolean
+      }
+      pinnpm_upsert_user_preferences: {
+        Args: { settings_param: Json; user_id_param: string }
+        Returns: Json
+      }
     }
     Enums: {
       stripe_order_status: "pending" | "completed" | "canceled"
@@ -211,21 +473,25 @@ export type Database = {
   }
 }
 
-type DefaultSchema = Database[Extract<keyof Database, "public">]
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-        Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
-      Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R
     }
     ? R
@@ -243,14 +509,16 @@ export type Tables<
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I
     }
     ? I
@@ -266,14 +534,16 @@ export type TablesInsert<
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U
     }
     ? U
@@ -289,14 +559,16 @@ export type TablesUpdate<
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = DefaultSchemaEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
     : never
@@ -304,14 +576,16 @@ export type Enums<
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
-    | { schema: keyof Database },
+    | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof Database
+    schema: keyof DatabaseWithoutInternals
   }
-    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
-> = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
