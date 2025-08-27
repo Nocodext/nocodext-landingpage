@@ -11,6 +11,7 @@ import airtableBookmarkDemo from "@/assets/airtable-bookmark-demo.png";
 import airtableColumnsNavigator from "@/assets/airtable-columns-navigator.png";
 import airtableColorizeTabs from "@/assets/airtable-colorize-tabs.png";
 import airtableWidgets from "@/assets/airtable-widgets.png";
+import airtableVideoThumbnail from "@/assets/airtable-video-thumbnail.jpg";
 import ImageModal from "@/components/bubble/ImageModal";
 import VideoModal from "@/components/bubble/VideoModal";
 const Airtable = () => {
@@ -173,15 +174,19 @@ const Airtable = () => {
             {/* Video Demo Cards */}
             <Card className="p-6 hover:shadow-lg transition-shadow">
               <div 
-                className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center cursor-pointer hover:bg-muted/80 transition-colors relative group"
+                className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity relative group overflow-hidden"
                 onClick={() => openVideoModal("QaEoG71i3NI", "Navigate among table columns")}
               >
-                <div className="absolute inset-0 bg-black/10 rounded-lg flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                <img 
+                  src={airtableVideoThumbnail} 
+                  alt="Video thumbnail" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
                     <div className="w-0 h-0 border-l-[16px] border-l-foreground border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
                   </div>
                 </div>
-                <span className="absolute bottom-2 left-2 text-xs text-white bg-black/50 px-2 py-1 rounded">Navigate among all columns</span>
               </div>
               <h4 className="font-semibold text-center text-foreground">Navigate among table columns</h4>
               <Button variant="outline" className="w-full mt-4" asChild>
