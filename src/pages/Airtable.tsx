@@ -8,6 +8,7 @@ import airtableLogo from "@/assets/airtable-logo.png";
 import airtableHero from "@/assets/airtable-hero.png";
 import airtableChromeStore from "@/assets/airtable-chrome-store.png";
 import airtableBookmarkDemo from "@/assets/airtable-bookmark-demo.png";
+import airtableColumnsNavigator from "@/assets/airtable-columns-navigator.png";
 import airtableWidgets from "@/assets/airtable-widgets.png";
 
 const Airtable = () => {
@@ -77,7 +78,7 @@ const Airtable = () => {
                 </div>
               </div>
               <div className="flex justify-center">
-                <img src={airtableHero} alt="Airtable Interface Demo" className="rounded-lg shadow-lg max-w-full h-auto" />
+                <img src={airtableColumnsNavigator} alt="Columns Navigator Demo" className="rounded-lg shadow-lg max-w-full h-auto" />
               </div>
             </div>
           </div>
