@@ -9,6 +9,7 @@ import airtableHero from "@/assets/airtable-hero.png";
 import airtableChromeStore from "@/assets/airtable-chrome-store.png";
 import airtableBookmarkDemo from "@/assets/airtable-bookmark-demo.png";
 import airtableColumnsNavigator from "@/assets/airtable-columns-navigator.png";
+import airtableColorizeTabs from "@/assets/airtable-colorize-tabs.png";
 import airtableWidgets from "@/assets/airtable-widgets.png";
 
 const Airtable = () => {
@@ -113,10 +114,8 @@ const Airtable = () => {
                   Distinguish your tables grouped by category, domains, with their own color
                 </p>
               </div>
-              <div className="bg-gradient-to-br from-pink-500 to-red-500 rounded-lg p-8 aspect-video flex items-center justify-center">
-                <div className="bg-white rounded-lg p-4 shadow-lg">
-                  <div className="text-center text-gray-800 font-semibold">Colorized Tabs Demo</div>
-                </div>
+              <div className="flex justify-center">
+                <img src={airtableColorizeTabs} alt="Colorize Table Tabs Demo" className="rounded-lg shadow-lg max-w-full h-auto" />
               </div>
             </div>
           </div>
