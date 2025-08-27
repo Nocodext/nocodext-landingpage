@@ -59,8 +59,11 @@ const Airtable = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                
-                <h1 className="text-4xl lg:text-6xl font-bold text-foreground">Airtable</h1>
+                <img 
+                  src={airtableLogo} 
+                  alt="Airtable" 
+                  className="h-16 lg:h-20 w-auto" 
+                />
               </div>
               <div className="space-y-4">
                 <h2 className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
