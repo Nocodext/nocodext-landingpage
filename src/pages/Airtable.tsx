@@ -190,7 +190,7 @@ const Airtable = () => {
                   </div>
                 </div>
               </div>
-              <h4 className="font-semibold text-center text-foreground">Navigate among table columns</h4>
+              <h4 className="font-semibold text-center text-foreground">Navigate throughout all table's columns</h4>
               <Button variant="outline" className="w-full mt-4" asChild>
                 <a href="https://www.youtube.com/watch?v=QaEoG71i3NI" target="_blank" rel="noopener noreferrer">
                   Watch Demo
