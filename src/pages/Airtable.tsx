@@ -163,7 +163,7 @@ const Airtable = () => {
             {/* Video Demo Cards */}
             <Card className="p-6 hover:shadow-lg transition-shadow">
               <div className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center">
-                <span className="text-muted-foreground">Video Preview</span>
+                      <span className="text-muted-foreground">Navigate among all columns</span>
               </div>
               <h4 className="font-semibold text-center text-foreground">Navigate among table columns</h4>
               <Button variant="outline" className="w-full mt-4" asChild>
