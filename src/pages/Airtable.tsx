@@ -62,7 +62,7 @@ const Airtable = () => {
                 <img 
                   src={airtableRealLogo} 
                   alt="Airtable" 
-                  className="h-24 lg:h-32 w-auto" 
+                  className="h-48 lg:h-64 w-auto" 
                 />
               </div>
               <div className="space-y-4">
