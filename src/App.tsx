@@ -9,6 +9,7 @@ import Footer from "@/components/bubble/Footer";
 import Bubble from "./pages/Bubble";
 import PinNpm from "./pages/PinNpm";
 import Watools from "./pages/Watools";
+import Airtable from "./pages/Airtable";
 import ResetPassword from "./pages/ResetPassword";
 import NewsletterConfirmation from "./pages/NewsletterConfirmation";
 import BubbleNewsletterConfirmation from "./pages/BubbleNewsletterConfirmation";
@@ -30,6 +31,7 @@ const App = () => (
               <Route path="/bubble" element={<Bubble />} />
               <Route path="/pinnpm" element={<PinNpm />} />
               <Route path="/watools" element={<Watools />} />
+              <Route path="/airtable" element={<Airtable />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/pinnpm/newsletter-confirmed" element={<NewsletterConfirmation />} />
               <Route path="/bubble/newsletter-confirmed" element={<BubbleNewsletterConfirmation />} />
