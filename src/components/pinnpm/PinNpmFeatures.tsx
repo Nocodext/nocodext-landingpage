@@ -42,7 +42,7 @@ const PinNpmFeatures = () => {
                 <feature.icon className="h-8 w-8 text-primary" />
               </div>
 
-              <h3 className="text-xl font-bold mb-2 font-mono">
+              <h3 className="text-xl font-bold mb-2 font-inter">
                 {feature.title}
               </h3>
 

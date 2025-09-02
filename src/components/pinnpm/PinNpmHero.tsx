@@ -21,7 +21,7 @@ const PinNpmHero = () => {
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Your personal{" "}
-            <span className="text-primary font-mono">pinboard</span>{" "}
+            <span className="text-primary font-inter font-semibold">pinboard</span>{" "}
             for npm packages
           </h1>
 
@@ -31,11 +31,11 @@ const PinNpmHero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <Button size="lg" className="font-mono font-semibold">
+            <Button size="lg" className="font-inter font-semibold">
               <Chrome className="mr-2 h-5 w-5" />
               Add to Chrome
             </Button>
-            <Button variant="outline" size="lg" className="font-mono" asChild>
+            <Button variant="outline" size="lg" className="font-inter" asChild>
               <a href="#waitlist">Join the waitlist</a>
             </Button>
           </div>

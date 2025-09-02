@@ -39,7 +39,7 @@ const PinNpmDifferentiator = () => {
                 <item.icon className="h-10 w-10 text-primary" />
               </div>
 
-              <h3 className="text-xl font-bold mb-4 font-mono">
+              <h3 className="text-xl font-bold mb-4 font-inter">
                 {item.title}
               </h3>
 

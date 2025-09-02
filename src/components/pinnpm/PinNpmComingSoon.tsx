@@ -43,11 +43,11 @@ const PinNpmComingSoon = () => {
                 <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
-                <Badge variant="outline" className="font-mono text-xs">
+                <Badge variant="outline" className="font-inter text-xs">
                   {feature.status}
                 </Badge>
               </div>
-              <CardTitle className="text-lg font-mono">
+              <CardTitle className="text-lg font-inter font-semibold">
                 {feature.title}
               </CardTitle>
             </CardHeader>
