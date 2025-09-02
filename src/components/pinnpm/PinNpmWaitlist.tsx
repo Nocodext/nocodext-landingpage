@@ -93,13 +93,12 @@ const PinNpmWaitlist = () => {
           🚀 Early Access
         </Badge>
 
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Join the waitlist
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 font-inter">
+          Don't just search npm. Pin it.
         </h2>
 
-        <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Be the first to know when pin'npm launches on Chrome Web Store.
-          No spam, just updates on development progress.
+        <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto font-inter">
+          Install Pin'npm today and start building with clarity & confidence.
         </p>
 
         <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mb-8">
@@ -123,13 +122,13 @@ const PinNpmWaitlist = () => {
             <Button
               type="submit"
               disabled={isLoading}
-              className="font-mono font-semibold"
+              className="font-inter font-semibold"
             >
               {isLoading ? (
-                "Joining..."
+                "Starting..."
               ) : (
                 <>
-                  Join <ArrowRight className="ml-2 h-4 w-4" />
+                  Start Pinning Today <ArrowRight className="ml-2 h-4 w-4" />
                 </>
               )}
             </Button>

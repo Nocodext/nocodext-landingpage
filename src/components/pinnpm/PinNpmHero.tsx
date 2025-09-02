@@ -19,24 +19,21 @@ const PinNpmHero = () => {
             />
           </div>
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Your personal{" "}
-            <span className="text-primary font-inter font-semibold">pinboard</span>{" "}
-            for npm packages
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight font-inter">
+            Find, trust, and organize the open-source packages your team depends on.
           </h1>
 
-          <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl">
-            Pin packages directly from npmjs.com. Organize, reuse, export.{" "}
-            <span className="font-semibold text-foreground">No more hunting.</span>
+          <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl font-inter">
+            From npm today — to VS Code and every major package manager tomorrow.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Button size="lg" className="font-inter font-semibold">
               <Chrome className="mr-2 h-5 w-5" />
-              Add to Chrome
+              Start Pinning
             </Button>
             <Button variant="outline" size="lg" className="font-inter" asChild>
-              <a href="#waitlist">Join the waitlist</a>
+              <a href="#waitlist">Add to Chrome Free</a>
             </Button>
           </div>
 

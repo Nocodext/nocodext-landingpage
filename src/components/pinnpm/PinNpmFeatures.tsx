@@ -5,32 +5,32 @@ const PinNpmFeatures = () => {
   const features = [
     {
       icon: Pin,
-      title: "Pin npm packages instantly",
-      description: "Without leaving the site",
-      detail: "One click to save any package directly from npmjs.com. No context switching, no external tools."
+      title: "Bookmark & Organize",
+      description: "Found a package worth keeping? Pin it in one click.",
+      detail: "Group your discoveries into projects, stacks, or themes."
     },
     {
       icon: FolderOpen,
-      title: "Organize them into collections",
-      description: "And tag them",
-      detail: "Create custom collections, add tags, and group packages by project, framework, or any system that works for you."
+      title: "Instant Insights",
+      description: "Downloads, maintenance, health — all at a glance.",
+      detail: "See if this package is popular, maintained, and safe."
     },
     {
       icon: Share2,
-      title: "Export to package.json",
-      description: "Or share with your team",
-      detail: "Generate package.json snippets, share collections via link, or sync with your development workflow."
+      title: "Trust Indicators & Team Alignment",
+      description: "Spot vulnerable or abandoned libraries before they bite.",
+      detail: "Share your collection. Get your team aligned. No more endless Slack threads."
     }
   ];
 
   return (
     <section className="container mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Three steps to better package management
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 font-inter">
+          Turn chaos into collections
         </h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Stop bookmarking, stop searching through history. Start pinning.
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-inter">
+          Pin'npm brings clarity and confidence to package discovery.
         </p>
       </div>
 
