@@ -43,7 +43,7 @@ const PinNpmDifferentiator = () => {
                 {item.title}
               </h3>
 
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed font-inter">
                 {item.description}
               </p>
             </CardContent>
