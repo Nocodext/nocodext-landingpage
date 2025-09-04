@@ -1,8 +1,25 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Code, Github, Terminal } from "lucide-react";
+import ImageModal from "@/components/bubble/ImageModal";
 
 const PinNpmComingSoon = () => {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
+
+  const galleryImages = [
+    "/lovable-uploads/a7ebd22c-3037-4c51-a19c-3555f5bb4b5a.png",
+    "/lovable-uploads/02a080dd-dc98-4e04-8e07-2c7382b6831a.png", 
+    "/lovable-uploads/41ace184-b0ec-4cf6-8774-8e6be0154dbc.png",
+    "/lovable-uploads/9b35a60b-b9c4-43fe-bb3b-ce91e3504860.png"
+  ];
+
+  const openGallery = (index: number) => {
+    setGalleryInitialIndex(index);
+    setIsGalleryOpen(true);
+  };
+
   const visionFeatures = [
     {
       icon: Code,
@@ -34,12 +51,26 @@ const PinNpmComingSoon = () => {
           Pin'npm is more than a Chrome extension — one unified memory for open-source choices.
         </p>
         
+        {/* Gallery Preview */}
         <div className="mb-12">
-          <img
-            src="/lovable-uploads/24045f88-2462-4ee3-8fe8-4435c30d7b5f.png"
-            alt="Pin'npm UI preview showing browser extension workflow and package management interface"
-            className="w-full mx-auto"
-          />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            {galleryImages.map((image, index) => (
+              <div 
+                key={index}
+                className="group cursor-pointer overflow-hidden rounded-lg border border-border shadow-sm hover:shadow-md transition-all duration-200"
+                onClick={() => openGallery(index)}
+              >
+                <img
+                  src={image}
+                  alt={`Pin'npm in action - screenshot ${index + 1}`}
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-200"
+                />
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-muted-foreground mt-4 text-center">
+            Click any image to view the full gallery
+          </p>
         </div>
       </div>
 
@@ -67,6 +98,14 @@ const PinNpmComingSoon = () => {
           </Card>
         ))}
       </div>
+
+      {/* Image Gallery Modal */}
+      <ImageModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        images={galleryImages}
+        initialIndex={galleryInitialIndex}
+      />
     </section>
   );
 };
