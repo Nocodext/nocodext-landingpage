@@ -36,9 +36,9 @@ const PinNpmComingSoon = () => {
         
         <div className="mb-12">
           <img
-            src="/lovable-uploads/5b7a11bb-b033-431f-8ff7-5bcc23bad655.png"
-            alt="Pin'npm UI preview showing browser extension, VS Code integration, and multi-platform support"
-            className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl border border-border"
+            src="/lovable-uploads/24045f88-2462-4ee3-8fe8-4435c30d7b5f.png"
+            alt="Pin'npm UI preview showing browser extension workflow and package management interface"
+            className="w-full mx-auto"
           />
         </div>
       </div>
