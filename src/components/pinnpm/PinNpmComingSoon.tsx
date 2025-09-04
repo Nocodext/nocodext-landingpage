@@ -53,11 +53,11 @@ const PinNpmComingSoon = () => {
         
         {/* Gallery Preview */}
         <div className="mb-12">
-          <div className="grid grid-cols-2 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 gap-8 max-w-4xl mx-auto">
             {galleryImages.map((image, index) => (
               <div 
                 key={index}
-                className="group cursor-pointer overflow-hidden rounded-lg border border-border shadow-sm hover:shadow-md transition-all duration-200"
+                className="group cursor-pointer overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
                 onClick={() => openGallery(index)}
               >
                 <img
