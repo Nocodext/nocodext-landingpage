@@ -9,10 +9,10 @@ const PinNpmComingSoon = () => {
   const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
 
   const galleryImages = [
-    "/lovable-uploads/a7ebd22c-3037-4c51-a19c-3555f5bb4b5a.png",
-    "/lovable-uploads/02a080dd-dc98-4e04-8e07-2c7382b6831a.png", 
+    "/lovable-uploads/9b35a60b-b9c4-43fe-bb3b-ce91e3504860.png",
     "/lovable-uploads/41ace184-b0ec-4cf6-8774-8e6be0154dbc.png",
-    "/lovable-uploads/9b35a60b-b9c4-43fe-bb3b-ce91e3504860.png"
+    "/lovable-uploads/02a080dd-dc98-4e04-8e07-2c7382b6831a.png", 
+    "/lovable-uploads/a7ebd22c-3037-4c51-a19c-3555f5bb4b5a.png"
   ];
 
   const openGallery = (index: number) => {
@@ -53,7 +53,7 @@ const PinNpmComingSoon = () => {
         
         {/* Gallery Preview */}
         <div className="mb-12">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 gap-4 max-w-4xl mx-auto">
             {galleryImages.map((image, index) => (
               <div 
                 key={index}
