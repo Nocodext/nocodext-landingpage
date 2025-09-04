@@ -63,7 +63,7 @@ const PinNpmComingSoon = () => {
                 <img
                   src={image}
                   alt={`Pin'npm in action - screenshot ${index + 1}`}
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-200"
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-200 border-2 border-gray-300 rounded-lg shadow-md"
                 />
               </div>
             ))}
