@@ -30,9 +30,17 @@ const PinNpmComingSoon = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-4 font-inter">
           One memory for every package manager
         </h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-inter">
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-inter mb-8">
           Pin'npm is more than a Chrome extension — one unified memory for open-source choices.
         </p>
+        
+        <div className="mb-12">
+          <img
+            src="/lovable-uploads/5b7a11bb-b033-431f-8ff7-5bcc23bad655.png"
+            alt="Pin'npm UI preview showing browser extension, VS Code integration, and multi-platform support"
+            className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl border border-border"
+          />
+        </div>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
