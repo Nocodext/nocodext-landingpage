@@ -62,7 +62,7 @@ const Airtable = () => {
                 <img 
                   src="/lovable-uploads/d488b4b1-ac0f-4fcc-978b-61940a1a96fa.png" 
                   alt="Airtable" 
-                  className="h-48 lg:h-64 w-auto" 
+                  className="h-48 lg:h-64 w-auto object-contain" 
                 />
               </div>
               <div className="space-y-4">
