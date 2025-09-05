@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
-import airtableRealLogo from "@/assets/airtable-real-logo.png";
+import airtableRealLogo from "@/assets/airtable-official-logo.png";
 import airtableHero from "@/assets/airtable-hero.png";
 import airtableChromeStore from "@/assets/airtable-chrome-store.png";
 import airtableBookmarkDemo from "@/assets/airtable-bookmark-demo.png";
@@ -62,8 +62,7 @@ const Airtable = () => {
                 <img 
                   src={airtableRealLogo} 
                   alt="Airtable" 
-                  className="h-48 lg:h-64 w-auto object-cover" 
-                  style={{ clipPath: 'inset(10% 15% 10% 15%)' }}
+                  className="h-48 lg:h-64 w-auto" 
                 />
               </div>
               <div className="space-y-4">
