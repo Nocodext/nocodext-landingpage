@@ -72,7 +72,7 @@ const Airtable = () => {
                 <p className="text-lg text-muted-foreground">(not yet...or will never)</p>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center items-end">
               <a href="https://chrome.google.com/webstore/detail/nocodext-for-airtable/kigfniiolojjmchffmindnihiiglbckc" target="_blank" rel="noopener noreferrer">
                 <img src={airtableChromeStore} alt="Available in Chrome Web Store" className="max-w-sm hover:scale-105 transition-transform" />
               </a>
