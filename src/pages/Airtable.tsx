@@ -58,11 +58,11 @@ const Airtable = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="flex items-end mb-0">
+              <div className="flex items-end mb-0 h-48 lg:h-64">
                 <img 
                   src="/lovable-uploads/d488b4b1-ac0f-4fcc-978b-61940a1a96fa.png" 
                   alt="Airtable" 
-                  className="h-48 lg:h-64 w-auto object-contain" 
+                  className="w-auto object-contain object-bottom" 
                 />
               </div>
               <div className="space-y-4 -mt-6">
