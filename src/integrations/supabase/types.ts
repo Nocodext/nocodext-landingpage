@@ -146,13 +146,6 @@ export type Database = {
             foreignKeyName: "pinnpm_fk_user_favorites_package_id"
             columns: ["package_id"]
             isOneToOne: false
-            referencedRelation: "pinnmp_view_user_favorites"
-            referencedColumns: ["package_id"]
-          },
-          {
-            foreignKeyName: "pinnpm_fk_user_favorites_package_id"
-            columns: ["package_id"]
-            isOneToOne: false
             referencedRelation: "pinnpm_packages"
             referencedColumns: ["id"]
           },
@@ -318,24 +311,6 @@ export type Database = {
       }
     }
     Views: {
-      pinnmp_view_user_favorites: {
-        Row: {
-          description: string | null
-          downloads: string | null
-          keywords: string[] | null
-          maintenance_last_checked: string | null
-          maintenance_score: number | null
-          package_id: string | null
-          package_name: string | null
-          package_tag: string | null
-          pin_count: number | null
-          pinned_at: string | null
-          security_last_checked: string | null
-          security_score: number | null
-          user_id: string | null
-        }
-        Relationships: []
-      }
       pinnpm_view_package_stats: {
         Row: {
           avg_pins_per_package: number | null
