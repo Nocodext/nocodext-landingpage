@@ -58,14 +58,14 @@ const Airtable = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <div className="flex items-end">
+              <div className="flex items-end mb-0">
                 <img 
                   src="/lovable-uploads/d488b4b1-ac0f-4fcc-978b-61940a1a96fa.png" 
                   alt="Airtable" 
                   className="h-48 lg:h-64 w-auto object-contain" 
                 />
               </div>
-              <div className="space-y-4">
+              <div className="space-y-4 -mt-6">
                 <h2 className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
                   The extension augments Airtable editor interface by providing widgets that should exist natively but don't
                 </h2>
