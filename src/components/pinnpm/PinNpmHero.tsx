@@ -25,7 +25,7 @@ const PinNpmHero = () => {
               Start Pinning
             </Button>
             <Button variant="outline" size="lg" className="font-inter" asChild>
-              <a href="#waitlist">Add to Chrome Free</a>
+              
             </Button>
           </div>
 
