@@ -56,8 +56,9 @@ const Airtable = () => {
       {/* Hero Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-background to-muted">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+          <div className="space-y-8">
+            {/* Row 1: Logo full width */}
+            <div className="w-full flex justify-center lg:justify-start">
               <div className="flex items-end mb-0 h-48 lg:h-64">
                 <img 
                   src="/lovable-uploads/d488b4b1-ac0f-4fcc-978b-61940a1a96fa.png" 
@@ -65,17 +66,21 @@ const Airtable = () => {
                   className="w-auto object-contain object-bottom" 
                 />
               </div>
-              <div className="space-y-4 -mt-6">
+            </div>
+            
+            {/* Row 2: Headline and Chrome Store image */}
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-baseline gap-6">
+              <div className="space-y-4 flex-1">
                 <h2 className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
                   The extension augments Airtable editor interface by providing widgets that should exist natively but don't
                 </h2>
                 <p className="text-lg text-muted-foreground">(not yet...or will never)</p>
               </div>
-            </div>
-            <div className="flex justify-center items-baseline">
-              <a href="https://chrome.google.com/webstore/detail/nocodext-for-airtable/kigfniiolojjmchffmindnihiiglbckc" target="_blank" rel="noopener noreferrer">
-                <img src={airtableChromeStore} alt="Available in Chrome Web Store" className="max-w-sm hover:scale-105 transition-transform" />
-              </a>
+              <div className="flex justify-center lg:justify-end">
+                <a href="https://chrome.google.com/webstore/detail/nocodext-for-airtable/kigfniiolojjmchffmindnihiiglbckc" target="_blank" rel="noopener noreferrer">
+                  <img src={airtableChromeStore} alt="Available in Chrome Web Store" className="max-w-sm hover:scale-105 transition-transform" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
