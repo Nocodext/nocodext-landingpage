@@ -41,77 +41,104 @@ export type Database = {
       pinnpm_packages: {
         Row: {
           created_at: string | null
+          days_since_update: number | null
           description: string | null
           downloads: string | null
+          has_typescript: boolean | null
           id: string
+          is_deprecated: boolean | null
           keywords: string[] | null
           last_npm_fetch: string | null
           maintenance_last_checked: string | null
           maintenance_score: number | null
           name: string
+          npms_final_score: number | null
           pin_count: number | null
+          popularity_score: number | null
+          quality_score: number | null
           security_details: Json | null
           security_last_checked: string | null
           security_score: number | null
           tag: string
+          trust_level: string | null
+          trust_score: number | null
           updated_at: string | null
+          weekly_downloads: number | null
         }
         Insert: {
           created_at?: string | null
+          days_since_update?: number | null
           description?: string | null
           downloads?: string | null
+          has_typescript?: boolean | null
           id?: string
+          is_deprecated?: boolean | null
           keywords?: string[] | null
           last_npm_fetch?: string | null
           maintenance_last_checked?: string | null
           maintenance_score?: number | null
           name: string
+          npms_final_score?: number | null
           pin_count?: number | null
+          popularity_score?: number | null
+          quality_score?: number | null
           security_details?: Json | null
           security_last_checked?: string | null
           security_score?: number | null
           tag?: string
+          trust_level?: string | null
+          trust_score?: number | null
           updated_at?: string | null
+          weekly_downloads?: number | null
         }
         Update: {
           created_at?: string | null
+          days_since_update?: number | null
           description?: string | null
           downloads?: string | null
+          has_typescript?: boolean | null
           id?: string
+          is_deprecated?: boolean | null
           keywords?: string[] | null
           last_npm_fetch?: string | null
           maintenance_last_checked?: string | null
           maintenance_score?: number | null
           name?: string
+          npms_final_score?: number | null
           pin_count?: number | null
+          popularity_score?: number | null
+          quality_score?: number | null
           security_details?: Json | null
           security_last_checked?: string | null
           security_score?: number | null
           tag?: string
+          trust_level?: string | null
+          trust_score?: number | null
           updated_at?: string | null
+          weekly_downloads?: number | null
         }
         Relationships: []
       }
       pinnpm_user_favorites: {
         Row: {
           comments: string | null
+          created_at: string | null
           id: string
           package_id: string
-          pinned_at: string | null
           user_id: string | null
         }
         Insert: {
           comments?: string | null
+          created_at?: string | null
           id?: string
           package_id: string
-          pinned_at?: string | null
           user_id?: string | null
         }
         Update: {
           comments?: string | null
+          created_at?: string | null
           id?: string
           package_id?: string
-          pinned_at?: string | null
           user_id?: string | null
         }
         Relationships: [
