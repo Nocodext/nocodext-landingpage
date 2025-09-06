@@ -59,7 +59,7 @@ const Airtable = () => {
           <div className="space-y-8">
             {/* Row 1: Logo full width */}
             <div className="w-full flex justify-center lg:justify-start">
-              <div className="flex items-end mb-0 h-48 lg:h-64">
+              <div className="flex items-end mb-0 h-48 lg:h-64 max-w-[45%]">
                 <img 
                   src="/lovable-uploads/d488b4b1-ac0f-4fcc-978b-61940a1a96fa.png" 
                   alt="Airtable" 
@@ -69,7 +69,7 @@ const Airtable = () => {
             </div>
             
             {/* Row 2: Headline and Chrome Store image */}
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-baseline gap-6">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-6">
               <div className="space-y-4 flex-1">
                 <h2 className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
                   The extension augments Airtable editor interface by providing widgets that should exist natively but don't
