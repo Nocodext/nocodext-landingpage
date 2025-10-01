@@ -1,15 +1,42 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Youtube } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 import VideoModal from "@/components/bubble/VideoModal";
 const LinkedIn = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    setIsSubmitting(true);
+
+    const result = await subscribeToNewsletter({
+      name,
+      email,
+      product: "linkedin"
+    });
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      navigate("/newsletter-confirmation");
+    } else {
+      toast({
+        title: "Subscription failed",
+        description: result.error || "Please try again later.",
+        variant: "destructive",
+      });
+    }
   };
   return <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -109,14 +136,25 @@ const LinkedIn = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-                  <Input id="name" required />
+                  <Input 
+                    id="name" 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required 
+                  />
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">
                     Email
                   </label>
-                  <Input id="email" type="email" required />
+                  <Input 
+                    id="email" 
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required 
+                  />
                 </div>
               </div>
               
@@ -125,8 +163,12 @@ const LinkedIn = () => {
                 
               </div>
               
-              <Button type="submit" className="w-full bg-[#CB3837] hover:bg-[#CB3837]/90 text-white">
-                Submit
+              <Button 
+                type="submit" 
+                className="w-full bg-[#CB3837] hover:bg-[#CB3837]/90 text-white"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Submitting..." : "Submit"}
               </Button>
             </form>
           </Card>
