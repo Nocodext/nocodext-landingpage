@@ -32,6 +32,7 @@ const Header = () => {
     if (pathname === '/pinnpm' || pathname.startsWith('/pinnpm/')) return 'pinnpm';
     if (pathname === '/watools' || pathname.startsWith('/watools/')) return 'watools';
     if (pathname === '/airtable' || pathname.startsWith('/airtable/')) return 'airtable';
+    if (pathname === '/linkedin' || pathname.startsWith('/linkedin/')) return 'linkedin';
     return 'bubble'; // default
   };
   
@@ -66,6 +67,9 @@ const Header = () => {
         break;
       case 'airtable':
         navigate('/airtable');
+        break;
+      case 'linkedin':
+        navigate('/linkedin');
         break;
       // Add other cases when those pages are implemented
       default:
