@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { ExternalLink, Youtube } from "lucide-react";
+import { Youtube } from "lucide-react";
+import VideoModal from "@/components/bubble/VideoModal";
+
 const LinkedIn = () => {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
@@ -83,16 +88,26 @@ const LinkedIn = () => {
       <section className="py-20 px-4 bg-secondary/10">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-[#CB3837]">Demo</h2>
-          <a href="https://www.youtube.com/watch?v=HI3Qhh6Mq9g" target="_blank" rel="noopener noreferrer" className="block relative group">
+          <button 
+            onClick={() => setIsVideoModalOpen(true)}
+            className="block relative group w-full cursor-pointer"
+          >
             <img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_9000,w_1200,f_auto,q_auto/1949086/691979_446787.png" alt="Demo video" className="w-full rounded-lg shadow-xl group-hover:shadow-2xl transition-shadow" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="bg-white/90 rounded-full p-6 group-hover:scale-110 transition-transform">
                 <Youtube className="w-12 h-12 text-[#CB3837]" />
               </div>
             </div>
-          </a>
+          </button>
         </div>
       </section>
+
+      <VideoModal 
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        title="LinkedIn Demo"
+        videoId="HI3Qhh6Mq9g"
+      />
 
       {/* Interest Form Section */}
       <section className="py-20 px-4 bg-background">
