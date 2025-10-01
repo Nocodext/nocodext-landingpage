@@ -107,18 +107,17 @@ const LinkedIn = () => {
           <Card className="p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+                  <Input id="name" required />
+                </div>
                 
                 <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium mb-2">Your name</label>
-                  <Input id="lastName" required />
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    Email
+                  </label>
+                  <Input id="email" type="email" required />
                 </div>
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
-                </label>
-                <Input id="email" type="email" required />
               </div>
               
               <div>
