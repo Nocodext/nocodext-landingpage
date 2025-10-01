@@ -5,10 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Youtube } from "lucide-react";
 import VideoModal from "@/components/bubble/VideoModal";
-
 const LinkedIn = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
@@ -88,10 +86,7 @@ const LinkedIn = () => {
       <section className="py-20 px-4 bg-secondary/10">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-[#CB3837]">Demo</h2>
-          <button 
-            onClick={() => setIsVideoModalOpen(true)}
-            className="block relative group w-full cursor-pointer"
-          >
+          <button onClick={() => setIsVideoModalOpen(true)} className="block relative group w-full cursor-pointer">
             <img src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_9000,w_1200,f_auto,q_auto/1949086/691979_446787.png" alt="Demo video" className="w-full rounded-lg shadow-xl group-hover:shadow-2xl transition-shadow" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="bg-white/90 rounded-full p-6 group-hover:scale-110 transition-transform">
@@ -102,12 +97,7 @@ const LinkedIn = () => {
         </div>
       </section>
 
-      <VideoModal 
-        isOpen={isVideoModalOpen}
-        onClose={() => setIsVideoModalOpen(false)}
-        title="LinkedIn Demo"
-        videoId="HI3Qhh6Mq9g"
-      />
+      <VideoModal isOpen={isVideoModalOpen} onClose={() => setIsVideoModalOpen(false)} title="LinkedIn Demo" videoId="HI3Qhh6Mq9g" />
 
       {/* Interest Form Section */}
       <section className="py-20 px-4 bg-background">
@@ -117,16 +107,9 @@ const LinkedIn = () => {
           <Card className="p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
+                
                 <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                    First Name
-                  </label>
-                  <Input id="firstName" required />
-                </div>
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                    Last Name
-                  </label>
+                  <label htmlFor="lastName" className="block text-sm font-medium mb-2">Your name</label>
                   <Input id="lastName" required />
                 </div>
               </div>
@@ -139,10 +122,8 @@ const LinkedIn = () => {
               </div>
               
               <div>
-                <label htmlFor="comment" className="block text-sm font-medium mb-2">
-                  Comment
-                </label>
-                <Textarea id="comment" rows={4} />
+                
+                
               </div>
               
               <Button type="submit" className="w-full bg-[#CB3837] hover:bg-[#CB3837]/90 text-white">
