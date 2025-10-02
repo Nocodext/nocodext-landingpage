@@ -134,41 +134,45 @@ const Header = () => {
             </Select>
           </div>
           
-          {/* Desktop: Tabs */}
-          <div className="hidden md:flex md:items-center w-auto overflow-x-auto scrollbar-hide">
-            <Tabs defaultValue="bubble" value={activeTab} onValueChange={handleTabChange} className="h-10">
-              <TabsList className="mr-4 whitespace-nowrap h-10 flex items-center gap-2 bg-white rounded-md">
-                {tabOptions.map((tab) => (
-                  <TabsTrigger 
-                    key={tab.value}
-                    value={tab.value} 
-                    style={{
-                      border: `2px solid ${tab.color}`,
-                      boxShadow: activeTab === tab.value ? `0 2px 8px ${tab.color}40` : 'none',
-                      backgroundColor: activeTab === tab.value ? `${tab.color}10` : 'white',
-                      opacity: activeTab === tab.value ? 1 : 0.6,
-                    }}
-                    className="flex items-center gap-2 font-open-sans py-2 hover:bg-white hover:opacity-80 rounded-md transition-all data-[state=active]:bg-white"
-                  >
-                    <span style={{ color: activeTab === tab.value ? tab.color : `${tab.color}90` }}>{tab.icon}</span>
-                    <span 
-                      style={{color: activeTab === tab.value ? "black" : "#666"}} 
-                      className="transition-colors"
-                    >
-                      {tab.label}
-                    </span>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
-            
-            <a 
-              href="#about" 
-              className="flex-shrink-0 flex items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-auto ml-2 md:ml-4"
-            >
-              <span className="hidden md:inline">About us</span>
-            </a>
-          </div>
+          {/* Desktop: Navigation */}
+          <nav className="hidden md:flex md:items-center w-auto overflow-x-auto scrollbar-hide gap-1 mr-4">
+            {tabOptions.map((tab) => (
+              <button
+                key={tab.value}
+                onClick={() => handleTabChange(tab.value)}
+                className="group relative flex items-center gap-2 px-4 py-2 font-open-sans text-sm transition-all"
+              >
+                <span 
+                  style={{ color: tab.color }}
+                  className={`transition-opacity ${activeTab === tab.value ? 'opacity-100' : 'opacity-50 group-hover:opacity-75'}`}
+                >
+                  {tab.icon}
+                </span>
+                <span 
+                  className={`transition-colors ${
+                    activeTab === tab.value 
+                      ? 'text-foreground font-medium' 
+                      : 'text-muted-foreground group-hover:text-foreground'
+                  }`}
+                >
+                  {tab.label}
+                </span>
+                <span 
+                  style={{ backgroundColor: tab.color }}
+                  className={`absolute bottom-0 left-0 h-0.5 transition-all ${
+                    activeTab === tab.value ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                />
+              </button>
+            ))}
+          </nav>
+          
+          <a 
+            href="#about" 
+            className="hidden md:flex flex-shrink-0 items-center justify-center px-4 py-2 rounded-md bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium text-sm transition-colors hover:opacity-90 h-9 self-auto ml-2"
+          >
+            <span>About us</span>
+          </a>
           
           {/* Mobile only: About button outside dropdown */}
           <div className="md:hidden">
