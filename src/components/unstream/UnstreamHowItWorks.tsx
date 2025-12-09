@@ -1,23 +1,35 @@
-import { Globe, Usb, Music } from "lucide-react";
+import { Usb, MonitorSmartphone, LogIn, ListMusic, Download } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    icon: Globe,
-    title: "Visit the streaming site",
-    description: "The extension activates automatically. No action required."
+    icon: Usb,
+    title: "Plug in your USB key",
+    description: "Connect your Unstream USB to your computer."
   },
   {
     number: "02",
-    icon: Usb,
-    title: "Plug in your Unstream USB",
-    description: "Direct communication via WebUSB. Instant recognition."
+    icon: MonitorSmartphone,
+    title: "Launch the app",
+    description: "Run the desktop app or the Chrome extension."
   },
   {
     number: "03",
-    icon: Music,
-    title: "Convert & keep your music",
-    description: "Stored locally. Never sent anywhere else. Ever."
+    icon: LogIn,
+    title: "Connect your streaming service",
+    description: "Link Spotify, Deezer, or others via secure OAuth2."
+  },
+  {
+    number: "04",
+    icon: ListMusic,
+    title: "Select your playlists",
+    description: "Browse and pick the playlists you want to keep."
+  },
+  {
+    number: "05",
+    icon: Download,
+    title: "Download to your USB",
+    description: "Your music is saved locally. Forever yours."
   }
 ];
 
