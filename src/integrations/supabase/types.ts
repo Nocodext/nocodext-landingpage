@@ -45,6 +45,8 @@ export type Database = {
           description: string | null
           downloads: string | null
           has_typescript: boolean | null
+          icon_color: string | null
+          icon_url: string | null
           id: string
           is_deprecated: boolean | null
           keywords: string[] | null
@@ -71,6 +73,8 @@ export type Database = {
           description?: string | null
           downloads?: string | null
           has_typescript?: boolean | null
+          icon_color?: string | null
+          icon_url?: string | null
           id?: string
           is_deprecated?: boolean | null
           keywords?: string[] | null
@@ -97,6 +101,8 @@ export type Database = {
           description?: string | null
           downloads?: string | null
           has_typescript?: boolean | null
+          icon_color?: string | null
+          icon_url?: string | null
           id?: string
           is_deprecated?: boolean | null
           keywords?: string[] | null
@@ -311,6 +317,73 @@ export type Database = {
       }
     }
     Views: {
+      phc_products: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string | null
+          nom: string | null
+          tags: string[] | null
+          updated_at: string | null
+          user_id: string | null
+          vote_count: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string | null
+          nom?: string | null
+          tags?: string[] | null
+          updated_at?: string | null
+          user_id?: string | null
+          vote_count?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string | null
+          nom?: string | null
+          tags?: string[] | null
+          updated_at?: string | null
+          user_id?: string | null
+          vote_count?: number | null
+        }
+        Relationships: []
+      }
+      phc_products_with_details: {
+        Row: {
+          created_at: string | null
+          creator_avatar: string | null
+          creator_email: string | null
+          creator_username: string | null
+          description: string | null
+          id: string | null
+          nom: string | null
+          tags: string[] | null
+          updated_at: string | null
+          user_id: string | null
+          vote_count: number | null
+        }
+        Relationships: []
+      }
+      phc_votes: {
+        Row: {
+          created_at: string | null
+          product_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          product_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          product_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       pinnpm_view_package_stats: {
         Row: {
           avg_pins_per_package: number | null
@@ -359,8 +432,11 @@ export type Database = {
       }
       pinnpm_view_user_favorites: {
         Row: {
+          created_at: string | null
           description: string | null
           downloads: string | null
+          icon_color: string | null
+          icon_url: string | null
           keywords: string[] | null
           maintenance_last_checked: string | null
           maintenance_score: number | null
@@ -368,7 +444,6 @@ export type Database = {
           package_name: string | null
           package_tag: string | null
           pin_count: number | null
-          pinned_at: string | null
           security_last_checked: string | null
           security_score: number | null
           user_id: string | null
