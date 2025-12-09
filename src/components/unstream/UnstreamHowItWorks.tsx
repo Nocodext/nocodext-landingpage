@@ -1,35 +1,23 @@
-import { Usb, MonitorSmartphone, LogIn, ListMusic, Download } from "lucide-react";
+import { Link, ListMusic, Usb } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    icon: Usb,
-    title: "Plug in your USB key",
-    description: "Connect your Unstream USB to your computer."
+    icon: Link,
+    title: "Connect to Spotify, Deezer",
+    description: "Link your streaming accounts securely via OAuth2."
   },
   {
     number: "02",
-    icon: MonitorSmartphone,
-    title: "Launch the app",
-    description: "Run the desktop app or the Chrome extension."
+    icon: ListMusic,
+    title: "Select your playlists",
+    description: "Browse and pick the music you want to keep."
   },
   {
     number: "03",
-    icon: LogIn,
-    title: "Connect your streaming service",
-    description: "Link Spotify, Deezer, or others via secure OAuth2."
-  },
-  {
-    number: "04",
-    icon: ListMusic,
-    title: "Select your playlists",
-    description: "Browse and pick the playlists you want to keep."
-  },
-  {
-    number: "05",
-    icon: Download,
-    title: "Download to your USB",
-    description: "Your music is saved locally. Forever yours."
+    icon: Usb,
+    title: "Add to your private USB jukebox",
+    description: "Your music, stored locally. Forever yours."
   }
 ];
 
