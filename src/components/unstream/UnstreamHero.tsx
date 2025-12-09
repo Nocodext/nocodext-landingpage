@@ -1,5 +1,6 @@
-import { Chrome, Download, Usb } from "lucide-react";
+import { Chrome, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import unstreamLogo from "@/assets/unstream-logo.png";
 
 const UnstreamHero = () => {
   return (
@@ -19,20 +20,17 @@ const UnstreamHero = () => {
       />
 
       <div className="relative z-10 container mx-auto px-4 text-center">
-        {/* Logo/Icon */}
+        {/* Logo */}
         <div className="mb-8 flex justify-center">
           <div className="relative">
-            <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#00FF77]/20 to-transparent border border-[#00FF77]/30 flex items-center justify-center backdrop-blur-sm">
-              <Usb size={48} className="text-[#00FF77]" />
-            </div>
-            <div className="absolute -inset-1 bg-[#00FF77]/20 rounded-2xl blur-xl -z-10" />
+            <img 
+              src={unstreamLogo} 
+              alt="unstream.fm logo" 
+              className="w-48 h-48 md:w-64 md:h-64 object-contain"
+            />
+            <div className="absolute -inset-4 bg-[#00FF77]/10 rounded-full blur-3xl -z-10" />
           </div>
         </div>
-
-        {/* Brand */}
-        <h2 className="text-[#00FF77] font-mono text-lg tracking-[0.3em] mb-4 uppercase">
-          unstream.fm
-        </h2>
 
         {/* Main headline */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">

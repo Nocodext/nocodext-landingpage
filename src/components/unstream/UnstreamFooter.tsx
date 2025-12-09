@@ -1,4 +1,5 @@
-import { Github, Mail, Usb } from "lucide-react";
+import { Github, Mail } from "lucide-react";
+import unstreamLogo from "@/assets/unstream-logo.png";
 
 const UnstreamFooter = () => {
   return (
@@ -7,10 +8,11 @@ const UnstreamFooter = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#00FF77]/10 flex items-center justify-center">
-              <Usb className="text-[#00FF77]" size={20} />
-            </div>
-            <span className="text-white font-semibold">unstream.fm</span>
+            <img 
+              src={unstreamLogo} 
+              alt="unstream.fm" 
+              className="w-12 h-12 object-contain"
+            />
           </div>
 
           {/* Links */}
