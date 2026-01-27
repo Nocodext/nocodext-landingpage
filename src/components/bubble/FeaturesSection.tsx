@@ -3,6 +3,13 @@ import FeatureCard from "@/components/bubble/FeatureCard";
 
 const features = [
   {
+    title: "Command Palette : your bookmarks",
+    description: "Access all your bookmarked elements, pages, workflows and more with a single shortcut",
+    image: "/lovable-uploads/command-palette-bookmarks.png",
+    videoId: "",
+    textColor: "#0ea5e9",
+  },
+  {
     title: "Reveal everything in a page",
     description: "Stop clicking on each of many elements to unhide",
     image: "/lovable-uploads/3176929d-4d74-4496-9a42-a0450dec069c.png",
