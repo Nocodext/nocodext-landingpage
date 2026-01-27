@@ -9,10 +9,19 @@ const PinNpmComingSoon = () => {
   const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);
 
   const galleryImages = [
+    "/lovable-uploads/command-palette-bookmarks.png",
     "/lovable-uploads/9b35a60b-b9c4-43fe-bb3b-ce91e3504860.png",
     "/lovable-uploads/41ace184-b0ec-4cf6-8774-8e6be0154dbc.png",
     "/lovable-uploads/02a080dd-dc98-4e04-8e07-2c7382b6831a.png", 
     "/lovable-uploads/a7ebd22c-3037-4c51-a19c-3555f5bb4b5a.png"
+  ];
+
+  const galleryTitles = [
+    "Command Palette : your bookmarks",
+    "Pin'npm in action",
+    "Pin'npm in action",
+    "Pin'npm in action",
+    "Pin'npm in action"
   ];
 
   const openGallery = (index: number) => {
@@ -60,11 +69,16 @@ const PinNpmComingSoon = () => {
                 className="group cursor-pointer overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
                 onClick={() => openGallery(index)}
               >
-                <img
-                  src={image}
-                  alt={`Pin'npm in action - screenshot ${index + 1}`}
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-200 border-2 border-gray-300 rounded-lg shadow-md"
-                />
+                <div className="relative">
+                  <img
+                    src={image}
+                    alt={galleryTitles[index]}
+                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-200 border-2 border-gray-300 rounded-lg shadow-md"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-sm p-2 rounded-b-lg">
+                    {galleryTitles[index]}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
