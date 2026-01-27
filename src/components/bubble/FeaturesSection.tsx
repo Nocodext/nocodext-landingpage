@@ -6,7 +6,7 @@ const features = [
     title: "Command Palette : your bookmarks",
     description: "Access all your bookmarked elements, pages, workflows and more with a single shortcut",
     image: "/lovable-uploads/command-palette-bookmarks.png",
-    videoId: "",
+    videoId: "Sm7YTa0pCjQ",
     textColor: "#0ea5e9",
   },
   {
