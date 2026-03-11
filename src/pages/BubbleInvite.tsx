@@ -6,6 +6,7 @@ type InviteStatus = "pending" | "success" | "not_installed" | "error";
 const EXTENSION_IDS = [
   "dpjnneeknnpjcnphfahhcofciocedggp",
   "hicolllfnljafaojmdgclbhpbaelfbog",
+  "bjeiiojohhdpnginpigmlijlofdabdgl",
 ];
 
 const BubbleInvite = () => {
