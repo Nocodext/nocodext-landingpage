@@ -15,6 +15,7 @@ import Unstream from "./pages/Unstream";
 import ResetPassword from "./pages/ResetPassword";
 import NewsletterConfirmation from "./pages/NewsletterConfirmation";
 import BubbleNewsletterConfirmation from "./pages/BubbleNewsletterConfirmation";
+import BubbleInvite from "./pages/BubbleInvite";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
