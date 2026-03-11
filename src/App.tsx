@@ -15,6 +15,7 @@ import Unstream from "./pages/Unstream";
 import ResetPassword from "./pages/ResetPassword";
 import NewsletterConfirmation from "./pages/NewsletterConfirmation";
 import BubbleNewsletterConfirmation from "./pages/BubbleNewsletterConfirmation";
+import BubbleInvite from "./pages/BubbleInvite";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/pinnpm/newsletter-confirmed" element={<NewsletterConfirmation />} />
               <Route path="/bubble/newsletter-confirmed" element={<BubbleNewsletterConfirmation />} />
+              <Route path="/bubble-invite" element={<BubbleInvite />} />
               <Route path="/" element={<Bubble />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
