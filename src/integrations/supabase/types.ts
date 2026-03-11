@@ -14,6 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
+      beta_invitations: {
+        Row: {
+          created_at: string
+          email: string
+          expires_at: string
+          id: string
+          source: Database["public"]["Enums"]["user_source"]
+          token: string
+          used_at: string | null
+          used_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          expires_at: string
+          id?: string
+          source?: Database["public"]["Enums"]["user_source"]
+          token: string
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          expires_at?: string
+          id?: string
+          source?: Database["public"]["Enums"]["user_source"]
+          token?: string
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Relationships: []
+      }
+      ncxt_products: {
+        Row: {
+          brand_name: string | null
+          created_at: string
+          domain: string | null
+          id: string
+          landing_pag_url: string | null
+          name: string | null
+        }
+        Insert: {
+          brand_name?: string | null
+          created_at?: string
+          domain?: string | null
+          id?: string
+          landing_pag_url?: string | null
+          name?: string | null
+        }
+        Update: {
+          brand_name?: string | null
+          created_at?: string
+          domain?: string | null
+          id?: string
+          landing_pag_url?: string | null
+          name?: string | null
+        }
+        Relationships: []
+      }
       nocode_saas_asset: {
         Row: {
           color_rgb: string | null
@@ -315,6 +375,68 @@ export type Database = {
         }
         Relationships: []
       }
+      user_profiles: {
+        Row: {
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string | null
+          newsletter_opted_in: boolean
+          role: Database["public"]["Enums"]["user_role"]
+          source: Database["public"]["Enums"]["user_source"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          first_name: string
+          id: string
+          last_name?: string | null
+          newsletter_opted_in?: boolean
+          role?: Database["public"]["Enums"]["user_role"]
+          source?: Database["public"]["Enums"]["user_source"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string | null
+          newsletter_opted_in?: boolean
+          role?: Database["public"]["Enums"]["user_role"]
+          source?: Database["public"]["Enums"]["user_source"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      users_products: {
+        Row: {
+          created_at: string
+          product_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          product_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          product_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "users_products_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "ncxt_products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       phc_products: {
@@ -543,6 +665,8 @@ export type Database = {
         | "canceled"
         | "unpaid"
         | "paused"
+      user_role: "free_user" | "betatester" | "premium" | "admin"
+      user_source: "organic" | "invitation" | "appsumo" | "producthunt"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -682,6 +806,8 @@ export const Constants = {
         "unpaid",
         "paused",
       ],
+      user_role: ["free_user", "betatester", "premium", "admin"],
+      user_source: ["organic", "invitation", "appsumo", "producthunt"],
     },
   },
 } as const
