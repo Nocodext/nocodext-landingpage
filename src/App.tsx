@@ -40,6 +40,7 @@ const App = () => (
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/pinnpm/newsletter-confirmed" element={<NewsletterConfirmation />} />
               <Route path="/bubble/newsletter-confirmed" element={<BubbleNewsletterConfirmation />} />
+              <Route path="/bubble-invite" element={<BubbleInvite />} />
               <Route path="/" element={<Bubble />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
