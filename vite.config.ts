@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => ({
           "/bubble/newsletter-confirmed",
         ],
         renderer: new prerender.PuppeteerRenderer({
-          renderAfterTime: 8000,
+          renderAfterTime: 15000,
         }),
       }),
   ],
