@@ -87,7 +87,11 @@ const Bubble = () => {
   
   return (
     <div className="flex flex-col font-inter">
-      
+      <PageSEO
+        title="Nocodext for Bubble - Chrome Extension to optimize your productivity"
+        description="Supercharge your Bubble.io editor with Nocodext. Reveal hidden elements, navigate APIs, and streamline your no-code workflow."
+        pathname="/"
+      />
       <HeroSection />
       
       <OverviewSection onImageClick={openTabGallery} />

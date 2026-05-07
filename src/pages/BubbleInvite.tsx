@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { PageSEO } from "@/components/SEO";
 
 type InviteStatus = "pending" | "success" | "not_installed" | "error";
 

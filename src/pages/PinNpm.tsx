@@ -1,3 +1,4 @@
+import { PageSEO } from "@/components/SEO";
 import PinNpmHero from "@/components/pinnpm/PinNpmHero";
 import PinNpmProblem from "@/components/pinnpm/PinNpmProblem";
 import PinNpmFeatures from "@/components/pinnpm/PinNpmFeatures";
@@ -9,6 +10,11 @@ import PinNpmWaitlist from "@/components/pinnpm/PinNpmWaitlist";
 const PinNpm = () => {
   return (
     <div className="bg-background">
+      <PageSEO
+        title="PinNpm - Find, Trust & Organize Open-Source Packages"
+        description="PinNpm helps developers discover, evaluate, and organize NPM packages with confidence. Action-oriented tools for open-source discovery."
+        pathname="/pinnpm"
+      />
       <PinNpmHero />
       <PinNpmProblem />
       <PinNpmFeatures />
