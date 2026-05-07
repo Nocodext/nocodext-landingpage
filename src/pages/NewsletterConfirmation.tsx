@@ -1,3 +1,4 @@
+import { PageSEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Pin, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -5,6 +6,11 @@ import { Link } from "react-router-dom";
 const NewsletterConfirmation = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
+      <PageSEO
+        title="Newsletter Confirmed - PinNpm"
+        description="Your PinNpm newsletter subscription has been confirmed. Stay tuned for updates."
+        pathname="/pinnpm/newsletter-confirmed"
+      />
       <div className="max-w-md w-full text-center">
         {/* Logo */}
         <div className="flex justify-center mb-8">

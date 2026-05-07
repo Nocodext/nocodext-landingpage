@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { PageSEO } from "@/components/SEO";
 
 type InviteStatus = "pending" | "success" | "not_installed" | "error";
 
@@ -67,6 +68,12 @@ const BubbleInvite = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
+      <PageSEO
+        title="Bubble Invite - Nocodext"
+        description="Activate your Nocodext for Bubble invitation."
+        pathname="/bubble-invite"
+        noindex
+      />
       <div className="text-center p-8 max-w-md">
         {status === "pending" && (
           <p className="text-lg text-foreground animate-pulse">

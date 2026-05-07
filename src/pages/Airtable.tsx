@@ -1,3 +1,4 @@
+import { PageSEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -53,6 +54,11 @@ const Airtable = () => {
     console.log("Form submitted:", formData);
   };
   return <div className="min-h-screen bg-background">
+      <PageSEO
+        title="Nocodext for Airtable - Browser Extensions"
+        description="Enhance your Airtable experience with powerful browser extensions. Bookmark, colorize, and navigate your bases effortlessly."
+        pathname="/airtable"
+      />
       {/* Hero Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-background to-muted">
         <div className="max-w-6xl mx-auto">

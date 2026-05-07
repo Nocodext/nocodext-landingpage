@@ -1,4 +1,5 @@
 
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,33 +23,35 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="/bubble" element={<Bubble />} />
-              <Route path="/pinnpm" element={<PinNpm />} />
-              <Route path="/watools" element={<Watools />} />
-              <Route path="/airtable" element={<Airtable />} />
-              <Route path="/linkedin" element={<LinkedIn />} />
-              <Route path="/unstream" element={<Unstream />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-              <Route path="/pinnpm/newsletter-confirmed" element={<NewsletterConfirmation />} />
-              <Route path="/bubble/newsletter-confirmed" element={<BubbleNewsletterConfirmation />} />
-              <Route path="/bubble-invite" element={<BubbleInvite />} />
-              <Route path="/" element={<Bubble />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
+    <HelmetProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1">
+              <Routes>
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="/bubble" element={<Bubble />} />
+                <Route path="/pinnpm" element={<PinNpm />} />
+                <Route path="/watools" element={<Watools />} />
+                <Route path="/airtable" element={<Airtable />} />
+                <Route path="/linkedin" element={<LinkedIn />} />
+                <Route path="/unstream" element={<Unstream />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/pinnpm/newsletter-confirmed" element={<NewsletterConfirmation />} />
+                <Route path="/bubble/newsletter-confirmed" element={<BubbleNewsletterConfirmation />} />
+                <Route path="/bubble-invite" element={<BubbleInvite />} />
+                <Route path="/" element={<Bubble />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 

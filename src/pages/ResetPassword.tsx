@@ -1,3 +1,4 @@
+import { PageSEO } from "@/components/SEO";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -68,6 +69,12 @@ const ResetPassword = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <PageSEO
+        title="Reset Password - Nocodext"
+        description="Reset your Nocodext account password."
+        pathname="/reset-password"
+        noindex
+      />
       <div className="w-full max-w-md">
 
         <Card className="border-0 bg-card/50">
