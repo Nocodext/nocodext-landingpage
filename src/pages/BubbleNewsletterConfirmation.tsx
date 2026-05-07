@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 const BubbleNewsletterConfirmation = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
+      <PageSEO
+        title="Newsletter Confirmed - Bubble by Nocodext"
+        description="Your Bubble extension newsletter subscription has been confirmed."
+        pathname="/bubble/newsletter-confirmed"
+      />
       <div className="max-w-md w-full text-center">
         {/* Logo */}
         <div className="flex justify-center mb-8">

@@ -40,6 +40,11 @@ const LinkedIn = () => {
     }
   };
   return <div className="min-h-screen bg-background">
+      <PageSEO
+        title="LinkedIn Widgets by Nocodext - Missing Features"
+        description="Augment LinkedIn with missing widgets that will never be in their official roadmap. Get people badges, push to CRM, and more."
+        pathname="/linkedin"
+      />
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 bg-gradient-to-b from-background to-secondary/20">
         <div className="container mx-auto max-w-6xl">
