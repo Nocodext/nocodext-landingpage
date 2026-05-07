@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "production" &&
-      prerender.default({
+      prerender({
         staticDir: path.join(__dirname, "dist"),
         routes: [
           "/",
