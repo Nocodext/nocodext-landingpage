@@ -50,7 +50,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 }
 
 function injectJsonLd() {
-  const jsonLdConfig: Record<string, object> = {
+  const jsonLdConfig = {
     "/": {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
