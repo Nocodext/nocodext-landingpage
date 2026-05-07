@@ -1,6 +1,6 @@
 
-import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { useState } from "react";
+import { PageSEO } from "@/components/SEO";
 import ImageModal from "@/components/bubble/ImageModal";
 import HeroSection from "@/components/bubble/HeroSection";
 import OverviewSection from "@/components/bubble/OverviewSection";
