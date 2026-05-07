@@ -14,13 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      beta_applications: {
+        Row: {
+          approve_token: string | null
+          approve_token_used_at: string | null
+          context: string
+          created_at: string | null
+          email: string
+          email_normalized: string
+          expectations: string | null
+          id: string
+          level: string
+          name: string
+        }
+        Insert: {
+          approve_token?: string | null
+          approve_token_used_at?: string | null
+          context: string
+          created_at?: string | null
+          email: string
+          email_normalized: string
+          expectations?: string | null
+          id?: string
+          level: string
+          name: string
+        }
+        Update: {
+          approve_token?: string | null
+          approve_token_used_at?: string | null
+          context?: string
+          created_at?: string | null
+          email?: string
+          email_normalized?: string
+          expectations?: string | null
+          id?: string
+          level?: string
+          name?: string
+        }
+        Relationships: []
+      }
       beta_invitations: {
         Row: {
           created_at: string
           email: string
           expires_at: string
           id: string
+          product_id: string | null
           source: Database["public"]["Enums"]["user_source"]
+          tmp_name: string | null
           token: string
           used_at: string | null
           used_by: string | null
@@ -30,7 +71,9 @@ export type Database = {
           email: string
           expires_at: string
           id?: string
+          product_id?: string | null
           source?: Database["public"]["Enums"]["user_source"]
+          tmp_name?: string | null
           token: string
           used_at?: string | null
           used_by?: string | null
@@ -40,12 +83,73 @@ export type Database = {
           email?: string
           expires_at?: string
           id?: string
+          product_id?: string | null
           source?: Database["public"]["Enums"]["user_source"]
+          tmp_name?: string | null
           token?: string
           used_at?: string | null
           used_by?: string | null
         }
         Relationships: []
+      }
+      features: {
+        Row: {
+          created_at: string | null
+          id: string
+          label: string
+        }
+        Insert: {
+          created_at?: string | null
+          id: string
+          label: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          label?: string
+        }
+        Relationships: []
+      }
+      feedbacks: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          feature_id: string
+          id: string
+          message: string
+          screenshot_url: string | null
+          user_id: string | null
+          video_url: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          feature_id: string
+          id?: string
+          message: string
+          screenshot_url?: string | null
+          user_id?: string | null
+          video_url?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          feature_id?: string
+          id?: string
+          message?: string
+          screenshot_url?: string | null
+          user_id?: string | null
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "feedbacks_feature_id_fkey"
+            columns: ["feature_id"]
+            isOneToOne: false
+            referencedRelation: "features"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       ncxt_products: {
         Row: {
@@ -383,6 +487,7 @@ export type Database = {
           id: string
           last_name: string | null
           newsletter_opted_in: boolean
+          onboarding_progress: Json | null
           role: Database["public"]["Enums"]["user_role"]
           source: Database["public"]["Enums"]["user_source"]
           updated_at: string
@@ -394,6 +499,7 @@ export type Database = {
           id: string
           last_name?: string | null
           newsletter_opted_in?: boolean
+          onboarding_progress?: Json | null
           role?: Database["public"]["Enums"]["user_role"]
           source?: Database["public"]["Enums"]["user_source"]
           updated_at?: string
@@ -405,6 +511,7 @@ export type Database = {
           id?: string
           last_name?: string | null
           newsletter_opted_in?: boolean
+          onboarding_progress?: Json | null
           role?: Database["public"]["Enums"]["user_role"]
           source?: Database["public"]["Enums"]["user_source"]
           updated_at?: string
@@ -414,25 +521,31 @@ export type Database = {
       users_products: {
         Row: {
           created_at: string
+          plan: string
           product_id: string
+          trial_ends_at: string | null
           user_id: string
         }
         Insert: {
           created_at?: string
+          plan: string
           product_id: string
+          trial_ends_at?: string | null
           user_id: string
         }
         Update: {
           created_at?: string
+          plan?: string
           product_id?: string
+          trial_ends_at?: string | null
           user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "users_products_product_id_fkey"
-            columns: ["product_id"]
+            foreignKeyName: "users_products_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "ncxt_products"
+            referencedRelation: "user_profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -665,8 +778,13 @@ export type Database = {
         | "canceled"
         | "unpaid"
         | "paused"
-      user_role: "free_user" | "betatester" | "premium" | "admin"
-      user_source: "organic" | "invitation" | "appsumo" | "producthunt"
+      user_role: "user" | "admin"
+      user_source:
+        | "organic"
+        | "invitation"
+        | "appsumo"
+        | "producthunt"
+        | "slack-approve"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -806,8 +924,14 @@ export const Constants = {
         "unpaid",
         "paused",
       ],
-      user_role: ["free_user", "betatester", "premium", "admin"],
-      user_source: ["organic", "invitation", "appsumo", "producthunt"],
+      user_role: ["user", "admin"],
+      user_source: [
+        "organic",
+        "invitation",
+        "appsumo",
+        "producthunt",
+        "slack-approve",
+      ],
     },
   },
 } as const
