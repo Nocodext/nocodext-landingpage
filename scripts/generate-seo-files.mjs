@@ -223,6 +223,17 @@ Sitemap: ${SITE_URL}/sitemap.xml
   console.log("Generated robots.txt");
 }
 
+function generate404() {
+  // Cloudflare Pages serves /404.html on unmatched paths.
+  // Copying index.html lets React Router handle SPA routes (e.g. /bubble-invite).
+  const indexPath = path.join(DIST_DIR, "index.html");
+  if (fs.existsSync(indexPath)) {
+    fs.copyFileSync(indexPath, path.join(DIST_DIR, "404.html"));
+    console.log("Generated 404.html (SPA fallback)");
+  }
+}
+
 generatePerRouteHtml();
 generateSitemap();
 generateRobots();
+generate404();
