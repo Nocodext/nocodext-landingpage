@@ -8,6 +8,7 @@ import FeaturesSection from "@/components/bubble/FeaturesSection";
 import CTASection from "@/components/bubble/CTASection";
 import StayInformed from "@/components/bubble/StayInformed";
 import ManifestoSection from "@/components/bubble/ManifestoSection";
+import PricingSection from "@/components/bubble/PricingSection";
 
 const features = [
   {
@@ -115,6 +116,8 @@ const Bubble = () => {
       />
       
       <CTASection />
+      
+      <PricingSection />
       
       <StayInformed />
       
