@@ -117,6 +117,8 @@ const Bubble = () => {
       
       <CTASection />
       
+      <PricingSection />
+      
       <StayInformed />
       
       <ManifestoSection />
