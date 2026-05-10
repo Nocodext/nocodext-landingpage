@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PageSEO } from "@/components/SEO";
 import ImageModal from "@/components/bubble/ImageModal";
 import HeroSection from "@/components/bubble/HeroSection";
@@ -56,6 +56,13 @@ const features = [
 ];
 
 const Bubble = () => {
+  useEffect(() => {
+    const { hash } = window.location;
+    if (!hash || hash === "#pay") return;
+    const el = document.getElementById(hash.slice(1));
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isTabGalleryOpen, setIsTabGalleryOpen] = useState(false);
   const [galleryInitialIndex, setGalleryInitialIndex] = useState(0);

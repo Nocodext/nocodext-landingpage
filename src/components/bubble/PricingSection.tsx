@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const PADDLE_TOKEN = "live_ff2b7db556e904af9910b776705";
 const PADDLE_MONTHLY_PRICE_ID = "pri_01kr8tk1n61y1493fmrvnv4pnc";
 const PADDLE_ANNUAL_PRICE_ID = "pri_01kr8tnx0wmvw9b7fgmqva9eqy";
-const AGENCY_WAITLIST_LINK = "[AGENCY_WAITLIST_LINK]";
 
 declare global {
   interface Window {
@@ -54,6 +54,31 @@ const faqs = [
 
 const PricingSection = () => {
   const [annual, setAnnual] = useState(false);
+  const [paddleReady, setPaddleReady] = useState(false);
+  const [agencyEmail, setAgencyEmail] = useState("");
+  const [agencyName, setAgencyName] = useState("");
+  const [bubbleProjects, setBubbleProjects] = useState("");
+  const [agencySubmitting, setAgencySubmitting] = useState(false);
+  const [agencyDone, setAgencyDone] = useState(false);
+  const [agencyError, setAgencyError] = useState<string | null>(null);
+
+  const handleAgencyWaitlist = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAgencySubmitting(true);
+    setAgencyError(null);
+    const result = await subscribeToNewsletter({
+      email: agencyEmail,
+      product: "bubble_for_agencies",
+      agencyName,
+      bubbleProjects,
+    });
+    setAgencySubmitting(false);
+    if (result.success) {
+      setAgencyDone(true);
+    } else {
+      setAgencyError(result.error ?? "Something went wrong. Please try again.");
+    }
+  };
 
   const price = annual ? "€150" : "€15";
   const period = annual ? "/year" : "/month";
@@ -62,15 +87,26 @@ const PricingSection = () => {
   useEffect(() => {
     if (document.getElementById("paddle-js")) {
       window.Paddle?.Setup({ token: PADDLE_TOKEN });
+      setPaddleReady(true);
       return;
     }
     const script = document.createElement("script");
     script.id = "paddle-js";
     script.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
     script.async = true;
-    script.onload = () => window.Paddle?.Setup({ token: PADDLE_TOKEN });
+    script.onload = () => {
+      window.Paddle?.Setup({ token: PADDLE_TOKEN });
+      setPaddleReady(true);
+    };
     document.body.appendChild(script);
   }, []);
+
+  useEffect(() => {
+    if (!paddleReady) return;
+    if (window.location.hash === "#pay") {
+      window.Paddle!.Checkout.open({ items: [{ priceId: PADDLE_MONTHLY_PRICE_ID, quantity: 1 }] });
+    }
+  }, [paddleReady]);
 
   const openCheckout = () => {
     if (!window.Paddle) {
@@ -174,24 +210,66 @@ const PricingSection = () => {
             <ul className="space-y-2 mb-6">
               {agencyFeatures.map((item, i) => (
                 <li key={i} className="flex gap-3 items-start">
-                  <ArrowRight className="w-4 h-4 flex-shrink-0 text-muted-foreground/50 mt-1" />
+                  <Check className="w-5 h-5 flex-shrink-0 text-nocodext mt-0.5" />
                   <span className="text-muted-foreground text-sm">{item}</span>
                 </li>
               ))}
             </ul>
 
-            <p className="text-sm text-muted-foreground italic mb-8">
+            <p className="text-sm text-muted-foreground italic mb-6">
               No pricing yet. Early access for agencies building on Bubble.
             </p>
 
-            <a
-              href={AGENCY_WAITLIST_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-center px-6 py-3 rounded-lg border border-border bg-background text-foreground font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-            >
-              Join the waitlist
-            </a>
+            {agencyDone ? (
+              <p className="text-sm text-center text-nocodext font-medium py-3">
+                You're on the list. We'll be in touch.
+              </p>
+            ) : (
+              <form onSubmit={handleAgencyWaitlist} className="space-y-2">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Agency name"
+                    value={agencyName}
+                    onChange={(e) => setAgencyName(e.target.value)}
+                    disabled={agencySubmitting}
+                    className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-nocodext/30 disabled:opacity-50"
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder="your@email.com"
+                    value={agencyEmail}
+                    onChange={(e) => setAgencyEmail(e.target.value)}
+                    disabled={agencySubmitting}
+                    className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-nocodext/30 disabled:opacity-50"
+                  />
+                  <select
+                    required
+                    value={bubbleProjects}
+                    onChange={(e) => setBubbleProjects(e.target.value)}
+                    disabled={agencySubmitting}
+                    className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-nocodext/30 disabled:opacity-50"
+                  >
+                    <option value="">Active Bubble projects...</option>
+                    <option value="1-3">1–3 projects</option>
+                    <option value="4-10">4–10 projects</option>
+                    <option value="10+">10+ projects</option>
+                  </select>
+                </div>
+                <button
+                  type="submit"
+                  disabled={agencySubmitting}
+                  className="w-1/2 flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
+                >
+                  {agencySubmitting ? "..." : <>Join the waitlist <ArrowRight className="w-4 h-4" /></>}
+                </button>
+              </form>
+            )}
+            {agencyError && (
+              <p className="text-xs text-red-500 mt-2">{agencyError}</p>
+            )}
           </div>
         </div>
 

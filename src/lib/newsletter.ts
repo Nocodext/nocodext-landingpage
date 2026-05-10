@@ -2,6 +2,8 @@ interface NewsletterSubscription {
   name?: string;
   email: string;
   product: string;
+  agencyName?: string;
+  bubbleProjects?: string;
 }
 
 interface NewsletterResponse {
@@ -13,7 +15,9 @@ interface NewsletterResponse {
 export const subscribeToNewsletter = async ({
   name,
   email,
-  product
+  product,
+  agencyName,
+  bubbleProjects,
 }: NewsletterSubscription): Promise<NewsletterResponse> => {
   try {
     const response = await fetch('https://umnmvwyxjxswwidueaqy.supabase.co/functions/v1/newsletter-subscribe', {
@@ -24,7 +28,9 @@ export const subscribeToNewsletter = async ({
       body: JSON.stringify({
         name,
         email,
-        productName: product
+        productName: product,
+        agencyName,
+        bubbleProjects,
       })
     });
     

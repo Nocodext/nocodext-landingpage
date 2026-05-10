@@ -1,5 +1,0 @@
-
-project_id = "umnmvwyxjxswwidueaqy"
-
-[functions.newsletter-subscribe]
-verify_jwt = false
