@@ -57,7 +57,28 @@ const PricingSection = () => {
 
   const price = annual ? "€150" : "€15";
   const period = annual ? "/year" : "/month";
-  const link = annual ? PADDLE_ANNUAL_LINK : PADDLE_MONTHLY_LINK;
+  const priceId = annual ? PADDLE_ANNUAL_PRICE_ID : PADDLE_MONTHLY_PRICE_ID;
+
+  useEffect(() => {
+    if (document.getElementById("paddle-js")) {
+      window.Paddle?.Setup({ token: PADDLE_TOKEN });
+      return;
+    }
+    const script = document.createElement("script");
+    script.id = "paddle-js";
+    script.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
+    script.async = true;
+    script.onload = () => window.Paddle?.Setup({ token: PADDLE_TOKEN });
+    document.body.appendChild(script);
+  }, []);
+
+  const openCheckout = () => {
+    if (!window.Paddle) {
+      console.error("Paddle SDK not loaded yet");
+      return;
+    }
+    window.Paddle.Checkout.open({ items: [{ priceId, quantity: 1 }] });
+  };
 
   return (
     <section id="pricing" className="py-20 md:py-28 bg-background">
