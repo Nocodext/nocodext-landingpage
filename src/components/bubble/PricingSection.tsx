@@ -1,9 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 
-const PADDLE_MONTHLY_LINK = "[PADDLE_MONTHLY_LINK]";
-const PADDLE_ANNUAL_LINK = "[PADDLE_ANNUAL_LINK]";
+const PADDLE_TOKEN = "live_ff2b7db556e904af9910b776705";
+const PADDLE_MONTHLY_PRICE_ID = "pri_01kr8tk1n61y1493fmrvnv4pnc";
+const PADDLE_ANNUAL_PRICE_ID = "pri_01kr8tnx0wmvw9b7fgmqva9eqy";
 const AGENCY_WAITLIST_LINK = "[AGENCY_WAITLIST_LINK]";
+
+declare global {
+  interface Window {
+    Paddle?: {
+      Setup: (opts: { token: string }) => void;
+      Checkout: {
+        open: (opts: { items: { priceId: string; quantity: number }[] }) => void;
+      };
+    };
+  }
+}
 
 const individualFeatures = [
   { title: "Data Browser", desc: "navigate your Bubble schema at a glance" },
@@ -45,7 +57,28 @@ const PricingSection = () => {
 
   const price = annual ? "€150" : "€15";
   const period = annual ? "/year" : "/month";
-  const link = annual ? PADDLE_ANNUAL_LINK : PADDLE_MONTHLY_LINK;
+  const priceId = annual ? PADDLE_ANNUAL_PRICE_ID : PADDLE_MONTHLY_PRICE_ID;
+
+  useEffect(() => {
+    if (document.getElementById("paddle-js")) {
+      window.Paddle?.Setup({ token: PADDLE_TOKEN });
+      return;
+    }
+    const script = document.createElement("script");
+    script.id = "paddle-js";
+    script.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
+    script.async = true;
+    script.onload = () => window.Paddle?.Setup({ token: PADDLE_TOKEN });
+    document.body.appendChild(script);
+  }, []);
+
+  const openCheckout = () => {
+    if (!window.Paddle) {
+      console.error("Paddle SDK not loaded yet");
+      return;
+    }
+    window.Paddle.Checkout.open({ items: [{ priceId, quantity: 1 }] });
+  };
 
   return (
     <section id="pricing" className="py-20 md:py-28 bg-background">
@@ -114,14 +147,13 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={openCheckout}
                 className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
               >
                 Start your free trial
-              </a>
+              </button>
 
               <p className="text-xs text-muted-foreground text-center mt-3">
                 14 days free. Then €15/month (or €150/year). No surprises.
