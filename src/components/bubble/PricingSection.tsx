@@ -147,14 +147,13 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={openCheckout}
                 className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
               >
                 Start your free trial
-              </a>
+              </button>
 
               <p className="text-xs text-muted-foreground text-center mt-3">
                 14 days free. Then €15/month (or €150/year). No surprises.
