@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 const PADDLE_MONTHLY_LINK = "[PADDLE_MONTHLY_LINK]";
 const PADDLE_ANNUAL_LINK = "[PADDLE_ANNUAL_LINK]";
@@ -15,9 +15,14 @@ const individualFeatures = [
 ];
 
 const agencyFeatures = [
-  "Shared bookmarks per Bubble project — your whole team, same landmarks",
-  "Personal bookmarks on top",
   "One workspace per client project, automatically",
+  "Cross-project Command Palette — jump across all your client apps instantly",
+  "Canvas annotations — leave notes directly on the canvas, visible to your whole team",
+  "Client-ready ERD export — share your data model as PDF, DBML, or Notion site page",
+  "Dependency graph — know what breaks before you change it",
+  "Auto-generated documentation — turn your schema into readable client deliverables",
+  "Annotation layer on preview — give client feedback without leaving Bubble",
+  "App health check — deliver clean, know what you're leaving behind",
 ];
 
 const faqs = [
