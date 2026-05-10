@@ -15,17 +15,21 @@ serve(async (req) => {
   }
 
   try {
-    const { name, email } = await req.json();
+    const body = await req.json();
+    const name = typeof body?.name === "string" ? body.name.trim() : "";
+    const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
 
-    if (!name || !email) {
-      return new Response(
-        JSON.stringify({ error: "Name and email are required" }),
-        { 
-          status: 400, 
-          headers: { ...corsHeaders, "Content-Type": "application/json" } 
-        }
-      );
-    }
+    const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const badRequest = (msg: string) =>
+      new Response(JSON.stringify({ error: msg }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+
+    if (!name || !email) return badRequest("Name and email are required");
+    if (name.length > 100) return badRequest("Name is too long");
+    if (email.length > 254) return badRequest("Email is too long");
+    if (!EMAIL_RE.test(email)) return badRequest("Invalid email format");
 
     console.log(`Processing subscription for ${email}`);
     
