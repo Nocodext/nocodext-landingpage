@@ -86,9 +86,9 @@ const PricingSection = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div className="flex flex-col gap-6 items-center">
           {/* Individual */}
-          <div className="relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
+          <div className="w-full max-w-lg relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
             <div className="rounded-2xl bg-card p-8 md:p-10 h-full">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-card-foreground">Individual</h3>
@@ -130,7 +130,7 @@ const PricingSection = () => {
           </div>
 
           {/* Agency */}
-          <div className="relative rounded-2xl border border-border bg-muted/40 p-8 md:p-10 h-full">
+          <div className="w-full max-w-3xl relative rounded-2xl border border-border bg-muted/40 p-8 md:p-10">
             <span className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">
               Coming soon
             </span>
@@ -139,20 +139,18 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <div className="mb-8">
-              <p className="text-sm text-muted-foreground italic">
-                Pricing based on your project volume. Early access coming.
-              </p>
-            </div>
-
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-2 mb-6">
               {agencyFeatures.map((item, i) => (
-                <li key={i} className="flex gap-3">
-                  <Check className="w-5 h-5 flex-shrink-0 text-muted-foreground mt-0.5" />
+                <li key={i} className="flex gap-3 items-start">
+                  <ArrowRight className="w-4 h-4 flex-shrink-0 text-muted-foreground/50 mt-1" />
                   <span className="text-muted-foreground text-sm">{item}</span>
                 </li>
               ))}
             </ul>
+
+            <p className="text-sm text-muted-foreground italic mb-8">
+              No pricing yet. Early access for agencies building on Bubble.
+            </p>
 
             <a
               href={AGENCY_WAITLIST_LINK}
