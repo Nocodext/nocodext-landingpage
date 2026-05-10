@@ -1,9 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 
-const PADDLE_MONTHLY_LINK = "[PADDLE_MONTHLY_LINK]";
-const PADDLE_ANNUAL_LINK = "[PADDLE_ANNUAL_LINK]";
+const PADDLE_TOKEN = "live_ff2b7db556e904af9910b776705";
+const PADDLE_MONTHLY_PRICE_ID = "pri_01kr8tk1n61y1493fmrvnv4pnc";
+const PADDLE_ANNUAL_PRICE_ID = "pri_01kr8tnx0wmvw9b7fgmqva9eqy";
 const AGENCY_WAITLIST_LINK = "[AGENCY_WAITLIST_LINK]";
+
+declare global {
+  interface Window {
+    Paddle?: {
+      Setup: (opts: { token: string }) => void;
+      Checkout: {
+        open: (opts: { items: { priceId: string; quantity: number }[] }) => void;
+      };
+    };
+  }
+}
 
 const individualFeatures = [
   { title: "Data Browser", desc: "navigate your Bubble schema at a glance" },
