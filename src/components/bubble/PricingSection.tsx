@@ -1,9 +1,21 @@
-import { useState } from "react";
-import { Check } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, Check } from "lucide-react";
 
-const PADDLE_MONTHLY_LINK = "[PADDLE_MONTHLY_LINK]";
-const PADDLE_ANNUAL_LINK = "[PADDLE_ANNUAL_LINK]";
+const PADDLE_TOKEN = "live_ff2b7db556e904af9910b776705";
+const PADDLE_MONTHLY_PRICE_ID = "pri_01kr8tk1n61y1493fmrvnv4pnc";
+const PADDLE_ANNUAL_PRICE_ID = "pri_01kr8tnx0wmvw9b7fgmqva9eqy";
 const AGENCY_WAITLIST_LINK = "[AGENCY_WAITLIST_LINK]";
+
+declare global {
+  interface Window {
+    Paddle?: {
+      Setup: (opts: { token: string }) => void;
+      Checkout: {
+        open: (opts: { items: { priceId: string; quantity: number }[] }) => void;
+      };
+    };
+  }
+}
 
 const individualFeatures = [
   { title: "Data Browser", desc: "navigate your Bubble schema at a glance" },
@@ -15,9 +27,14 @@ const individualFeatures = [
 ];
 
 const agencyFeatures = [
-  "Shared bookmarks per Bubble project — your whole team, same landmarks",
-  "Personal bookmarks on top",
   "One workspace per client project, automatically",
+  "Cross-project Command Palette — jump across all your client apps instantly",
+  "Canvas annotations — leave notes directly on the canvas, visible to your whole team",
+  "Client-ready ERD export — share your data model as PDF, DBML, or Notion site page",
+  "Dependency graph — know what breaks before you change it",
+  "Auto-generated documentation — turn your schema into readable client deliverables",
+  "Annotation layer on preview — give client feedback without leaving Bubble",
+  "App health check — deliver clean, know what you're leaving behind",
 ];
 
 const faqs = [
@@ -40,7 +57,28 @@ const PricingSection = () => {
 
   const price = annual ? "€150" : "€15";
   const period = annual ? "/year" : "/month";
-  const link = annual ? PADDLE_ANNUAL_LINK : PADDLE_MONTHLY_LINK;
+  const priceId = annual ? PADDLE_ANNUAL_PRICE_ID : PADDLE_MONTHLY_PRICE_ID;
+
+  useEffect(() => {
+    if (document.getElementById("paddle-js")) {
+      window.Paddle?.Setup({ token: PADDLE_TOKEN });
+      return;
+    }
+    const script = document.createElement("script");
+    script.id = "paddle-js";
+    script.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
+    script.async = true;
+    script.onload = () => window.Paddle?.Setup({ token: PADDLE_TOKEN });
+    document.body.appendChild(script);
+  }, []);
+
+  const openCheckout = () => {
+    if (!window.Paddle) {
+      console.error("Paddle SDK not loaded yet");
+      return;
+    }
+    window.Paddle.Checkout.open({ items: [{ priceId, quantity: 1 }] });
+  };
 
   return (
     <section id="pricing" className="py-20 md:py-28 bg-background">
@@ -81,9 +119,9 @@ const PricingSection = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div className="flex flex-col gap-6 items-center">
           {/* Individual */}
-          <div className="relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
+          <div className="w-full max-w-lg relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
             <div className="rounded-2xl bg-card p-8 md:p-10 h-full">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-card-foreground">Individual</h3>
@@ -109,14 +147,13 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={openCheckout}
                 className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
               >
                 Start your free trial
-              </a>
+              </button>
 
               <p className="text-xs text-muted-foreground text-center mt-3">
                 14 days free. Then €15/month (or €150/year). No surprises.
@@ -125,7 +162,7 @@ const PricingSection = () => {
           </div>
 
           {/* Agency */}
-          <div className="relative rounded-2xl border border-border bg-muted/40 p-8 md:p-10 h-full">
+          <div className="w-full max-w-3xl relative rounded-2xl border border-border bg-muted/40 p-8 md:p-10">
             <span className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">
               Coming soon
             </span>
@@ -134,20 +171,18 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <div className="mb-8">
-              <p className="text-sm text-muted-foreground italic">
-                Pricing based on your project volume. Early access coming.
-              </p>
-            </div>
-
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-2 mb-6">
               {agencyFeatures.map((item, i) => (
-                <li key={i} className="flex gap-3">
-                  <Check className="w-5 h-5 flex-shrink-0 text-muted-foreground mt-0.5" />
+                <li key={i} className="flex gap-3 items-start">
+                  <ArrowRight className="w-4 h-4 flex-shrink-0 text-muted-foreground/50 mt-1" />
                   <span className="text-muted-foreground text-sm">{item}</span>
                 </li>
               ))}
             </ul>
+
+            <p className="text-sm text-muted-foreground italic mb-8">
+              No pricing yet. Early access for agencies building on Bubble.
+            </p>
 
             <a
               href={AGENCY_WAITLIST_LINK}
