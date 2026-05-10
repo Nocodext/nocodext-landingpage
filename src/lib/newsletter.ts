@@ -4,6 +4,7 @@ interface NewsletterSubscription {
   product: string;
   agencyName?: string;
   bubbleProjects?: string;
+  sawFullFeatures?: boolean;
 }
 
 interface NewsletterResponse {
@@ -31,6 +32,7 @@ export const subscribeToNewsletter = async ({
         productName: product,
         agencyName,
         bubbleProjects,
+        sawFullFeatures,
       })
     });
     

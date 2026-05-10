@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const PADDLE_TOKEN = "live_ff2b7db556e904af9910b776705";
@@ -29,13 +29,15 @@ const individualFeatures = [
 const agencyFeatures = [
   "One workspace per client project, automatically",
   "Cross-project Command Palette — jump across all your client apps instantly",
-  "Canvas annotations — leave notes directly on the canvas, visible to your whole team",
-  "Client-ready ERD export — share your data model as PDF, DBML, or Notion site page",
+  "Client-ready ERD export — share your data model as PDF, DBML, or Notion page",
   "Dependency graph — know what breaks before you change it",
+  "Client annotations on live preview — your client marks up the real app, you fix, no email thread",
+  "Canvas annotations — leave notes directly on the canvas, visible to your whole team",
   "Auto-generated documentation — turn your schema into readable client deliverables",
-  "Annotation layer on preview — give client feedback without leaving Bubble",
   "App health check — deliver clean, know what you're leaving behind",
 ];
+
+const AGENCY_FEATURES_PREVIEW = 5;
 
 const faqs = [
   {
@@ -52,8 +54,9 @@ const faqs = [
   },
 ];
 
+const inputClass = "flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-nocodext/30 disabled:opacity-50";
+
 const PricingSection = () => {
-  const [annual, setAnnual] = useState(false);
   const [paddleReady, setPaddleReady] = useState(false);
   const [agencyEmail, setAgencyEmail] = useState("");
   const [agencyName, setAgencyName] = useState("");
@@ -61,6 +64,13 @@ const PricingSection = () => {
   const [agencySubmitting, setAgencySubmitting] = useState(false);
   const [agencyDone, setAgencyDone] = useState(false);
   const [agencyError, setAgencyError] = useState<string | null>(null);
+  const [featuresExpanded, setFeaturesExpanded] = useState(false);
+  const [sawFullFeatures, setSawFullFeatures] = useState(false);
+
+  const handleSeeMore = () => {
+    setFeaturesExpanded(true);
+    setSawFullFeatures(true);
+  };
 
   const handleAgencyWaitlist = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,6 +81,7 @@ const PricingSection = () => {
       product: "bubble_for_agencies",
       agencyName,
       bubbleProjects,
+      sawFullFeatures,
     });
     setAgencySubmitting(false);
     if (result.success) {
@@ -79,10 +90,6 @@ const PricingSection = () => {
       setAgencyError(result.error ?? "Something went wrong. Please try again.");
     }
   };
-
-  const price = annual ? "€150" : "€15";
-  const period = annual ? "/year" : "/month";
-  const priceId = annual ? PADDLE_ANNUAL_PRICE_ID : PADDLE_MONTHLY_PRICE_ID;
 
   useEffect(() => {
     if (document.getElementById("paddle-js")) {
@@ -108,17 +115,16 @@ const PricingSection = () => {
     }
   }, [paddleReady]);
 
-  const openCheckout = () => {
-    if (!window.Paddle) {
-      console.error("Paddle SDK not loaded yet");
-      return;
-    }
+  const openCheckout = (priceId: string) => {
+    if (!window.Paddle) return;
     window.Paddle.Checkout.open({ items: [{ priceId, quantity: 1 }] });
   };
 
+  const visibleFeatures = featuresExpanded ? agencyFeatures : agencyFeatures.slice(0, AGENCY_FEATURES_PREVIEW);
+
   return (
     <section id="pricing" className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">
             Simple, honest pricing
@@ -128,50 +134,18 @@ const PricingSection = () => {
           </p>
         </div>
 
-        {/* Toggle */}
-        <div className="flex items-center justify-center gap-4 mb-10">
-          <span className={`text-sm font-medium transition-colors ${!annual ? "text-foreground" : "text-muted-foreground"}`}>
-            Monthly
-          </span>
-          <button
-            onClick={() => setAnnual(!annual)}
-            role="switch"
-            aria-checked={annual}
-            aria-label="Toggle annual billing"
-            className="relative inline-flex h-7 w-14 items-center rounded-full bg-gradient-to-r from-nocodext to-nocodext-light transition-colors"
-          >
-            <span
-              className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-md transition-transform ${
-                annual ? "translate-x-8" : "translate-x-1"
-              }`}
-            />
-          </button>
-          <span className={`text-sm font-medium transition-colors flex items-center gap-2 ${annual ? "text-foreground" : "text-muted-foreground"}`}>
-            Annual
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white">
-              2 months free
-            </span>
-          </span>
-        </div>
-
         {/* Cards */}
-        <div className="flex flex-col gap-6 items-center">
+        <div className="flex flex-col md:flex-row gap-6 items-stretch">
+
           {/* Individual */}
-          <div className="w-full max-w-lg relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
-            <div className="rounded-2xl bg-card p-8 md:p-10 h-full">
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold mb-2 text-card-foreground">Individual</h3>
+          <div className="flex-1 relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
+            <div className="rounded-2xl bg-card p-8 h-full flex flex-col">
+              <div className="mb-4">
+                <h3 className="text-2xl font-bold mb-1 text-card-foreground">Individual</h3>
                 <p className="text-sm text-muted-foreground">For freelancers and solo Bubble builders.</p>
               </div>
 
-              <div className="mb-8 flex items-baseline gap-2">
-                <span className="text-5xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">
-                  {price}
-                </span>
-                <span className="text-muted-foreground">{period}</span>
-              </div>
-
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 flex-1">
                 {individualFeatures.map((f) => (
                   <li key={f.title} className="flex gap-3">
                     <Check className="w-5 h-5 flex-shrink-0 text-nocodext mt-0.5" />
@@ -183,22 +157,45 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              <button
-                type="button"
-                onClick={openCheckout}
-                className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
-              >
-                Start your free trial
-              </button>
+              {/* Annual CTA — highlighted */}
+              <div className="mb-3">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-4xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">€150</span>
+                  <span className="text-muted-foreground text-sm">/year</span>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white ml-1">2 months free</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => openCheckout(PADDLE_ANNUAL_PRICE_ID)}
+                  className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
+                >
+                  Start your free trial — Annual
+                </button>
+              </div>
+
+              {/* Monthly CTA — secondary */}
+              <div>
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-2xl font-semibold text-muted-foreground">€15</span>
+                  <span className="text-muted-foreground text-sm">/month</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => openCheckout(PADDLE_MONTHLY_PRICE_ID)}
+                  className="block w-full text-center px-6 py-2.5 rounded-lg border border-border text-foreground text-sm font-medium transition-colors hover:bg-accent"
+                >
+                  Start your free trial — Monthly
+                </button>
+              </div>
 
               <p className="text-xs text-muted-foreground text-center mt-3">
-                14 days free. Then €15/month (or €150/year). No surprises.
+                14 days free. No surprises.
               </p>
             </div>
           </div>
 
           {/* Agency */}
-          <div className="w-full max-w-3xl relative rounded-2xl border border-border bg-muted/40 p-8 md:p-10">
+          <div className="flex-1 relative rounded-2xl border border-border bg-muted/40 p-8 flex flex-col">
             <span className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">
               Coming soon
             </span>
@@ -207,8 +204,8 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <ul className="space-y-2 mb-6">
-              {agencyFeatures.map((item, i) => (
+            <ul className="space-y-2 mb-2 flex-1">
+              {visibleFeatures.map((item, i) => (
                 <li key={i} className="flex gap-3 items-start">
                   <Check className="w-5 h-5 flex-shrink-0 text-nocodext mt-0.5" />
                   <span className="text-muted-foreground text-sm">{item}</span>
@@ -216,7 +213,28 @@ const PricingSection = () => {
               ))}
             </ul>
 
-            <p className="text-sm text-muted-foreground italic mb-6">
+            {!featuresExpanded && (
+              <button
+                type="button"
+                onClick={handleSeeMore}
+                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors mb-5 mt-1"
+              >
+                <ChevronDown className="w-3.5 h-3.5" />
+                See {agencyFeatures.length - AGENCY_FEATURES_PREVIEW} more features
+              </button>
+            )}
+            {featuresExpanded && (
+              <button
+                type="button"
+                onClick={() => setFeaturesExpanded(false)}
+                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors mb-5 mt-1"
+              >
+                <ChevronUp className="w-3.5 h-3.5" />
+                Show less
+              </button>
+            )}
+
+            <p className="text-sm text-muted-foreground italic mb-4">
               No pricing yet. Early access for agencies building on Bubble.
             </p>
 
@@ -234,7 +252,7 @@ const PricingSection = () => {
                     value={agencyName}
                     onChange={(e) => setAgencyName(e.target.value)}
                     disabled={agencySubmitting}
-                    className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-nocodext/30 disabled:opacity-50"
+                    className={inputClass}
                   />
                   <input
                     type="email"
@@ -243,14 +261,14 @@ const PricingSection = () => {
                     value={agencyEmail}
                     onChange={(e) => setAgencyEmail(e.target.value)}
                     disabled={agencySubmitting}
-                    className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-nocodext/30 disabled:opacity-50"
+                    className={inputClass}
                   />
                   <select
                     required
                     value={bubbleProjects}
                     onChange={(e) => setBubbleProjects(e.target.value)}
                     disabled={agencySubmitting}
-                    className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-nocodext/30 disabled:opacity-50"
+                    className={inputClass}
                   >
                     <option value="">Active Bubble projects...</option>
                     <option value="1-3">1–3 projects</option>
