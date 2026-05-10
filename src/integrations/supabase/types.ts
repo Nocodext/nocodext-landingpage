@@ -331,7 +331,7 @@ export type Database = {
             columns: ["package_id"]
             isOneToOne: false
             referencedRelation: "pinnpm_view_user_favorites"
-            referencedColumns: ["package_id"]
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -668,20 +668,33 @@ export type Database = {
       pinnpm_view_user_favorites: {
         Row: {
           created_at: string | null
+          days_since_update: number | null
           description: string | null
           downloads: string | null
+          has_typescript: boolean | null
           icon_color: string | null
           icon_url: string | null
+          id: string | null
+          is_deprecated: boolean | null
           keywords: string[] | null
+          last_npm_fetch: string | null
           maintenance_last_checked: string | null
           maintenance_score: number | null
-          package_id: string | null
-          package_name: string | null
-          package_tag: string | null
+          name: string | null
+          npms_final_score: number | null
           pin_count: number | null
+          pinned_at: string | null
+          popularity_score: number | null
+          quality_score: number | null
+          security_details: Json | null
           security_last_checked: string | null
           security_score: number | null
+          tag: string | null
+          trust_level: string | null
+          trust_score: number | null
+          updated_at: string | null
           user_id: string | null
+          weekly_downloads: number | null
         }
         Relationships: []
       }
@@ -765,6 +778,7 @@ export type Database = {
         Args: { settings_param: Json; user_id_param: string }
         Returns: Json
       }
+      validate_invite_token: { Args: { p_token: string }; Returns: boolean }
     }
     Enums: {
       stripe_order_status: "pending" | "completed" | "canceled"
