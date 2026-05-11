@@ -58,6 +58,7 @@ const inputClass = "flex-1 px-4 py-2.5 rounded-lg border border-border bg-backgr
 
 const PricingSection = () => {
   const [paddleReady, setPaddleReady] = useState(false);
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("annual");
   const [agencyEmail, setAgencyEmail] = useState("");
   const [agencyName, setAgencyName] = useState("");
   const [bubbleProjects, setBubbleProjects] = useState("");
