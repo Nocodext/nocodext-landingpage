@@ -204,11 +204,14 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <ul className="space-y-2 mb-2 flex-1">
-              {visibleFeatures.map((item, i) => (
-                <li key={i} className="flex gap-3 items-start">
-                  <Check className="w-5 h-5 flex-shrink-0 text-nocodext mt-0.5" />
-                  <span className="text-muted-foreground text-sm">{item}</span>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-2 flex-1">
+              {visibleFeatures.map((f) => (
+                <li key={f.title} className="flex gap-2 items-start">
+                  <Check className="w-4 h-4 flex-shrink-0 text-nocodext mt-0.5" />
+                  <div className="text-sm leading-snug">
+                    <span className="font-medium text-foreground">{f.title}</span>
+                    <span className="text-muted-foreground"> — {f.desc}</span>
+                  </div>
                 </li>
               ))}
             </ul>
