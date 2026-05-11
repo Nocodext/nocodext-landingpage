@@ -37,7 +37,7 @@ const agencyFeatures = [
   { title: "App health check", desc: "ship clean" },
 ];
 
-const AGENCY_FEATURES_PREVIEW = 4;
+const AGENCY_FEATURES_PREVIEW = 6;
 
 const faqs = [
   {
