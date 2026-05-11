@@ -27,17 +27,17 @@ const individualFeatures = [
 ];
 
 const agencyFeatures = [
-  "One workspace per client project, automatically",
-  "Cross-project Command Palette — jump across all your client apps instantly",
-  "Client-ready ERD export — share your data model as PDF, DBML, or Notion page",
-  "Dependency graph — know what breaks before you change it",
-  "Client annotations on live preview — your client marks up the real app, you fix, no email thread",
-  "Canvas annotations — leave notes directly on the canvas, visible to your whole team",
-  "Auto-generated documentation — turn your schema into readable client deliverables",
-  "App health check — deliver clean, know what you're leaving behind",
+  { title: "Auto workspaces", desc: "one per client project" },
+  { title: "Cross-project palette", desc: "jump across all client apps" },
+  { title: "ERD export", desc: "PDF, DBML or Notion page" },
+  { title: "Dependency graph", desc: "know what breaks" },
+  { title: "Client annotations", desc: "markup on live preview" },
+  { title: "Canvas notes", desc: "shared with your team" },
+  { title: "Auto documentation", desc: "client-ready deliverables" },
+  { title: "App health check", desc: "ship clean" },
 ];
 
-const AGENCY_FEATURES_PREVIEW = 5;
+const AGENCY_FEATURES_PREVIEW = 4;
 
 const faqs = [
   {
