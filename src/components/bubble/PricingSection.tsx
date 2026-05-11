@@ -37,7 +37,7 @@ const agencyFeatures = [
   { title: "App health check", desc: "ship clean" },
 ];
 
-const AGENCY_FEATURES_PREVIEW = 4;
+const AGENCY_FEATURES_PREVIEW = 6;
 
 const faqs = [
   {
@@ -219,11 +219,11 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-2">
+            <ul className="space-y-3 mb-2">
               {visibleFeatures.map((f) => (
-                <li key={f.title} className="flex gap-2 items-start">
-                  <Check className="w-4 h-4 flex-shrink-0 text-nocodext mt-0.5" />
-                  <div className="text-sm leading-snug">
+                <li key={f.title} className="flex gap-3">
+                  <Check className="w-5 h-5 flex-shrink-0 text-nocodext mt-0.5" />
+                  <div>
                     <span className="font-medium text-foreground">{f.title}</span>
                     <span className="text-muted-foreground"> — {f.desc}</span>
                   </div>
@@ -262,7 +262,7 @@ const PricingSection = () => {
               </p>
             ) : (
               <form onSubmit={handleAgencyWaitlist} className="space-y-2">
-                <div className="flex gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   <input
                     type="text"
                     required
@@ -281,23 +281,23 @@ const PricingSection = () => {
                     disabled={agencySubmitting}
                     className={inputClass}
                   />
-                  <select
-                    required
-                    value={bubbleProjects}
-                    onChange={(e) => setBubbleProjects(e.target.value)}
-                    disabled={agencySubmitting}
-                    className={inputClass}
-                  >
-                    <option value="">Active Bubble projects...</option>
-                    <option value="1-3">1–3 projects</option>
-                    <option value="4-10">4–10 projects</option>
-                    <option value="10+">10+ projects</option>
-                  </select>
                 </div>
+                <select
+                  required
+                  value={bubbleProjects}
+                  onChange={(e) => setBubbleProjects(e.target.value)}
+                  disabled={agencySubmitting}
+                  className={`${inputClass} w-full`}
+                >
+                  <option value="">Active Bubble projects...</option>
+                  <option value="1-3">1–3 projects</option>
+                  <option value="4-10">4–10 projects</option>
+                  <option value="10+">10+ projects</option>
+                </select>
                 <button
                   type="submit"
                   disabled={agencySubmitting}
-                  className="w-1/2 flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
                 >
                   {agencySubmitting ? "..." : <>Join the waitlist <ArrowRight className="w-4 h-4" /></>}
                 </button>
