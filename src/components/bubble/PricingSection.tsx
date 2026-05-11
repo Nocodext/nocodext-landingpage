@@ -58,6 +58,7 @@ const inputClass = "flex-1 px-4 py-2.5 rounded-lg border border-border bg-backgr
 
 const PricingSection = () => {
   const [paddleReady, setPaddleReady] = useState(false);
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("annual");
   const [agencyEmail, setAgencyEmail] = useState("");
   const [agencyName, setAgencyName] = useState("");
   const [bubbleProjects, setBubbleProjects] = useState("");
@@ -135,10 +136,10 @@ const PricingSection = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-5 gap-6 items-stretch">
+        <div className="grid md:grid-cols-2 gap-6 items-stretch">
 
           {/* Individual */}
-          <div className="md:col-span-2 relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
+          <div className="relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
             <div className="rounded-2xl bg-card p-8 h-full flex flex-col">
               <div className="mb-4">
                 <h3 className="text-2xl font-bold mb-1 text-card-foreground">Individual</h3>
@@ -157,36 +158,50 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              {/* Annual CTA — highlighted */}
-              <div className="mb-3">
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">€150</span>
-                  <span className="text-muted-foreground text-sm">/year</span>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white ml-1">2 months free</span>
-                </div>
+              {/* Billing toggle */}
+              <div className="flex items-center justify-center gap-3 mb-4">
                 <button
                   type="button"
-                  onClick={() => openCheckout(PADDLE_ANNUAL_PRICE_ID)}
-                  className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
+                  onClick={() => setBillingCycle("monthly")}
+                  className={`text-sm font-medium transition-colors ${billingCycle === "monthly" ? "text-foreground" : "text-muted-foreground"}`}
                 >
-                  Start your free trial — Annual
+                  Monthly
+                </button>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={billingCycle === "annual"}
+                  onClick={() => setBillingCycle(billingCycle === "annual" ? "monthly" : "annual")}
+                  className="relative w-11 h-6 rounded-full bg-muted border border-border transition-colors"
+                >
+                  <span
+                    className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-gradient-to-br from-nocodext to-nocodext-light transition-transform ${billingCycle === "annual" ? "translate-x-5" : ""}`}
+                  />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBillingCycle("annual")}
+                  className={`text-sm font-medium transition-colors flex items-center gap-2 ${billingCycle === "annual" ? "text-foreground" : "text-muted-foreground"}`}
+                >
+                  Annual
+                  <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white">2 months free</span>
                 </button>
               </div>
 
-              {/* Monthly CTA — secondary */}
-              <div>
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-2xl font-semibold text-muted-foreground">€15</span>
-                  <span className="text-muted-foreground text-sm">/month</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => openCheckout(PADDLE_MONTHLY_PRICE_ID)}
-                  className="block w-full text-center px-6 py-2.5 rounded-lg border border-border text-foreground text-sm font-medium transition-colors hover:bg-accent"
-                >
-                  Start your free trial — Monthly
-                </button>
+              <div className="flex items-baseline gap-2 mb-3 justify-center">
+                <span className="text-4xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">
+                  {billingCycle === "annual" ? "€150" : "€15"}
+                </span>
+                <span className="text-muted-foreground text-sm">{billingCycle === "annual" ? "/year" : "/month"}</span>
               </div>
+
+              <button
+                type="button"
+                onClick={() => openCheckout(billingCycle === "annual" ? PADDLE_ANNUAL_PRICE_ID : PADDLE_MONTHLY_PRICE_ID)}
+                className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
+              >
+                Start your free trial
+              </button>
 
               <p className="text-xs text-muted-foreground text-center mt-3">
                 14 days free. No surprises.
@@ -195,7 +210,7 @@ const PricingSection = () => {
           </div>
 
           {/* Agency */}
-          <div className="md:col-span-3 relative rounded-2xl border border-border bg-muted/40 p-8 flex flex-col">
+          <div className="relative rounded-2xl border border-border bg-muted/40 p-8 flex flex-col">
             <span className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">
               Coming soon
             </span>
@@ -204,7 +219,7 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-2 flex-1">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-2">
               {visibleFeatures.map((f) => (
                 <li key={f.title} className="flex gap-2 items-start">
                   <Check className="w-4 h-4 flex-shrink-0 text-nocodext mt-0.5" />
@@ -237,7 +252,7 @@ const PricingSection = () => {
               </button>
             )}
 
-            <p className="text-sm text-muted-foreground italic mb-4">
+            <p className="text-sm text-muted-foreground italic mb-4 mt-auto pt-6">
               No pricing yet. Early access for agencies building on Bubble.
             </p>
 
