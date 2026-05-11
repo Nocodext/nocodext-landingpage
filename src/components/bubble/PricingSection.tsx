@@ -135,10 +135,10 @@ const PricingSection = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-5 gap-6 items-stretch">
+        <div className="grid md:grid-cols-2 gap-6 items-stretch">
 
           {/* Individual */}
-          <div className="md:col-span-2 relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
+          <div className="relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
             <div className="rounded-2xl bg-card p-8 h-full flex flex-col">
               <div className="mb-4">
                 <h3 className="text-2xl font-bold mb-1 text-card-foreground">Individual</h3>
