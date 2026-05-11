@@ -262,7 +262,7 @@ const PricingSection = () => {
               </p>
             ) : (
               <form onSubmit={handleAgencyWaitlist} className="space-y-2">
-                <div className="flex gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   <input
                     type="text"
                     required
@@ -281,23 +281,23 @@ const PricingSection = () => {
                     disabled={agencySubmitting}
                     className={inputClass}
                   />
-                  <select
-                    required
-                    value={bubbleProjects}
-                    onChange={(e) => setBubbleProjects(e.target.value)}
-                    disabled={agencySubmitting}
-                    className={inputClass}
-                  >
-                    <option value="">Active Bubble projects...</option>
-                    <option value="1-3">1–3 projects</option>
-                    <option value="4-10">4–10 projects</option>
-                    <option value="10+">10+ projects</option>
-                  </select>
                 </div>
+                <select
+                  required
+                  value={bubbleProjects}
+                  onChange={(e) => setBubbleProjects(e.target.value)}
+                  disabled={agencySubmitting}
+                  className={`${inputClass} w-full`}
+                >
+                  <option value="">Active Bubble projects...</option>
+                  <option value="1-3">1–3 projects</option>
+                  <option value="4-10">4–10 projects</option>
+                  <option value="10+">10+ projects</option>
+                </select>
                 <button
                   type="submit"
                   disabled={agencySubmitting}
-                  className="w-1/2 flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
                 >
                   {agencySubmitting ? "..." : <>Join the waitlist <ArrowRight className="w-4 h-4" /></>}
                 </button>
