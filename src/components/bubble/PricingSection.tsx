@@ -157,36 +157,50 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              {/* Annual CTA — highlighted */}
-              <div className="mb-3">
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">€150</span>
-                  <span className="text-muted-foreground text-sm">/year</span>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white ml-1">2 months free</span>
-                </div>
+              {/* Billing toggle */}
+              <div className="flex items-center justify-center gap-3 mb-4">
                 <button
                   type="button"
-                  onClick={() => openCheckout(PADDLE_ANNUAL_PRICE_ID)}
-                  className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
+                  onClick={() => setBillingCycle("monthly")}
+                  className={`text-sm font-medium transition-colors ${billingCycle === "monthly" ? "text-foreground" : "text-muted-foreground"}`}
                 >
-                  Start your free trial — Annual
+                  Monthly
+                </button>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={billingCycle === "annual"}
+                  onClick={() => setBillingCycle(billingCycle === "annual" ? "monthly" : "annual")}
+                  className="relative w-11 h-6 rounded-full bg-muted border border-border transition-colors"
+                >
+                  <span
+                    className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-gradient-to-br from-nocodext to-nocodext-light transition-transform ${billingCycle === "annual" ? "translate-x-5" : ""}`}
+                  />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBillingCycle("annual")}
+                  className={`text-sm font-medium transition-colors flex items-center gap-2 ${billingCycle === "annual" ? "text-foreground" : "text-muted-foreground"}`}
+                >
+                  Annual
+                  <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white">2 months free</span>
                 </button>
               </div>
 
-              {/* Monthly CTA — secondary */}
-              <div>
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-2xl font-semibold text-muted-foreground">€15</span>
-                  <span className="text-muted-foreground text-sm">/month</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => openCheckout(PADDLE_MONTHLY_PRICE_ID)}
-                  className="block w-full text-center px-6 py-2.5 rounded-lg border border-border text-foreground text-sm font-medium transition-colors hover:bg-accent"
-                >
-                  Start your free trial — Monthly
-                </button>
+              <div className="flex items-baseline gap-2 mb-3 justify-center">
+                <span className="text-4xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">
+                  {billingCycle === "annual" ? "€150" : "€15"}
+                </span>
+                <span className="text-muted-foreground text-sm">{billingCycle === "annual" ? "/year" : "/month"}</span>
               </div>
+
+              <button
+                type="button"
+                onClick={() => openCheckout(billingCycle === "annual" ? PADDLE_ANNUAL_PRICE_ID : PADDLE_MONTHLY_PRICE_ID)}
+                className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
+              >
+                Start your free trial
+              </button>
 
               <p className="text-xs text-muted-foreground text-center mt-3">
                 14 days free. No surprises.
