@@ -204,7 +204,7 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-2 flex-1">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-2">
               {visibleFeatures.map((f) => (
                 <li key={f.title} className="flex gap-2 items-start">
                   <Check className="w-4 h-4 flex-shrink-0 text-nocodext mt-0.5" />
