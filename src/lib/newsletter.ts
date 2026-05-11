@@ -19,6 +19,7 @@ export const subscribeToNewsletter = async ({
   product,
   agencyName,
   bubbleProjects,
+  sawFullFeatures,
 }: NewsletterSubscription): Promise<NewsletterResponse> => {
   try {
     const response = await fetch('https://umnmvwyxjxswwidueaqy.supabase.co/functions/v1/newsletter-subscribe', {

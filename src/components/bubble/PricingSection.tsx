@@ -27,17 +27,17 @@ const individualFeatures = [
 ];
 
 const agencyFeatures = [
-  "One workspace per client project, automatically",
-  "Cross-project Command Palette — jump across all your client apps instantly",
-  "Client-ready ERD export — share your data model as PDF, DBML, or Notion page",
-  "Dependency graph — know what breaks before you change it",
-  "Client annotations on live preview — your client marks up the real app, you fix, no email thread",
-  "Canvas annotations — leave notes directly on the canvas, visible to your whole team",
-  "Auto-generated documentation — turn your schema into readable client deliverables",
-  "App health check — deliver clean, know what you're leaving behind",
+  { title: "Auto workspaces", desc: "one per client project" },
+  { title: "Cross-project palette", desc: "jump across all client apps" },
+  { title: "ERD export", desc: "PDF, DBML or Notion page" },
+  { title: "Dependency graph", desc: "know what breaks" },
+  { title: "Client annotations", desc: "markup on live preview" },
+  { title: "Canvas notes", desc: "shared with your team" },
+  { title: "Auto documentation", desc: "client-ready deliverables" },
+  { title: "App health check", desc: "ship clean" },
 ];
 
-const AGENCY_FEATURES_PREVIEW = 5;
+const AGENCY_FEATURES_PREVIEW = 4;
 
 const faqs = [
   {
@@ -135,10 +135,10 @@ const PricingSection = () => {
         </div>
 
         {/* Cards */}
-        <div className="flex flex-col md:flex-row gap-6 items-stretch">
+        <div className="grid md:grid-cols-5 gap-6 items-stretch">
 
           {/* Individual */}
-          <div className="flex-1 relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
+          <div className="md:col-span-2 relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
             <div className="rounded-2xl bg-card p-8 h-full flex flex-col">
               <div className="mb-4">
                 <h3 className="text-2xl font-bold mb-1 text-card-foreground">Individual</h3>
@@ -195,7 +195,7 @@ const PricingSection = () => {
           </div>
 
           {/* Agency */}
-          <div className="flex-1 relative rounded-2xl border border-border bg-muted/40 p-8 flex flex-col">
+          <div className="md:col-span-3 relative rounded-2xl border border-border bg-muted/40 p-8 flex flex-col">
             <span className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">
               Coming soon
             </span>
@@ -204,11 +204,14 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <ul className="space-y-2 mb-2 flex-1">
-              {visibleFeatures.map((item, i) => (
-                <li key={i} className="flex gap-3 items-start">
-                  <Check className="w-5 h-5 flex-shrink-0 text-nocodext mt-0.5" />
-                  <span className="text-muted-foreground text-sm">{item}</span>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-2 flex-1">
+              {visibleFeatures.map((f) => (
+                <li key={f.title} className="flex gap-2 items-start">
+                  <Check className="w-4 h-4 flex-shrink-0 text-nocodext mt-0.5" />
+                  <div className="text-sm leading-snug">
+                    <span className="font-medium text-foreground">{f.title}</span>
+                    <span className="text-muted-foreground"> — {f.desc}</span>
+                  </div>
                 </li>
               ))}
             </ul>
