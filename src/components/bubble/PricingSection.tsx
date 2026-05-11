@@ -237,7 +237,7 @@ const PricingSection = () => {
               </button>
             )}
 
-            <p className="text-sm text-muted-foreground italic mb-4">
+            <p className="text-sm text-muted-foreground italic mb-4 mt-auto pt-6">
               No pricing yet. Early access for agencies building on Bubble.
             </p>
 
