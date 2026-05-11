@@ -195,7 +195,7 @@ const PricingSection = () => {
           </div>
 
           {/* Agency */}
-          <div className="md:col-span-3 relative rounded-2xl border border-border bg-muted/40 p-8 flex flex-col">
+          <div className="relative rounded-2xl border border-border bg-muted/40 p-8 flex flex-col">
             <span className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">
               Coming soon
             </span>
