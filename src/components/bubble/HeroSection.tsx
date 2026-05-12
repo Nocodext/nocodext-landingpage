@@ -15,9 +15,9 @@ const HeroSection = () => {
             className="mt-20 text-2xl md:text-3xl font-semibold text-gray-700 font-inter animate-fade-in opacity-0"
             style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
           >
-            Yeah, we know.
+            Yeah, we know
             <br />
-            We built them instead of wait & rant.
+            ...so we built them instead of wait & rant.
           </p>
 
           <p className="mt-14 text-base md:text-lg font-semibold text-gray-700 font-inter">
