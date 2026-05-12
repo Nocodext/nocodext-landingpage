@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Check, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { Check, ArrowRight, ChevronDown, ChevronUp, Sparkles, FlaskConical } from "lucide-react";
 import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const PADDLE_TOKEN = "live_ff2b7db556e904af9910b776705";
@@ -17,24 +17,26 @@ declare global {
   }
 }
 
-const individualFeatures = [
+const individualFeatures: { title: string; desc: string; soon?: boolean; labs?: boolean }[] = [
   { title: "Data Browser", desc: "navigate your Bubble schema at a glance" },
   { title: "ERD", desc: "visual map of your data model and relationships" },
-  { title: "⌘ Command Palette", desc: "jump anywhere in your app instantly" },
+  { title: "⌘ Command Palette + Bookmarks", desc: "jump anywhere — pages, workflows, elements, datatypes, API endpoints" },
   { title: "API Connector + Postman", desc: "import cURL to build queries faster, test your API calls" },
   { title: "Page elements Revealer", desc: "see all elements on your page preview" },
-  { title: "Full Bookmarks", desc: "pages, workflows, elements, datatypes, API endpoints" },
+  { title: "Workflow Branches", desc: "visual map of your workflow logic and conditions", soon: true },
+  { title: "Option-sets bulk import", desc: "load your option sets from a file, not one by one", labs: true },
+  { title: "Fake-but-realistic data generator", desc: "seed your empty app with believable data to design and test faster", labs: true },
 ];
 
 const agencyFeatures = [
-  "One workspace per client project, automatically",
-  "Cross-project Command Palette — jump across all your client apps instantly",
-  "Client-ready ERD export — share your data model as PDF, DBML, or Notion page",
-  "Dependency graph — know what breaks before you change it",
-  "Client annotations on live preview — your client marks up the real app, you fix, no email thread",
-  "Canvas annotations — leave notes directly on the canvas, visible to your whole team",
-  "Auto-generated documentation — turn your schema into readable client deliverables",
-  "App health check — deliver clean, know what you're leaving behind",
+  { title: "One workspace per client project", desc: "automatically, no setup" },
+  { title: "Cross-project Command Palette", desc: "jump across all your client apps instantly" },
+  { title: "Client-ready ERD export", desc: "share your data model as PDF, DBML, or Notion page" },
+  { title: "Dependency graph", desc: "know what breaks before you change it" },
+  { title: "Client annotations on live preview", desc: "your client marks up the real app, you fix, no email thread" },
+  { title: "Canvas annotations", desc: "leave notes directly on the canvas, visible to your whole team" },
+  { title: "Auto-generated documentation", desc: "turn your schema into readable client deliverables" },
+  { title: "App health check", desc: "deliver clean, know what you're leaving behind" },
 ];
 
 const AGENCY_FEATURES_PREVIEW = 5;
@@ -46,7 +48,7 @@ const faqs = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. From your customer portal, one click. No forms, no questions.",
+    a: "Yes. Cancel before your next renewal, from your customer portal. One click, no forms, no questions.",
   },
   {
     q: "Does it work on all Bubble apps?",
@@ -54,9 +56,25 @@ const faqs = [
   },
 ];
 
-const inputClass = "flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-nocodext/30 disabled:opacity-50";
+const SoonBadge = ({ label = "soon" }: { label?: string }) => (
+  <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-sm shadow-purple-500/40 animate-pulse rotate-[-2deg]">
+    <Sparkles className="w-3 h-3" />
+    {label}
+  </span>
+);
+
+const LabsBadge = () => (
+  <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded border border-dashed border-amber-400/70 text-amber-400 rotate-[2deg] font-mono tracking-tight">
+    <FlaskConical className="w-3 h-3" />
+    labs
+  </span>
+);
+
+const inputClass =
+  "flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-nocodext/30 disabled:opacity-50";
 
 const PricingSection = () => {
+  const [annual, setAnnual] = useState(false);
   const [paddleReady, setPaddleReady] = useState(false);
   const [agencyEmail, setAgencyEmail] = useState("");
   const [agencyName, setAgencyName] = useState("");
@@ -110,15 +128,13 @@ const PricingSection = () => {
 
   useEffect(() => {
     if (!paddleReady) return;
-    if (window.location.hash === "#pay") {
+    const hash = window.location.hash;
+    if (hash === "#pay") {
       window.Paddle!.Checkout.open({ items: [{ priceId: PADDLE_MONTHLY_PRICE_ID, quantity: 1 }] });
+    } else if (hash === "#pay-annual") {
+      window.Paddle!.Checkout.open({ items: [{ priceId: PADDLE_ANNUAL_PRICE_ID, quantity: 1 }] });
     }
   }, [paddleReady]);
-
-  const openCheckout = (priceId: string) => {
-    if (!window.Paddle) return;
-    window.Paddle.Checkout.open({ items: [{ priceId, quantity: 1 }] });
-  };
 
   const visibleFeatures = featuresExpanded ? agencyFeatures : agencyFeatures.slice(0, AGENCY_FEATURES_PREVIEW);
 
@@ -129,119 +145,145 @@ const PricingSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">
             Simple, honest pricing
           </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Try it. If you can't live without it, keep it.
-          </p>
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">Try it. If you can't live without it, keep it.</p>
         </div>
 
         {/* Cards */}
-        <div className="flex flex-col md:flex-row gap-6 items-stretch">
-
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Individual */}
-          <div className="flex-1 relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
+          <div className="relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
             <div className="rounded-2xl bg-card p-8 h-full flex flex-col">
-              <div className="mb-4">
+              <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-1 text-card-foreground">Individual</h3>
                 <p className="text-sm text-muted-foreground">For freelancers and solo Bubble builders.</p>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
-                {individualFeatures.map((f) => (
-                  <li key={f.title} className="flex gap-3">
-                    <Check className="w-5 h-5 flex-shrink-0 text-nocodext mt-0.5" />
-                    <div>
-                      <span className="font-medium text-foreground">{f.title}</span>
-                      <span className="text-muted-foreground"> — {f.desc}</span>
-                    </div>
-                  </li>
-                ))}
+              <ul className="space-y-3 mb-6 flex-1">
+                {individualFeatures
+                  .filter((f) => !f.labs)
+                  .map((f) => (
+                    <li key={f.title} className="flex gap-3">
+                      <Check className="w-5 h-5 flex-shrink-0 mt-0.5 text-nocodext" />
+                      <div>
+                        <span className="font-medium text-foreground">{f.title}</span>
+                        <span className="text-muted-foreground"> — {f.desc}</span>
+                        {f.soon && (
+                          <span className="ml-2">
+                            <SoonBadge />
+                          </span>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+
+                <li className="pt-1">
+                  <div className="flex items-center gap-2 border-t border-orange-400/30 pt-3">
+                    <FlaskConical className="w-3.5 h-3.5 text-orange-500" />
+                    <span className="text-xs font-bold text-orange-500 uppercase tracking-widest font-mono">Experiments</span>
+                    <span className="text-xs text-muted-foreground italic">— no commitment</span>
+                  </div>
+                </li>
+
+                {individualFeatures
+                  .filter((f) => f.labs)
+                  .map((f) => (
+                    <li key={f.title} className="flex gap-3">
+                      <Check className="w-5 h-5 flex-shrink-0 mt-0.5 text-orange-500" />
+                      <div>
+                        <span className="font-medium text-foreground">{f.title}</span>
+                        <span className="text-muted-foreground"> — {f.desc}</span>
+                      </div>
+                    </li>
+                  ))}
               </ul>
 
-              {/* Annual CTA — highlighted */}
-              <div className="mb-3">
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">€150</span>
-                  <span className="text-muted-foreground text-sm">/year</span>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white ml-1">2 months free</span>
-                </div>
+              {/* Billing toggle */}
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <span className={`text-sm font-medium transition-colors ${!annual ? "text-foreground" : "text-muted-foreground"}`}>Monthly</span>
                 <button
-                  type="button"
-                  onClick={() => openCheckout(PADDLE_ANNUAL_PRICE_ID)}
-                  className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
+                  onClick={() => setAnnual(!annual)}
+                  role="switch"
+                  aria-checked={annual}
+                  aria-label="Toggle annual billing"
+                  className="relative inline-flex h-6 w-12 items-center rounded-full bg-gradient-to-r from-nocodext to-nocodext-light transition-colors"
                 >
-                  Start your free trial — Annual
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-md transition-transform ${annual ? "translate-x-7" : "translate-x-1"}`}
+                  />
                 </button>
+                <span className={`text-sm font-medium transition-colors ${annual ? "text-foreground" : "text-muted-foreground"}`}>Annual</span>
               </div>
 
-              {/* Monthly CTA — secondary */}
-              <div>
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-2xl font-semibold text-muted-foreground">€15</span>
-                  <span className="text-muted-foreground text-sm">/month</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => openCheckout(PADDLE_MONTHLY_PRICE_ID)}
-                  className="block w-full text-center px-6 py-2.5 rounded-lg border border-border text-foreground text-sm font-medium transition-colors hover:bg-accent"
-                >
-                  Start your free trial — Monthly
-                </button>
+              <div className="mb-6 flex items-baseline justify-center gap-3 flex-wrap">
+                <span className="text-5xl font-bold bg-gradient-to-r from-nocodext to-nocodext-light bg-clip-text text-transparent">
+                  {annual ? "149€" : "15€"}
+                </span>
+                <span className="text-muted-foreground">{annual ? "/year" : "/month"}</span>
+                {annual && (
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white">
+                    2 months free
+                  </span>
+                )}
               </div>
 
-              <p className="text-xs text-muted-foreground text-center mt-3">
-                14 days free. No surprises.
-              </p>
+              <a
+                href={annual ? "https://nocodext.com/bubble/#pay-annual" : "https://nocodext.com/bubble/#pay"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext-dark to-nocodext-light text-white font-medium transition-opacity hover:opacity-90"
+              >
+                Start your free trial
+              </a>
+              <p className="text-xs text-muted-foreground text-center mt-3">14 days free. Then {annual ? "149€/year" : "15€/month"}. No surprises.</p>
             </div>
           </div>
 
           {/* Agency */}
-          <div className="flex-1 relative rounded-2xl border border-border bg-muted/40 p-8 flex flex-col">
-            <span className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground">
-              Coming soon
+          <div className="relative rounded-2xl border border-border bg-muted/40 p-8 flex flex-col">
+            <span className="absolute top-4 right-4">
+              <SoonBadge label="coming soon" />
             </span>
             <div className="mb-6 pt-2">
               <h3 className="text-2xl font-bold mb-2 text-foreground">Agency</h3>
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <ul className="space-y-2 mb-2 flex-1">
-              {visibleFeatures.map((item, i) => (
-                <li key={i} className="flex gap-3 items-start">
+            <ul className="space-y-3 flex-1">
+              {visibleFeatures.map((f) => (
+                <li key={f.title} className="flex gap-3">
                   <Check className="w-5 h-5 flex-shrink-0 text-nocodext mt-0.5" />
-                  <span className="text-muted-foreground text-sm">{item}</span>
+                  <div>
+                    <span className="font-medium text-foreground">{f.title}</span>
+                    <span className="text-muted-foreground"> — {f.desc}</span>
+                  </div>
                 </li>
               ))}
             </ul>
 
-            {!featuresExpanded && (
+            {!featuresExpanded ? (
               <button
                 type="button"
                 onClick={handleSeeMore}
-                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors mb-5 mt-1"
+                className="flex items-center gap-1.5 text-sm font-semibold text-nocodext hover:text-nocodext/80 transition-colors mt-4 mb-5"
               >
-                <ChevronDown className="w-3.5 h-3.5" />
+                <ChevronDown className="w-4 h-4" />
                 See {agencyFeatures.length - AGENCY_FEATURES_PREVIEW} more features
               </button>
-            )}
-            {featuresExpanded && (
+            ) : (
               <button
                 type="button"
                 onClick={() => setFeaturesExpanded(false)}
-                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors mb-5 mt-1"
+                className="flex items-center gap-1.5 text-sm font-semibold text-nocodext hover:text-nocodext/80 transition-colors mt-4 mb-5"
               >
-                <ChevronUp className="w-3.5 h-3.5" />
+                <ChevronUp className="w-4 h-4" />
                 Show less
               </button>
             )}
 
-            <p className="text-sm text-muted-foreground italic mb-4">
-              No pricing yet. Early access for agencies building on Bubble.
-            </p>
+            <p className="text-sm text-muted-foreground italic mb-4">No pricing yet. Early access for agencies building on Bubble.</p>
 
             {agencyDone ? (
-              <p className="text-sm text-center text-nocodext font-medium py-3">
-                You're on the list. We'll be in touch.
-              </p>
+              <p className="text-sm text-center text-nocodext font-medium py-3">You're on the list. We'll be in touch.</p>
             ) : (
               <form onSubmit={handleAgencyWaitlist} className="space-y-2">
                 <div className="flex gap-2">
@@ -263,6 +305,8 @@ const PricingSection = () => {
                     disabled={agencySubmitting}
                     className={inputClass}
                   />
+                </div>
+                <div className="flex gap-2">
                   <select
                     required
                     value={bubbleProjects}
@@ -270,24 +314,28 @@ const PricingSection = () => {
                     disabled={agencySubmitting}
                     className={inputClass}
                   >
-                    <option value="">Active Bubble projects...</option>
+                    <option value="">Active projects...</option>
                     <option value="1-3">1–3 projects</option>
                     <option value="4-10">4–10 projects</option>
                     <option value="10+">10+ projects</option>
                   </select>
+                  <button
+                    type="submit"
+                    disabled={agencySubmitting}
+                    className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext-dark to-nocodext-light text-white text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50 shrink-0"
+                  >
+                    {agencySubmitting ? (
+                      "..."
+                    ) : (
+                      <>
+                        Join the waitlist <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
                 </div>
-                <button
-                  type="submit"
-                  disabled={agencySubmitting}
-                  className="w-1/2 flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext to-nocodext-light text-white text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
-                >
-                  {agencySubmitting ? "..." : <>Join the waitlist <ArrowRight className="w-4 h-4" /></>}
-                </button>
               </form>
             )}
-            {agencyError && (
-              <p className="text-xs text-red-500 mt-2">{agencyError}</p>
-            )}
+            {agencyError && <p className="text-xs text-red-500 mt-2">{agencyError}</p>}
           </div>
         </div>
 
