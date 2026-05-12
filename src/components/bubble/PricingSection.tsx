@@ -39,7 +39,7 @@ const agencyFeatures = [
   { title: "App health check", desc: "deliver clean, know what you're leaving behind" },
 ];
 
-const AGENCY_FEATURES_PREVIEW = 5;
+const AGENCY_FEATURES_PREVIEW = 6;
 
 const faqs = [
   {
@@ -60,13 +60,6 @@ const SoonBadge = ({ label = "soon" }: { label?: string }) => (
   <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-sm shadow-purple-500/40 animate-pulse rotate-[-2deg]">
     <Sparkles className="w-3 h-3" />
     {label}
-  </span>
-);
-
-const LabsBadge = () => (
-  <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded border border-dashed border-amber-400/70 text-amber-400 rotate-[2deg] font-mono tracking-tight">
-    <FlaskConical className="w-3 h-3" />
-    labs
   </span>
 );
 
@@ -149,7 +142,7 @@ const PricingSection = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
           {/* Individual */}
           <div className="relative rounded-2xl p-[2px] bg-gradient-to-br from-nocodext to-nocodext-light shadow-xl shadow-nocodext/10">
             <div className="rounded-2xl bg-card p-8 h-full flex flex-col">
@@ -159,22 +152,20 @@ const PricingSection = () => {
               </div>
 
               <ul className="space-y-3 mb-6 flex-1">
-                {individualFeatures
-                  .filter((f) => !f.labs)
-                  .map((f) => (
-                    <li key={f.title} className="flex gap-3">
+                {individualFeatures.filter((f) => !f.labs).map((f) => (
+                  <li key={f.title} className="flex gap-3">
+                    {f.soon ? (
+                      <Sparkles className="w-5 h-5 flex-shrink-0 mt-0.5 text-purple-400 animate-pulse" />
+                    ) : (
                       <Check className="w-5 h-5 flex-shrink-0 mt-0.5 text-nocodext" />
-                      <div>
-                        <span className="font-medium text-foreground">{f.title}</span>
-                        <span className="text-muted-foreground"> — {f.desc}</span>
-                        {f.soon && (
-                          <span className="ml-2">
-                            <SoonBadge />
-                          </span>
-                        )}
-                      </div>
-                    </li>
-                  ))}
+                    )}
+                    <div>
+                      <span className="font-medium text-foreground">{f.title}</span>
+                      <span className="text-muted-foreground"> — {f.desc}</span>
+                      {f.soon && <span className="ml-2"><SoonBadge /></span>}
+                    </div>
+                  </li>
+                ))}
 
                 <li className="pt-1">
                   <div className="flex items-center gap-2 border-t border-orange-400/30 pt-3">
@@ -184,34 +175,47 @@ const PricingSection = () => {
                   </div>
                 </li>
 
-                {individualFeatures
-                  .filter((f) => f.labs)
-                  .map((f) => (
-                    <li key={f.title} className="flex gap-3">
-                      <Check className="w-5 h-5 flex-shrink-0 mt-0.5 text-orange-500" />
-                      <div>
-                        <span className="font-medium text-foreground">{f.title}</span>
-                        <span className="text-muted-foreground"> — {f.desc}</span>
-                      </div>
-                    </li>
-                  ))}
+                {individualFeatures.filter((f) => f.labs).map((f) => (
+                  <li key={f.title} className="flex gap-3">
+                    <Check className="w-5 h-5 flex-shrink-0 mt-0.5 text-orange-500" />
+                    <div>
+                      <span className="font-medium text-foreground">{f.title}</span>
+                      <span className="text-muted-foreground"> — {f.desc}</span>
+                    </div>
+                  </li>
+                ))}
               </ul>
 
               {/* Billing toggle */}
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <span className={`text-sm font-medium transition-colors ${!annual ? "text-foreground" : "text-muted-foreground"}`}>Monthly</span>
+              <div className="flex items-center justify-center gap-3 mb-4">
                 <button
-                  onClick={() => setAnnual(!annual)}
+                  type="button"
+                  onClick={() => setAnnual(false)}
+                  className={`text-sm font-medium transition-colors ${!annual ? "text-foreground" : "text-muted-foreground"}`}
+                >
+                  Monthly
+                </button>
+                <button
+                  type="button"
                   role="switch"
                   aria-checked={annual}
-                  aria-label="Toggle annual billing"
-                  className="relative inline-flex h-6 w-12 items-center rounded-full bg-gradient-to-r from-nocodext to-nocodext-light transition-colors"
+                  onClick={() => setAnnual(!annual)}
+                  className="relative w-11 h-6 rounded-full bg-muted border border-border transition-colors"
                 >
                   <span
-                    className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-md transition-transform ${annual ? "translate-x-7" : "translate-x-1"}`}
+                    className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-gradient-to-br from-nocodext-dark to-nocodext-light transition-transform ${annual ? "translate-x-5" : ""}`}
                   />
                 </button>
-                <span className={`text-sm font-medium transition-colors ${annual ? "text-foreground" : "text-muted-foreground"}`}>Annual</span>
+                <button
+                  type="button"
+                  onClick={() => setAnnual(true)}
+                  className={`text-sm font-medium transition-colors flex items-center gap-2 ${annual ? "text-foreground" : "text-muted-foreground"}`}
+                >
+                  Annual
+                  <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white">
+                    2 months free
+                  </span>
+                </button>
               </div>
 
               <div className="mb-6 flex items-baseline justify-center gap-3 flex-wrap">
@@ -219,11 +223,6 @@ const PricingSection = () => {
                   {annual ? "149€" : "15€"}
                 </span>
                 <span className="text-muted-foreground">{annual ? "/year" : "/month"}</span>
-                {annual && (
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-gradient-to-r from-nocodext to-nocodext-light text-white">
-                    2 months free
-                  </span>
-                )}
               </div>
 
               <a
@@ -234,7 +233,9 @@ const PricingSection = () => {
               >
                 Start your free trial
               </a>
-              <p className="text-xs text-muted-foreground text-center mt-3">14 days free. Then {annual ? "149€/year" : "15€/month"}. No surprises.</p>
+              <p className="text-xs text-muted-foreground text-center mt-3">
+                14 days free. Then {annual ? "149€/year" : "15€/month"}. No surprises.
+              </p>
             </div>
           </div>
 
@@ -280,13 +281,15 @@ const PricingSection = () => {
               </button>
             )}
 
-            <p className="text-sm text-muted-foreground italic mb-4">No pricing yet. Early access for agencies building on Bubble.</p>
+            <p className="text-sm text-muted-foreground italic mt-auto pt-6 mb-4">
+              No pricing yet. Early access for agencies building on Bubble.
+            </p>
 
             {agencyDone ? (
               <p className="text-sm text-center text-nocodext font-medium py-3">You're on the list. We'll be in touch.</p>
             ) : (
               <form onSubmit={handleAgencyWaitlist} className="space-y-2">
-                <div className="flex gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   <input
                     type="text"
                     required
@@ -306,33 +309,25 @@ const PricingSection = () => {
                     className={inputClass}
                   />
                 </div>
-                <div className="flex gap-2">
-                  <select
-                    required
-                    value={bubbleProjects}
-                    onChange={(e) => setBubbleProjects(e.target.value)}
-                    disabled={agencySubmitting}
-                    className={inputClass}
-                  >
-                    <option value="">Active projects...</option>
-                    <option value="1-3">1–3 projects</option>
-                    <option value="4-10">4–10 projects</option>
-                    <option value="10+">10+ projects</option>
-                  </select>
-                  <button
-                    type="submit"
-                    disabled={agencySubmitting}
-                    className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext-dark to-nocodext-light text-white text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50 shrink-0"
-                  >
-                    {agencySubmitting ? (
-                      "..."
-                    ) : (
-                      <>
-                        Join the waitlist <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-                </div>
+                <select
+                  required
+                  value={bubbleProjects}
+                  onChange={(e) => setBubbleProjects(e.target.value)}
+                  disabled={agencySubmitting}
+                  className={`${inputClass} w-full`}
+                >
+                  <option value="">Active Bubble projects...</option>
+                  <option value="1-3">1–3 projects</option>
+                  <option value="4-10">4–10 projects</option>
+                  <option value="10+">10+ projects</option>
+                </select>
+                <button
+                  type="submit"
+                  disabled={agencySubmitting}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-nocodext-dark to-nocodext-light text-white text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
+                >
+                  {agencySubmitting ? "..." : <>Join the waitlist <ArrowRight className="w-4 h-4" /></>}
+                </button>
               </form>
             )}
             {agencyError && <p className="text-xs text-red-500 mt-2">{agencyError}</p>}
