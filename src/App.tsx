@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "@/components/bubble/Header";
 import Footer from "@/components/bubble/Footer";
 import Bubble from "./pages/Bubble";
+import BubbleRealityChecker from "./pages/BubbleRealityChecker";
 import PinNpm from "./pages/PinNpm";
 import Watools from "./pages/Watools";
 import Airtable from "./pages/Airtable";
@@ -34,6 +35,7 @@ const App = () => (
               <Routes>
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="/bubble" element={<Bubble />} />
+                <Route path="/bubble/reality-checker" element={<BubbleRealityChecker />} />
                 <Route path="/pinnpm" element={<PinNpm />} />
                 <Route path="/watools" element={<Watools />} />
                 <Route path="/airtable" element={<Airtable />} />
