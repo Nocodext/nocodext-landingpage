@@ -368,6 +368,15 @@ const BubbleRealityChecker = () => {
               .drw-scroll::-webkit-scrollbar { width: 4px; }
               .drw-scroll::-webkit-scrollbar-track { background: #000; border-radius: 2px; }
               .drw-scroll::-webkit-scrollbar-thumb { background: #4ade80; border-radius: 2px; }
+              @keyframes red-warning-glow {
+                0%, 100% { box-shadow: 0 0 18px -4px rgba(239,68,68,0.2), 0 0 0 1px rgba(239,68,68,0.12); }
+                50%       { box-shadow: 0 0 40px -2px rgba(239,68,68,0.55), 0 0 0 1px rgba(239,68,68,0.4); }
+              }
+              .rc-warning-panel { animation: red-warning-glow 2.2s ease-in-out infinite; }
+              @keyframes dash-march {
+                to { stroke-dashoffset: -22; }
+              }
+              .ldr-path { animation: dash-march 1.8s linear infinite; }
             `}</style>
             {gotoArrow && (
               <div
@@ -741,69 +750,162 @@ const BubbleRealityChecker = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 items-start">
+        <div className="relative grid md:grid-cols-2 gap-6 items-start">
 
-          {/* LEFT — Bubble expression in element properties */}
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
-            <div className="px-4 py-2.5 border-b border-white/5 text-[10px] font-mono text-white/30 uppercase tracking-wider">
-              Bubble — Element properties
+          {/* LEFT — Bubble Property Editor mockup */}
+          <div className="rounded-xl overflow-hidden" style={{ background: "#F2F7FF", padding: "24px 20px", fontFamily: "Inter, system-ui, sans-serif" }}>
+          <div className="rounded-xl overflow-hidden shadow-xl" style={{ background: "#f3f4f6", border: "1px solid #d1d5db" }}>
+            {/* Title bar */}
+            <div style={{ background: "#ffffff", borderBottom: "1px solid #e5e7eb", padding: "7px 10px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                <div style={{ width: 18, height: 18, background: "#4f46e5", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <span style={{ color: "#fff", fontSize: 10, fontWeight: 700, lineHeight: 1 }}>T</span>
+                </div>
+                <span style={{ fontSize: 11, fontWeight: 600, color: "#111827" }}>Text — IBAN display</span>
+                <span style={{ fontSize: 7.5, background: "#ede9fe", color: "#7c3aed", borderRadius: 3, padding: "1px 5px", fontWeight: 700, letterSpacing: "0.03em" }}>BETA</span>
+              </div>
+              <span style={{ color: "#9ca3af", fontSize: 16, lineHeight: 1, cursor: "pointer" }}>···</span>
             </div>
-            <div className="p-4 space-y-3">
-              {/* Element label */}
-              <div className="text-[10px] text-white/40">Text element · Content</div>
 
-              {/* Expression chip */}
-              <div className="flex flex-wrap items-center gap-1 font-mono text-[11px]">
-                {[
-                  { label: "Current User", color: "bg-blue-500/20 text-blue-300 border-blue-500/30" },
-                  { label: "'s", color: "text-white/30" },
-                  { label: "Project", color: "bg-violet-500/20 text-violet-300 border-violet-500/30" },
-                  { label: "'s", color: "text-white/30" },
-                  { label: "Client", color: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30" },
-                  { label: "'s", color: "text-white/30" },
-                  { label: "bank_iban", color: "bg-red-500/20 text-red-300 border-red-500/30" },
-                ].map(({ label, color }, i) => (
-                  label === "'s"
-                    ? <span key={i} className="text-white/25">'s</span>
-                    : <span key={i} className={`px-2 py-0.5 rounded border text-[10px] ${color}`}>{label}</span>
-                ))}
+            {/* Tab bar */}
+            <div style={{ background: "#ffffff", borderBottom: "1px solid #e5e7eb", display: "flex" }}>
+              {[
+                { label: "Visual", active: true },
+                { label: "Interaction", active: false },
+                { label: "Conditional", active: false, badge: 1 },
+              ].map(({ label, active, badge }) => (
+                <div key={label} style={{
+                  padding: "6px 12px",
+                  fontSize: 10,
+                  fontWeight: active ? 600 : 400,
+                  color: active ? "#2563eb" : "#6b7280",
+                  borderBottom: active ? "2px solid #2563eb" : "2px solid transparent",
+                  cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: 4,
+                }}>
+                  {label}
+                  {badge != null && <span style={{ background: "#dbeafe", color: "#1d4ed8", borderRadius: 8, padding: "0 4px", fontSize: 7, fontWeight: 700 }}>{badge}</span>}
+                </div>
+              ))}
+            </div>
+
+            {/* Content section */}
+            <div style={{ borderBottom: "1px solid #e5e7eb" }}>
+              <div style={{ padding: "5px 10px", display: "flex", alignItems: "center", gap: 5, background: "#f9fafb", borderBottom: "1px solid #e5e7eb" }}>
+                <span style={{ color: "#6b7280", fontSize: 8 }}>▼</span>
+                <span style={{ fontSize: 8.5, fontWeight: 700, color: "#374151", textTransform: "uppercase", letterSpacing: "0.06em" }}>Content</span>
               </div>
 
-              {/* Chain diagram */}
-              <div className="mt-4 space-y-0">
-                {[
-                  { type: "User", fields: ["id", "email", "salary", "password_hash", "stripe_id", "…"], highlight: false },
-                  { type: "Project", fields: ["id", "name", "budget", "margin", "client_notes", "…"], highlight: false },
-                  { type: "Client", fields: ["id", "name", "bank_iban", "tax_id", "contract_pdf", "…"], highlight: true },
-                ].map(({ type, fields, highlight }, i) => (
-                  <div key={type}>
-                    <div className={`rounded-lg border p-3 ${highlight ? "border-red-500/30 bg-red-500/5" : "border-white/10 bg-white/[0.02]"}`}>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className={`text-[10px] font-mono font-semibold ${highlight ? "text-red-300" : "text-white/60"}`}>{type}</span>
-                        <span className="text-[8px] text-white/20 font-mono">full object loaded</span>
-                      </div>
-                      <div className="flex flex-wrap gap-1">
-                        {fields.map((f) => (
-                          <span key={f} className={`text-[8px] font-mono px-1.5 py-0.5 rounded ${f === "bank_iban" ? "bg-red-500/20 text-red-300 border border-red-500/30" : "bg-white/5 text-white/25"}`}>{f}</span>
-                        ))}
-                      </div>
+              <div style={{ padding: "8px 10px 10px" }}>
+                <div style={{ fontSize: 9, color: "#6b7280", marginBottom: 5, fontWeight: 500 }}>Text</div>
+
+                {/* .text-composer mockup */}
+                <div style={{
+                  background: "#ffffff",
+                  border: "1.5px solid #2563eb",
+                  borderRadius: 5,
+                  padding: "8px 10px",
+                  minHeight: 58,
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "flex-start",
+                  gap: 3,
+                  boxShadow: "0 0 0 3px rgba(37,99,235,0.08)",
+                }}>
+                  {[
+                    { label: "Current User",    bg: "#dbeafe", text: "#1e40af", border: "#93c5fd" },
+                    { label: "'s Project",      bg: "#ede9fe", text: "#5b21b6", border: "#c4b5fd" },
+                    { label: "'s Client",       bg: "#f0fdf4", text: "#166534", border: "#86efac" },
+                    { label: "'s company_name", bg: "#f0fdf4", text: "#166534", border: "#86efac" },
+                  ].map(({ label, bg, text, border }, i) => (
+                    <span key={i} style={{
+                      display: "inline-flex", alignItems: "center",
+                      background: bg, color: text, border: `1px solid ${border}`,
+                      borderRadius: 4, padding: "2px 7px",
+                      fontSize: 10, fontWeight: 500, whiteSpace: "nowrap",
+                      lineHeight: 1.5,
+                    }}>
+                      {label}
+                    </span>
+                  ))}
+                </div>
+
+                <div style={{ marginTop: 4, fontSize: 8, color: "#9ca3af", display: "flex", alignItems: "center", gap: 3 }}>
+                  <span style={{ fontWeight: 600 }}>Aa</span>
+                  <span>Insert dynamic data</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Configure section */}
+            <div style={{ borderBottom: "1px solid #e5e7eb", pointerEvents: "none", userSelect: "none" }}>
+              <div style={{ padding: "5px 10px", display: "flex", alignItems: "center", gap: 5, background: "#f3f4f6", borderBottom: "1px solid #e5e7eb" }}>
+                <span style={{ color: "#9ca3af", fontSize: 8 }}>▼</span>
+                <span style={{ fontSize: 8.5, fontWeight: 700, color: "#374151", textTransform: "uppercase", letterSpacing: "0.06em" }}>Configure</span>
+              </div>
+              <div style={{ padding: "6px 10px", background: "#fff", display: "flex", flexDirection: "column", gap: 6 }}>
+                {/* Multiline row */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <span style={{ fontSize: 9.5, color: "#6b7280" }}>Multiline</span>
+                  <div style={{ width: 28, height: 15, background: "#e5e7eb", borderRadius: 8, position: "relative" }}>
+                    <div style={{ width: 11, height: 11, background: "#fff", borderRadius: "50%", position: "absolute", top: 2, left: 2, boxShadow: "0 1px 2px rgba(0,0,0,0.15)" }} />
+                  </div>
+                </div>
+                {/* Max length row */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                  <span style={{ fontSize: 9.5, color: "#6b7280", whiteSpace: "nowrap" }}>Max characters</span>
+                  <div style={{ flex: 1, height: 22, background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: 4 }} />
+                </div>
+                {/* Truncate row */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <span style={{ fontSize: 9.5, color: "#6b7280" }}>Truncate text</span>
+                  <div style={{ width: 28, height: 15, background: "#e5e7eb", borderRadius: 8, position: "relative" }}>
+                    <div style={{ width: 11, height: 11, background: "#fff", borderRadius: "50%", position: "absolute", top: 2, left: 2, boxShadow: "0 1px 2px rgba(0,0,0,0.15)" }} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Size section */}
+            <div style={{ borderBottom: "1px solid #e5e7eb", pointerEvents: "none", userSelect: "none" }}>
+              <div style={{ padding: "5px 10px", display: "flex", alignItems: "center", gap: 5, background: "#f3f4f6", borderBottom: "1px solid #e5e7eb" }}>
+                <span style={{ color: "#9ca3af", fontSize: 8 }}>▼</span>
+                <span style={{ fontSize: 8.5, fontWeight: 700, color: "#374151", textTransform: "uppercase", letterSpacing: "0.06em" }}>Size</span>
+              </div>
+              <div style={{ padding: "6px 10px", background: "#fff", display: "flex", flexDirection: "column", gap: 6 }}>
+                {/* Width row */}
+                {[{ label: "Width" }, { label: "Height" }].map(({ label }) => (
+                  <div key={label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+                    <span style={{ fontSize: 9.5, color: "#6b7280", width: 36 }}>{label}</span>
+                    <div style={{ display: "flex", flex: 1, border: "1px solid #e5e7eb", borderRadius: 5, overflow: "hidden" }}>
+                      {["Fixed", "Fit", "Fill"].map((opt, i) => (
+                        <div key={opt} style={{
+                          flex: 1, textAlign: "center", fontSize: 8.5, padding: "3px 0",
+                          background: opt === "Fit" ? "#eff6ff" : "#fff",
+                          color: opt === "Fit" ? "#2563eb" : "#9ca3af",
+                          fontWeight: opt === "Fit" ? 600 : 400,
+                          borderRight: i < 2 ? "1px solid #e5e7eb" : "none",
+                        }}>{opt}</div>
+                      ))}
                     </div>
-                    {i < 2 && (
-                      <div className="flex items-center gap-1 py-1 pl-4">
-                        <div className="w-px h-3 bg-white/10" />
-                        <span className="text-[8px] text-white/20 font-mono">'s</span>
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>
             </div>
+
+            {/* Caption */}
+            <div style={{ padding: "6px 10px", background: "#f9fafb", borderTop: "1px solid #e5e7eb" }}>
+              <span style={{ fontSize: 8, color: "#9ca3af" }}>
+                Bubble property editor · <span style={{ color: "#d97706", fontWeight: 600 }}>3 undeclared types in chain</span>
+              </span>
+            </div>
+          </div>
           </div>
 
           {/* RIGHT — What RC sees in the payload */}
-          <div className="rounded-xl border border-violet-500/30 bg-[#0c0c18] overflow-hidden shadow-[0_0_40px_-10px_rgba(139,92,246,0.2)]">
+          <div className="rc-warning-panel rounded-xl border border-red-500/40 bg-[#16162a] overflow-hidden">
             {/* RC header */}
-            <div className="px-4 py-2.5 border-b border-white/5 flex items-center justify-between">
+            <div className="px-4 py-2.5 border-b border-white/8 flex items-center justify-between" style={{ background: "#1c1c35" }}>
               <div className="flex items-center gap-2">
                 <img src="/nocodext-logo-small.png" alt="nocodext" style={{ height: 12, width: "auto" }} />
                 <span className="text-[10px] font-mono font-semibold text-white/80">Reality Checker</span>
@@ -814,47 +916,99 @@ const BubbleRealityChecker = () => {
               </div>
             </div>
 
-            <div className="p-4 space-y-3">
-              <div className="text-[9px] text-white/30 font-mono">API response intercepted · /api/1.1/wf/get-dashboard</div>
+            <div className="p-5 space-y-4">
+              <div className="text-[10px] text-white/35 font-mono">API response intercepted · /api/1.1/wf/load-project</div>
 
-              {/* Collateral fields detected */}
-              <div className="space-y-1.5">
-                <div className="text-[9px] text-white/40 font-mono uppercase tracking-wider mb-2">Fields in payload</div>
-                {[
-                  { path: "User",    field: "salary",        severity: "high",     note: null },
-                  { path: "Project", field: "margin",        severity: "medium",   note: null },
-                  { path: "Project", field: "client_notes",  severity: "medium",   note: null },
-                  { path: "Client",  field: "bank_iban",     severity: "critical", note: "no rule on Client" },
-                  { path: "Client",  field: "tax_id",        severity: "high",     note: "no rule on Client" },
-                  { path: "Client",  field: "contract_pdf",  severity: "medium",   note: "no rule on Client" },
-                ].map(({ path, field, severity, note }) => (
-                  <div key={`${path}.${field}`} className="flex flex-col gap-0.5 px-2 py-1.5 rounded bg-white/[0.03] border border-white/5">
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-1.5 min-w-0">
-                        <span className="text-[8px] font-mono text-white/25 shrink-0">{path} →</span>
-                        <span className="text-[9px] font-mono text-white/60 truncate">{field}</span>
-                      </div>
-                      <span className={`text-[7.5px] font-mono px-1.5 py-0.5 rounded border whitespace-nowrap shrink-0 ${
-                        severity === "critical" ? "text-red-300 bg-red-500/10 border-red-500/20" :
-                        severity === "high"     ? "text-orange-300 bg-orange-500/10 border-orange-500/20" :
-                                                 "text-yellow-300 bg-yellow-500/10 border-yellow-500/20"
-                      }`}>
-                        {severity === "critical" ? "● Critical" : severity === "high" ? "● High" : "● Medium"}
-                      </span>
-                    </div>
-                    {note && (
-                      <span className="text-[7px] font-mono text-violet-400/70 pl-0.5">→ fix: add privacy rule on <strong className="text-violet-300">Client</strong></span>
-                    )}
+              {/* What was requested */}
+              <div>
+                <div className="text-[9px] text-white/40 font-mono uppercase tracking-wider mb-2">Requested field</div>
+                <div className="flex items-center justify-between gap-2 px-3 py-2 rounded bg-green-500/5 border border-green-500/20">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono text-white/30">Client →</span>
+                    <span className="text-[13px] font-mono font-semibold text-green-300">company_name</span>
                   </div>
-                ))}
+                  <span className="text-[9px] font-mono text-green-400/80 px-2 py-0.5 rounded border border-green-500/20 bg-green-500/10 whitespace-nowrap">✓ as expected</span>
+                </div>
               </div>
 
-              <div className="pt-2 border-t border-white/5 flex items-center justify-between">
-                <span className="text-[8px] text-white/20 font-mono">6 fields · 3 types traversed</span>
-                <span className="text-[8px] text-red-400 font-mono font-medium">⚠ Review chain</span>
+              {/* Silent leak alert */}
+              <div className="flex items-start gap-3 px-3 py-3 rounded-lg bg-red-500/10 border border-red-500/25">
+                <span className="text-red-400 text-[14px] shrink-0 mt-0.5">⚠</span>
+                <div>
+                  <div className="text-[11px] font-mono text-red-300 font-semibold leading-snug">Client object loaded in full</div>
+                  <div className="text-[9.5px] font-mono text-white/40 mt-1">No privacy rule on this type — full object exposed</div>
+                </div>
+              </div>
+
+              {/* Silently exposed fields */}
+              <div>
+                <div className="text-[9px] text-white/40 font-mono uppercase tracking-wider mb-2">Silently in payload</div>
+                <div className="space-y-1.5">
+                  {/* bank_iban — hero row */}
+                  <div className="flex items-center justify-between gap-2 px-3 py-3 rounded-lg bg-red-500/12 border border-red-500/35 shadow-[0_0_20px_-4px_rgba(239,68,68,0.35)]">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="text-[10px] font-mono text-white/35 shrink-0">Client →</span>
+                      <span className="text-[15px] font-mono font-bold text-red-200 tracking-tight">bank_iban</span>
+                    </div>
+                    <span className="text-[9px] font-mono text-red-300 bg-red-500/15 border border-red-500/35 px-2 py-0.5 rounded whitespace-nowrap shrink-0 font-semibold">● Critical</span>
+                  </div>
+                  {/* other fields */}
+                  {[
+                    { field: "tax_id",       severity: "high"   },
+                    { field: "contract_pdf", severity: "medium" },
+                    { field: "health_id",    severity: "high"   },
+                  ].map(({ field, severity }) => (
+                    <div key={field} className="flex items-center justify-between gap-2 px-3 py-2 rounded bg-white/[0.04] border border-white/8">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="text-[10px] font-mono text-white/25 shrink-0">Client →</span>
+                        <span className="text-[12px] font-mono text-white/60 truncate">{field}</span>
+                      </div>
+                      <span className={`text-[9px] font-mono px-2 py-0.5 rounded border whitespace-nowrap shrink-0 ${
+                        severity === "high"   ? "text-orange-300 bg-orange-500/10 border-orange-500/20" :
+                                               "text-yellow-300 bg-yellow-500/10 border-yellow-500/20"
+                      }`}>
+                        {severity === "high" ? "● High" : "● Medium"}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-white/8 flex items-center justify-between">
+                <span className="text-[9.5px] text-white/25 font-mono">Client · 4 unintended fields</span>
+                <span className="text-[9.5px] text-violet-400 font-mono font-medium">→ add rule on Client</span>
               </div>
             </div>
           </div>
+
+          {/* Leader line — RC warning → bottom of 's Client chip (big curve below)
+               max-w-5xl layout: ~976px total, cols ~476px each, gap 24px
+               Start : left edge of RC warning block ≈ (512, 185)
+               End   : bottom of 's Client chip       ≈ (245, 163)
+               Curve : dips to y≈330 for a wide U-arc */}
+          <svg
+            className="absolute inset-0 w-full pointer-events-none overflow-visible hidden md:block"
+            style={{ zIndex: 20, height: "120%" }}
+            aria-hidden="true"
+          >
+            {/* Dot at source (RC panel) */}
+            <circle cx="512" cy="185" r="4" fill="rgba(239,68,68,0.75)" />
+            {/* Dashed animated body — stops exactly at arrowhead base (y=181) */}
+            <path
+              className="ldr-path"
+              d="M 512 185 L 512 218 Q 512 232 497 232 L 235 232 Q 220 232 220 218 L 220 181"
+              fill="none"
+              stroke="rgba(239,68,68,0.7)"
+              strokeWidth="4"
+              strokeDasharray="14 8"
+              strokeLinecap="butt"
+            />
+            {/* Arrowhead as standalone polygon — tip at y=168, base at y=183 */}
+            <polygon
+              points="220,168 210,184 230,184"
+              fill="rgba(239,68,68,0.85)"
+            />
+          </svg>
 
         </div>
       </section>
