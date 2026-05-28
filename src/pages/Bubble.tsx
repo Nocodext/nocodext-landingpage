@@ -9,6 +9,7 @@ import CTASection from "@/components/bubble/CTASection";
 import StayInformed from "@/components/bubble/StayInformed";
 import ManifestoSection from "@/components/bubble/ManifestoSection";
 import PricingSection from "@/components/bubble/PricingSection";
+import WYSIWYGTeaser from "@/components/bubble/WYSIWYGTeaser";
 
 const features = [
   {
@@ -122,6 +123,8 @@ const Bubble = () => {
         initialIndex={tabGalleryInitialIndex}
       />
       
+      <WYSIWYGTeaser />
+
       <CTASection />
       
       <PricingSection />

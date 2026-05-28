@@ -263,6 +263,32 @@ const BubbleRealityChecker = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
           In development — join the waitlist
         </div>
+
+        {/* WYSIWYG rebond — narrative echo from the Bubble landing page */}
+        <div className="mb-10">
+          <div className="relative inline-block">
+            <span
+              className="relative z-10 inline-block px-3 py-1 bg-white/10 text-white/30 tracking-[0.15em]"
+              style={{
+                fontFamily: "'Special Elite', 'Courier New', monospace",
+                fontSize: "1.75rem",
+                lineHeight: 1.1,
+              }}
+            >
+              WYSIWYG
+            </span>
+            <span className="absolute inset-0 flex items-center pointer-events-none z-20" aria-hidden="true">
+              <span
+                className="w-full block bg-red-500/70"
+                style={{ height: "2px", transform: "rotate(-5deg)" }}
+              />
+            </span>
+          </div>
+          <p className="text-white/35 text-xs font-mono mt-3">
+            With Privacy Rules: What You See Is Not Actually What You Get.
+          </p>
+        </div>
+
         <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05] mb-6">
           See what Bubble <span className="text-violet-400">really</span> sends<br />
           to the browser.
