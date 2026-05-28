@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import WYSIWYGTape from "@/components/bubble/WYSIWYGTape";
+import RCLogo from "@/components/bubble/RCLogo";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ShieldAlert, Eye, GitBranch, Activity, CheckCircle2, AlertCircle, GitMerge, Braces } from "lucide-react";
@@ -270,7 +271,8 @@ const BubbleRealityChecker = () => {
       {/* HERO */}
       <section className="relative max-w-5xl mx-auto px-6 pt-36 md:pt-44 pb-20 text-center">
         {/* WYSIWYG rebond — narrative echo from the Bubble landing page */}
-        <div className="mb-20">
+        <div className="flex items-center justify-center gap-6 mb-20">
+          <RCLogo size={72} />
           <WYSIWYGTape
             fontSize="1.6rem"
             paddingX="px-8"
@@ -289,7 +291,14 @@ const BubbleRealityChecker = () => {
             backgroundClip: "text",
           }}
         >
-          See what Bubble <span style={{ WebkitTextFillColor: "rgb(167, 139, 250)" }}>really</span> sends
+          See what Bubble{" "}
+          <span style={{ WebkitTextFillColor: "transparent", display: "inline-block" }}>
+            <span style={{
+              WebkitTextFillColor: "rgb(167, 139, 250)",
+              borderBottom: "2px solid rgb(167, 139, 250)",
+              paddingBottom: "2px",
+            }}>really</span>
+          </span>{" "}sends
           <br />
           to the browser.
         </h1>

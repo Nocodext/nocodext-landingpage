@@ -4,8 +4,19 @@ import { Link } from "react-router-dom";
 const WYSIWYGTeaser = () => {
   return (
     <section className="py-28 bg-neutral-700">
-      <div className="container mx-auto px-4 text-center">
+      <style>{`
+        @keyframes chevrons-slide {
+          0%   { transform: translateX(-8px); opacity: 0; }
+          30%  { opacity: 1; }
+          70%  { opacity: 1; }
+          100% { transform: translateX(8px); opacity: 0; }
+        }
+        .chv { display: inline-block; animation: chevrons-slide 1.4s ease-in-out infinite; }
+        .chv:nth-child(2) { animation-delay: 0.18s; }
+        .chv:nth-child(3) { animation-delay: 0.36s; }
+      `}</style>
 
+      <div className="container mx-auto px-4 text-center">
         <div className="mb-10">
           <WYSIWYGTape to="/bubble/reality-checker" />
         </div>
@@ -17,9 +28,14 @@ const WYSIWYGTeaser = () => {
 
         <Link
           to="/bubble/reality-checker"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-violet-500/40 text-violet-300 hover:border-violet-400 hover:text-violet-200 transition-colors font-mono text-sm"
+          className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-violet-500/40 text-violet-300 hover:border-violet-400 hover:text-violet-200 transition-colors font-mono text-sm"
         >
-          Discover Reality Checker →
+          discover the new tool : Reality Checker
+          <span className="inline-flex items-center gap-0.5 overflow-hidden text-base" aria-hidden="true">
+            <span className="chv">›</span>
+            <span className="chv">›</span>
+            <span className="chv">›</span>
+          </span>
         </Link>
       </div>
     </section>
