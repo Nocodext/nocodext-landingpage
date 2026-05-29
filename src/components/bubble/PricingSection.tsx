@@ -151,7 +151,7 @@ const PricingSection = () => {
                 <p className="text-sm text-muted-foreground">For freelancers and solo Bubble builders.</p>
               </div>
 
-              <ul className="space-y-3 mb-6 flex-1">
+              <ul className="space-y-5 mb-6 flex-1">
                 {individualFeatures.filter((f) => !f.labs).map((f) => (
                   <li key={f.title} className="flex gap-3">
                     {f.soon ? (
@@ -160,9 +160,8 @@ const PricingSection = () => {
                       <Check className="w-5 h-5 flex-shrink-0 mt-0.5 text-nocodext" />
                     )}
                     <div>
-                      <span className="font-medium text-foreground">{f.title}</span>
-                      <span className="text-muted-foreground"> — {f.desc}</span>
-                      {f.soon && <span className="ml-2"><SoonBadge /></span>}
+                      <div className="font-medium text-sm text-foreground leading-snug">{f.title}{f.soon && <span className="ml-2"><SoonBadge /></span>}</div>
+                      <div className="text-muted-foreground text-xs">{f.desc}</div>
                     </div>
                   </li>
                 ))}
@@ -179,8 +178,8 @@ const PricingSection = () => {
                   <li key={f.title} className="flex gap-3">
                     <Check className="w-5 h-5 flex-shrink-0 mt-0.5 text-orange-500" />
                     <div>
-                      <span className="font-medium text-foreground">{f.title}</span>
-                      <span className="text-muted-foreground"> — {f.desc}</span>
+                      <div className="font-medium text-sm text-foreground leading-snug">{f.title}</div>
+                      <div className="text-muted-foreground text-xs">{f.desc}</div>
                     </div>
                   </li>
                 ))}
@@ -249,13 +248,13 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground">For teams building multiple Bubble projects.</p>
             </div>
 
-            <ul className="space-y-3 flex-1">
+            <ul className="space-y-5 flex-1">
               {visibleFeatures.map((f) => (
                 <li key={f.title} className="flex gap-3">
                   <Check className="w-5 h-5 flex-shrink-0 text-nocodext mt-0.5" />
                   <div>
-                    <span className="font-medium text-foreground">{f.title}</span>
-                    <span className="text-muted-foreground"> — {f.desc}</span>
+                    <div className="font-medium text-sm text-foreground leading-snug">{f.title}</div>
+                    <div className="text-muted-foreground text-xs">{f.desc}</div>
                   </div>
                 </li>
               ))}

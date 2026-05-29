@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { PageSEO } from "@/components/SEO";
 
@@ -10,61 +10,85 @@ const EXTENSION_IDS = [
   "bjeiiojohhdpnginpigmlijlofdabdgl",
 ];
 
+const STORE_URL =
+  "https://chromewebstore.google.com/detail/nocodext-for-bubble/dpjnneeknnpjcnphfahhcofciocedggp";
+
+function sendToken(
+  token: string,
+  onSuccess: () => void,
+  onNotFound: () => void
+) {
+  const chrome = (window as any).chrome;
+  if (!chrome?.runtime?.sendMessage) {
+    onNotFound();
+    return;
+  }
+  let index = 0;
+  const attempt = () => {
+    if (index >= EXTENSION_IDS.length) {
+      onNotFound();
+      return;
+    }
+    chrome.runtime.sendMessage(
+      EXTENSION_IDS[index],
+      { type: "INVITATION_TOKEN", token },
+      (response: any) => {
+        if (chrome.runtime.lastError || !response?.success) {
+          index++;
+          attempt();
+        } else {
+          onSuccess();
+        }
+      }
+    );
+  };
+  attempt();
+}
+
 const BubbleInvite = () => {
   const [status, setStatus] = useState<InviteStatus>("pending");
   const [searchParams] = useSearchParams();
+  const retryRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const tokenRef = useRef<string | null>(null);
+
+  function stopPolling() {
+    if (retryRef.current) {
+      clearInterval(retryRef.current);
+      retryRef.current = null;
+    }
+  }
 
   useEffect(() => {
     const token = searchParams.get("token");
-
     if (!token) {
       setStatus("error");
       return;
     }
+    tokenRef.current = token;
 
-    const tryExtension = (index: number) => {
-      if (index >= EXTENSION_IDS.length) {
+    sendToken(
+      token,
+      () => setStatus("success"),
+      () => {
         setStatus("not_installed");
-        return;
+        // Poll every 2 s — detects extension install without page reload
+        retryRef.current = setInterval(() => {
+          sendToken(
+            token,
+            () => {
+              stopPolling();
+              setStatus("success");
+            },
+            () => {}
+          );
+        }, 2000);
+        // Stop after 90 s regardless
+        setTimeout(stopPolling, 90_000);
       }
+    );
 
-      const chrome = (window as any).chrome;
-      if (!chrome?.runtime?.sendMessage) {
-        setStatus("not_installed");
-        return;
-      }
-
-      chrome.runtime.sendMessage(
-        EXTENSION_IDS[index],
-        { type: "INVITATION_TOKEN", token },
-        (response: any) => {
-          if (chrome.runtime.lastError || !response?.success) {
-            tryExtension(index + 1);
-          } else {
-            setStatus("success");
-          }
-        }
-      );
-    };
-
-    tryExtension(0);
+    return stopPolling;
   }, [searchParams]);
-
-  useEffect(() => {
-    if (status === "success") {
-      const timer = setTimeout(() => {
-        window.location.href = "https://nocodext.com";
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
-    if (status === "not_installed") {
-      const timer = setTimeout(() => {
-        window.location.href =
-          "https://chromewebstore.google.com/detail/nocodext-for-bubble/dpjnneeknnpjcnphfahhcofciocedggp";
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [status]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
@@ -74,24 +98,48 @@ const BubbleInvite = () => {
         pathname="/bubble-invite"
         noindex
       />
-      <div className="text-center p-8 max-w-md">
+      <div className="text-center p-8 max-w-md space-y-4">
         {status === "pending" && (
           <p className="text-lg text-foreground animate-pulse">
             Activation de votre invitation…
           </p>
         )}
+
         {status === "success" && (
-          <p className="text-lg text-foreground">
-            Votre invitation est activée ! L'extension Nocodext vient de
-            s'ouvrir dans votre éditeur Bubble. Vous pouvez fermer cet onglet.
-          </p>
+          <>
+            <p className="text-lg text-foreground">
+              Invitation activée ! L'extension Nocodext s'est ouverte dans votre
+              éditeur Bubble. Vous pouvez fermer cet onglet.
+            </p>
+            <a
+              href="https://bubble.io"
+              className="inline-block text-sm text-primary underline"
+            >
+              Ouvrir Bubble →
+            </a>
+          </>
         )}
+
         {status === "not_installed" && (
-          <p className="text-lg text-foreground">
-            Il semble que Nocodext ne soit pas encore installé. Redirection vers
-            le Chrome Web Store…
-          </p>
+          <>
+            <p className="text-lg text-foreground">
+              Nocodext n'est pas encore installé.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Installez l'extension, puis revenez sur cet onglet — l'activation
+              reprendra automatiquement.
+            </p>
+            <a
+              href={STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
+            >
+              Installer Nocodext →
+            </a>
+          </>
         )}
+
         {status === "error" && (
           <p className="text-lg text-destructive">
             Lien d'invitation invalide ou expiré.
