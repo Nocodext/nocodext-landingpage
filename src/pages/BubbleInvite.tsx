@@ -4,20 +4,11 @@ import { PageSEO } from "@/components/SEO";
 
 type InviteStatus = "pending" | "success" | "not_installed" | "error";
 
-const EXTENSION_IDS = [
-  "dpjnneeknnpjcnphfahhcofciocedggp",
-  "hicolllfnljafaojmdgclbhpbaelfbog",
-  "bjeiiojohhdpnginpigmlijlofdabdgl",
-];
+const EXTENSION_IDS = ["dpjnneeknnpjcnphfahhcofciocedggp", "hicolllfnljafaojmdgclbhpbaelfbog", "bjeiiojohhdpnginpigmlijlofdabdgl"];
 
-const STORE_URL =
-  "https://chromewebstore.google.com/detail/nocodext-for-bubble/dpjnneeknnpjcnphfahhcofciocedggp";
+const STORE_URL = "https://chromewebstore.google.com/detail/nocodext-for-bubble/dpjnneeknnpjcnphfahhcofciocedggp";
 
-function sendToken(
-  token: string,
-  onSuccess: () => void,
-  onNotFound: () => void
-) {
+function sendToken(token: string, onSuccess: () => void, onNotFound: () => void) {
   const chrome = (window as any).chrome;
   if (!chrome?.runtime?.sendMessage) {
     onNotFound();
@@ -29,18 +20,14 @@ function sendToken(
       onNotFound();
       return;
     }
-    chrome.runtime.sendMessage(
-      EXTENSION_IDS[index],
-      { type: "INVITATION_TOKEN", token },
-      (response: any) => {
-        if (chrome.runtime.lastError || !response?.success) {
-          index++;
-          attempt();
-        } else {
-          onSuccess();
-        }
+    chrome.runtime.sendMessage(EXTENSION_IDS[index], { type: "INVITATION_TOKEN", token }, (response: any) => {
+      if (chrome.runtime.lastError || !response?.success) {
+        index++;
+        attempt();
+      } else {
+        onSuccess();
       }
-    );
+    });
   };
   attempt();
 }
@@ -79,12 +66,12 @@ const BubbleInvite = () => {
               stopPolling();
               setStatus("success");
             },
-            () => {}
+            () => {},
           );
         }, 2000);
         // Stop after 90 s regardless
         setTimeout(stopPolling, 90_000);
-      }
+      },
     );
 
     return stopPolling;
@@ -92,29 +79,16 @@ const BubbleInvite = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
-      <PageSEO
-        title="Bubble Invite - Nocodext"
-        description="Activate your Nocodext for Bubble invitation."
-        pathname="/bubble-invite"
-        noindex
-      />
+      <PageSEO title="Bubble Invite - Nocodext" description="Activate your Nocodext for Bubble invitation." pathname="/bubble-invite" noindex />
       <div className="text-center p-8 max-w-md space-y-4">
-        {status === "pending" && (
-          <p className="text-lg text-foreground animate-pulse">
-            Activation de votre invitation…
-          </p>
-        )}
+        {status === "pending" && <p className="text-lg text-foreground animate-pulse">Activation de votre invitation…</p>}
 
         {status === "success" && (
           <>
             <p className="text-lg text-foreground">
-              Invitation activée ! L'extension Nocodext s'est ouverte dans votre
-              éditeur Bubble. Vous pouvez fermer cet onglet.
+              Invitation activée ! L'extension Nocodext s'est ouverte dans votre éditeur Bubble. Vous pouvez fermer cet onglet.
             </p>
-            <a
-              href="https://bubble.io"
-              className="inline-block text-sm text-primary underline"
-            >
+            <a href="https://bubble.io" className="inline-block text-sm text-primary underline">
               Ouvrir Bubble →
             </a>
           </>
@@ -122,12 +96,9 @@ const BubbleInvite = () => {
 
         {status === "not_installed" && (
           <>
-            <p className="text-lg text-foreground">
-              Nocodext n'est pas encore installé.
-            </p>
+            <p className="text-lg text-foreground">Nocodext n'est pas encore installé.</p>
             <p className="text-sm text-muted-foreground">
-              Installez l'extension, puis revenez sur cet onglet — l'activation
-              reprendra automatiquement.
+              Installez l'extension, puis revenez sur cet onglet — l'activation reprendra automatiquement.
             </p>
             <a
               href={STORE_URL}
@@ -140,11 +111,7 @@ const BubbleInvite = () => {
           </>
         )}
 
-        {status === "error" && (
-          <p className="text-lg text-destructive">
-            Lien d'invitation invalide ou expiré.
-          </p>
-        )}
+        {status === "error" && <p className="text-lg text-destructive">Lien d'invitation invalide ou expiré.</p>}
       </div>
     </div>
   );
