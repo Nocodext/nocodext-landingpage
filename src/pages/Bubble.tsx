@@ -9,8 +9,7 @@ import CTASection from "@/components/bubble/CTASection";
 import StayInformed from "@/components/bubble/StayInformed";
 import ManifestoSection from "@/components/bubble/ManifestoSection";
 import PricingSection from "@/components/bubble/PricingSection";
-import WYSIWYGTeaser from "@/components/bubble/WYSIWYGTeaser";
-import ERDComparisonSection from "@/components/bubble/ERDComparisonSection";
+import LateralZoneCarousel from "@/components/bubble/LateralZoneCarousel";
 
 const features = [
   {
@@ -124,9 +123,7 @@ const Bubble = () => {
         initialIndex={tabGalleryInitialIndex}
       />
       
-      <ERDComparisonSection />
-
-      <WYSIWYGTeaser />
+      <LateralZoneCarousel />
 
       <CTASection />
       
